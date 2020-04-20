@@ -79,4 +79,62 @@ class Alternatif_model extends CI_Model
         $query = $this->db->query("SELECT COUNT(*) as jumlah_alternatif FROM alternatif");
         return $query->row();
       }
+
+    // CREATE
+	function create_alternatif($alternatif,$kecamatan,$kriteria){
+		$this->db->trans_start();
+			//INSERT TO alternatif
+			//date_default_timezone_set("Asia/Bangkok");
+			$data  = array(
+				'alternatif' => $alternatif,
+				'kecamatan' => $kecamatan
+				//'alternatif_created_at' => date('Y-m-d H:i:s') 
+			);
+			$this->db->insert('alternatif', $data);
+			//GET ID alternatif
+			$alternatif_id = $this->db->insert_id();
+			$result = array();
+			    foreach($kriteria AS $key => $val){
+				     $result[] = array(
+				      'nilai_alternatif_id'  	=> $alternatif_id,
+				      'nilai_kriteria_id'  	=> $_POST['kriteria'][$key]
+				     );
+			    }      
+			//MULTIPLE INSERT TO nilai_tbl TABLE
+			$this->db->insert_batch('nilai_tbl', $result);
+		$this->db->trans_complete();
+	}
+	
+	// UPDATE
+	function update_alternatif($id,$alternatif,$kriteria){
+		$this->db->trans_start();
+			//UPDATE TO alternatif
+			$data  = array(
+				'alternatif' => $alternatif
+			);
+			$this->db->where('alternatif_id',$id);
+			$this->db->update('alternatif', $data);
+			
+			//DELETE nilai_tbl alternatif
+			$this->db->delete('nilai_tbl', array('nilai_alternatif_id' => $id));
+
+			$result = array();
+			    foreach($kriteria AS $key => $val){
+				     $result[] = array(
+				      'nilai_alternatif_id'  	=> $id,
+				      'nilai_kriteria_id'  	=> $_POST['kriteria_edit'][$key]
+				     );
+			    }      
+			//MULTIPLE INSERT TO nilai_tbl TABLE
+			$this->db->insert_batch('nilai_tbl', $result);
+		$this->db->trans_complete();
+	}
+
+	// DELETE
+	function delete_alternatif($id){
+		
+			$this->db->delete('nilai_tbl', array('nilai_alternatif_id' => $id));
+			$this->db->delete('alternatif', array('alternatif_id' => $id));
+		
+	}
 }

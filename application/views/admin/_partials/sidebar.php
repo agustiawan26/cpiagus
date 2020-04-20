@@ -41,15 +41,16 @@
 
                             <li class="app-sidebar__heading">Data</li>
                             <li>
-                                <a href="<?php echo site_url('admin/alternatif') ?>" class="<?php echo $this->uri->segment(2) == 'alternatif' ? 'mm-active': '' ?>">
-                                    <i class="metismenu-icon pe-7s-map-marker"></i> Alternatif
-                                </a>
-                            </li>
-                            <li>
                                 <a href="<?php echo site_url('admin/kriteria') ?>" class="<?php echo $this->uri->segment(2) == 'kriteria' ? 'mm-active': '' ?>">
                                     <i class="metismenu-icon pe-7s-keypad"></i> Kriteria
                                 </a>
                             </li>
+                            <li>
+                                <a href="<?php echo site_url('admin/alternatif') ?>" class="<?php echo $this->uri->segment(2) == 'alternatif' ? 'mm-active': '' ?>">
+                                    <i class="metismenu-icon pe-7s-map-marker"></i> Alternatif
+                                </a>
+                            </li>
+                            
                             <!-- <li>
                                 <a href="<?php echo site_url('admin/parameterkriteria') ?>" class="<?php echo $this->uri->segment(2) == 'parameterkriteria' ? 'mm-active': '' ?>">
                                     <i class="metismenu-icon pe-7s-display2"></i> Parameter Kriteria

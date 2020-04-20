@@ -46,7 +46,7 @@
                             <div class="tab-pane tabs-animation fade show active" id="tab-content-1" role="tabpanel">
                                 <div class="main-card mb-3 card">
                                     <div class="card-body">
-                                        <form action="" method="post" enctype="multipart/form-data">
+                                        <form action="<?php echo site_url('alternatif/update');?>" method="post" enctype="multipart/form-data">
                                         <input type="hidden" name="id" value="<?php echo $alternatif->alternatif_id?>" />
                                             <div class="position-relative row form-group"><label for="alternatif" class="col-sm-2 col-form-label">Nama Alternatif</label>
                                                 <div class="col-sm-10"><input name="alternatif" id="alternatif" placeholder="Nama Alternatif" type="text" class="form-control" value="<?php echo $alternatif->alternatif ?>" ></div>

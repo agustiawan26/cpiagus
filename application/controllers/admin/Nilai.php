@@ -20,13 +20,13 @@ class Nilai extends CI_Controller
     $data['alternatif'] = $this->nilai_model->getAlternatif();
     $data['kriteria'] = $this->nilai_model->getKriteria();
     $data['nilai'] = $this->nilai_model->getNilai();
-    $data['nilai_kolom'] = $this->nilai_model->getNilaikolom();
+    
     
     // $data['view_name'] = "nilai/nilai";
     $data['message'] = $this->session->flashdata('msg');
     //$data['kriteria'] = $this->nilai_model->getkriteria();
     // $data['parameter'] = $this->alternatif_model->getParameter();
-    // var_dump($data['nilai_kolom']);die;
+    //var_dump($data['nilai_min']);die;
     $this->load->view("admin/nilai/list", $data);
     
   }
@@ -37,7 +37,7 @@ class Nilai extends CI_Controller
     if ($this->input->post('updatenilai')) {
       foreach ($data["form"] as $item) {
        // $k = str_replace('ID-', '', $item->kode_kriteria);
-        $this->nilai_model->updateNilai($id, $item->kriteria_id, $this->input->post($item->kriteria_id));
+        $this->nilai_model->updateNilai($id, $item->nilai_kriteria_id, $this->input->post($item->nilai_kriteria_id));
       }
       $this->session->set_flashdata('msg', '<div class="alert alert-success">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -45,23 +45,16 @@ class Nilai extends CI_Controller
               </button>
               <strong>Berhasil Merubah Nilai</strong>
           </div>');
-      redirect(base_url('nilai'));
+      redirect(base_url('admin/nilai'));
     } elseif ($this->input->post('back')) {
-      redirect(base_url('nilai'));
+      redirect(base_url('admin/nilai'));
     } else {
       $data["selectalt"] = $this->nilai_model->getSelectedAlternatif($id);
       
       $data['message'] = $this->session->flashdata('msg');
-      $data['nilai_tbl'] = $this->nilai_model->getNilaitabel();
+      $data['nilai_tbl'] = $this->nilai_model->getNilaialternatif($id);
       $this->load->view("admin/nilai/edit_form", $data);
     }
   }
 
-  public function getListForm($id){
-    //    $query = $this->db->query("SELECT ra.ID, k.kode_kriteria, k.nama_kriteria,ra.nilai FROM tbl_relasi ra INNER JOIN tbl_kriteria k ON k.kode_kriteria=ra.kode_kriteria  WHERE kode_alternatif='$id' ORDER BY kode_kriteria");
-        
-    // return $this->db->query('SELECT a.ID, a.kode_kriteria, a.nilai ,b.nama_parameter,c.nama_kriteria FROM tbl_relasi as a INNER JOIN tbl_parameter as b on (a.kode_kriteria = b.kode_kriteria and a.nilai= b.nilai_parameter), tbl_kriteria as c WHERE kode_alternatif= "'.$id.'" and c.kode_kriteria = a.kode_kriteria ORDER BY kode_kriteria')->result();
-    return $this->db->query('SELECT a.ID, a.kriteria_id, a.nilai ,c.kriteria FROM nilai as a INNER JOIN tbl_kriteria as c WHERE alternatif_id = "'.$id.'" and c.kriteria_id = a.kriteria_id ORDER BY kriteria_id')->result();
-
-      }
 }

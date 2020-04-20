@@ -70,8 +70,10 @@
                                                     </td>
                                                     
                                                     <td width="250">
-                                                        <a href="<?php echo site_url('admin/alternatif/edit/'.$alternatif->alternatif_id) ?>"
+                                                        <a href="<?php echo site_url('admin/alternatif/update/'.$alternatif->alternatif_id) ?>"
                                                         class="mb-2 mr-2 btn btn-info"><i class="fas fa-edit"></i> Edit</a>
+                                                        <!-- <a href="<?php echo site_url('admin/alternatif/edit/'.$alternatif->alternatif_id) ?>"
+                                                        class="mb-2 mr-2 btn btn-info"><i class="fas fa-edit"></i> Edit</a> -->
                                                         <a href="<?php echo site_url('admin/alternatif/delete/'.$alternatif->alternatif_id) ?>" 
                                                         class="mb-2 mr-2 btn btn-danger"><i class="fas fa-trash"></i> Hapus</a>
                                                         <!-- <a onclick="deleteConfirm('<?php echo site_url('admin/alternatif/delete/'.$alternatif->alternatif_id) ?>')"
