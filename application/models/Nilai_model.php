@@ -44,8 +44,11 @@ class Nilai_model extends CI_Model{
 
   public function getKriteria()
   {
-       $query=$this->db->query("SELECT * FROM kriteria ORDER BY kriteria_id");
-       return $query->result();
+    $this->db->order_by("kriteria_id", "ASC");
+    $query = $this->db->get("kriteria");
+
+    return $query->result();
+    // $query = json_decode($query,true);
   }
 
   public function updateNilai($id, $kriteria, $value)
@@ -71,8 +74,8 @@ public function getNilaiMinimum()
         FROM nilai_tbl b
           GROUP BY b.nilai_kriteria_id
         ) NewT   
-        ON a.nilai_kriteria_id = NewT.nilai_kriteria_id AND a.nilai = NewT.MinNilai;
-          ");
+        ON a.nilai_kriteria_id = NewT.nilai_kriteria_id AND a.nilai = NewT.MinNilai
+      ORDER BY a.nilai_kriteria_id;");
 
         $datamin = $query->result();
 
@@ -84,7 +87,26 @@ public function getNilaiMinimum()
     return $data;
 }
 
-public function getTransformpositif()
+public function getTren()
+{
+
+    $query = $this->db->query("SELECT k.tren, a.nilai_kriteria_id  FROM kriteria k
+      INNER JOIN nilai_tbl a   
+        ON k.kriteria_id = a.nilai_kriteria_id
+      ORDER BY a.nilai_kriteria_id;");
+
+        $tren = $query->result();
+
+        $data=array();
+        foreach($tren as $row){
+          $data[$row->nilai_kriteria_id] = $row->tren;
+        }
+
+    return $data;
+}
+
+
+public function getTransform()
 {
   $query = $this->db->query("SELECT a.alternatif_id, k.tren, k.kriteria_id, n.nilai
   FROM nilai_tbl n
@@ -92,7 +114,6 @@ public function getTransformpositif()
     ON n.nilai_alternatif_id=a.alternatif_id
   INNER JOIN kriteria k
     ON k.kriteria_id=n.nilai_kriteria_id
-  WHERE k.tren='positif'
   ORDER BY a.alternatif_id, k.kriteria_id
   ");
 $rows = $query->result();

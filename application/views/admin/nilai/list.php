@@ -93,7 +93,7 @@
                                                     <?php $i++;
                                                 endforeach; ?>
 
-                                            <th>Nilai Minimum</th>
+                                            
                                             
                                             </tbody>
                                         </table>

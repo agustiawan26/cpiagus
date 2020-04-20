@@ -24,6 +24,21 @@ class Kriteria_model extends CI_Model
         ];
     }
 
+    //Fungsi Otomatis CRUD Tabel nilai_kriteria//
+    private function insertIntoNilai($id)
+    {
+    $this->db->query("INSERT INTO nilai_tbl(nilai_alternatif_id, nilai_kriteria_id, nilai) SELECT alternatif_id, '$id', 0  FROM alternatif");
+        return;
+    }
+
+    private function deleteNilai($id)
+    {
+    $where = array(
+        'kriteria_id' => $id
+    );
+    $this->db->delete('nilai_tbl',$where);
+    }
+
     public function getAll()
     {
         return $this->db->get($this->_table)->result();
@@ -41,9 +56,12 @@ class Kriteria_model extends CI_Model
         $this->kriteria = $post["kriteria"];
         $this->bobot = $post["bobot"];
         $this->tren = $post["tren"];
-        return $this->db->insert($this->_table, $this);
 
         $this->insertIntoNilai($this->input->post('kriteria_id'));
+
+        return $this->db->insert($this->_table, $this);
+
+        
     }
 
     public function savePara()
@@ -94,35 +112,101 @@ class Kriteria_model extends CI_Model
     }
 
 
-    //Fungsi Otomatis CRUD Tabel nilai_kriteria//
-    private function insertIntoNilai($id)
-    {
-    $this->db->query("INSERT INTO nilai_tbl(alternatif_id, kriteria_id, nilai) SELECT alternatif_id, '$id', 0  FROM alternatif");
-        return;
-    }
+    
 
-    private function deleteNilai($id)
-    {
-    $where = array(
-        'kriteria_id' => $id
-    );
-    $this->db->delete('nilai_tbl',$where);
-    }
-
-    private function insertIntoParameter($id,$parameter, $value)
-    {
-    $data = array(
-        'kriteria_id' => $id,
-        'nama_parameter' => $parameter,   
-        'nilai_parameter' => $value
-    );  
-    return $this->db->insert('parameter', $data);
-
-    }
 
     public function getCountKriteria(){
         $query = $this->db->query("SELECT COUNT(*) as jumlah_kriteria FROM kriteria");
         return $query->row();
       }
+
+    // GET ALL alternatif
+	function get_alternatifs(){
+		$query = $this->db->get('alternatif');
+		return $query;
+	}
+
+	//GET alternatif BY kriteria ID
+	function get_alternatif_by_kriteria($kriteria_id){
+		$this->db->select('*');
+		$this->db->from('alternatif');
+		$this->db->join('nilai_tbl', 'nilai_alternatif_id=alternatif_id');
+		$this->db->join('kriteria', 'kriteria_id=nilai_kriteria_id');
+		$this->db->where('kriteria_id',$kriteria_id);
+		$query = $this->db->get();
+		return $query;
+	}
+
+	//READ
+	function get_kriterias(){
+		$this->db->select('kriteria.*,COUNT(alternatif_id) AS item_alternatif');
+		$this->db->from('kriteria');
+		$this->db->join('nilai_tbl', 'kriteria_id=nilai_kriteria_id');
+		$this->db->join('alternatif', 'nilai_alternatif_id=alternatif_id');
+		$this->db->group_by('kriteria_id');
+		$query = $this->db->get();
+		return $query;
+	}
+
+	// CREATE
+	function create_kriteria($kriteria, $bobot, $tren, $alternatif){
+		$this->db->trans_start();
+			//INSERT TO kriteria
+			//date_default_timezone_set("Asia/Bangkok");
+			$data  = array(
+				'kriteria' => $kriteria,
+				'bobot' => $bobot,
+				'tren' => $tren
+				//'kriteria_created_at' => date('Y-m-d H:i:s') 
+			);
+			$this->db->insert('kriteria', $data);
+			//GET ID kriteria
+			$kriteria_id = $this->db->insert_id();
+			$result = array();
+			    foreach($alternatif AS $key => $val){
+				     $result[] = array(
+				      'nilai_kriteria_id'  	=> $kriteria_id,
+				      'nilai_alternatif_id'  	=> $_POST['alternatif'][$key]
+				     );
+			    }      
+			//MULTIPLE INSERT TO DETAIL TABLE
+			$this->db->insert_batch('nilai_tbl', $result);
+		$this->db->trans_complete();
+	}
+	
+	// UPDATE
+	function update_kriteria($id,$kriteria,$alternatif,$bobot,$tren){        
+        $this->db->trans_start();
+			//UPDATE TO alternatif
+			$data  = array(
+                'kriteria' => $kriteria,
+                'bobot' => $bobot,
+                'tren' => $tren
+			);
+			$this->db->where('kriteria_id',$id);
+			$this->db->update('kriteria', $data);
+			
+			//DELETE nilai_tbl alternatif
+			$this->db->delete('nilai_tbl', array('nilai_kriteria_id' => $id));
+
+			$result = array();
+			    foreach($alternatif AS $key => $val){
+				     $result[] = array(
+				      'nilai_kriteria_id'  	=> $id,
+				      'nilai_alternatif_id'  	=> $_POST['alternatif_edit'][$key]
+				     );
+			    }      
+			//MULTIPLE INSERT TO nilai_tbl TABLE
+			$this->db->insert_batch('nilai_tbl', $result);
+		$this->db->trans_complete();
+	}
+
+	// DELETE
+	function delete_kriteria($id){
+		$this->db->trans_start();
+			$this->db->delete('nilai_tbl', array('nilai_kriteria_id' => $id));
+			$this->db->delete('kriteria', array('kriteria_id' => $id));
+		$this->db->trans_complete();
+	}
 
 }

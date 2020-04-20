@@ -130,7 +130,7 @@
                                             <!-- START NEW ACCORDIONS HERE -->
                                             <div id="headingOne" class="card-header">
                                                 <button type="button" data-toggle="collapse" data-target="#collapseOne3" aria-expanded="true" aria-controls="collapseOne" class="text-left m-0 p-0 btn btn-link btn-block">
-                                                    <h5 class="m-0 p-0">Transformasi nilai selain nilai minimum sesuai tren (Positif)</h5>
+                                                    <h5 class="m-0 p-0">Transformasi nilai selain nilai minimum sesuai tren</h5>
                                                 </button>
                                             </div>
                                             <div data-parent="#accordion" id="collapseOne3" aria-labelledby="headingOne" class="collapse show">
@@ -161,8 +161,9 @@
                                                                             foreach ($alternatif as $item) : ?>
                                                                                 <tr>
                                                                                     
-                                                                                    <td><?php echo $item->alternatif; ?></td> 
-                                                                                    <?php foreach ($tren_positif[$item->alternatif_id] as $k => $v) : ?> 
+                                                                                    <td><?php echo $item->alternatif; ?></td>
+                                                                                    <!-- <td><?php echo $kriteria->tren; ?></td>  -->
+                                                                                    <?php foreach ($transform[$item->alternatif_id] as $k => $v) : ?> 
                                                                                         <td><?= $v; ?></td>
                                                                                     <?php endforeach; ?>
                                                                                     
@@ -173,17 +174,12 @@
                                                             
                                                                         </tbody>
                                                                         <tfoot>
-                                                                        
-                                                                                <tr>
-                                                                                    
-                                                                                    <th>Nilai Minimum</th> 
-                                                                                    <?php foreach ($nilai_min as $min => $v) : ?> 
-                                                                                        <th><?= $v; ?></th>
-                                                                                    <?php endforeach; ?>
-                                                                                    
-                                                                                    
-                                                                                </tr>
-                                                                                
+                                                                            <tr>              
+                                                                                <th>Tren</th> 
+                                                                                <?php foreach ($tren as $trenkriteria => $v) : ?> 
+                                                                                    <th><?= $v; ?></th>
+                                                                                <?php endforeach; ?>
+                                                                            </tr>
                                                                         </tfoot>
                                                                     </table>
                                                                 </div>
@@ -193,70 +189,7 @@
                                                 </div>
                                             </div>
                                             <!--      END NEW ACCORDIONS HERE        -->
-                                            <div id="headingOne" class="card-header">
-                                                <button type="button" data-toggle="collapse" data-target="#collapseOne4" aria-expanded="true" aria-controls="collapseOne" class="text-left m-0 p-0 btn btn-link btn-block">
-                                                    <h5 class="m-0 p-0">Transformasi nilai selain nilai minimum sesuai tren (Negatif)</h5>
-                                                </button>
-                                            </div>
-                                            <div data-parent="#accordion" id="collapseOne4" aria-labelledby="headingOne" class="collapse show">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <div class="main-card mb-3 card">
-                                                                <div class="card-body">
-                                                                    <table class="mb-0 table table-hover">
-                                                                        <thead>
-                                                                        <tr>
-                                                                        <th>Nama Alternatif</th>
-                                                                        <?php
-                                                                        if ($count > 0) :
-                                                                            for ($a = 1; $a <= $count; $a++) {
-                                                                                echo "<th>Kriteria $a</th>";
-                                                                            }
-                                                                        endif;
-                                                                        ?>
-                                                                        
-                                                                        </tr>
-                                                                        </thead>
-
-
-                                                                        <tbody>
-                                                                        
-                                                                        <?php $i = 1;
-                                                                            foreach ($alternatif as $item) : ?>
-                                                                                <tr>
-                                                                                    
-                                                                                    <td><?php echo $item->alternatif; ?></td> 
-                                                                                    <?php foreach ($tren_negatif[$item->alternatif_id] as $k => $v) : ?> 
-                                                                                        <td><?= $v; ?></td>
-                                                                                    <?php endforeach; ?>
-                                                                                    
-                                                                                </tr>
-                                                                                <?php $i++;
-                                                                            endforeach; ?>
-
-                                                            
-                                                                        </tbody>
-                                                                        <tfoot>
-                                                                        
-                                                                                <tr>
-                                                                                    
-                                                                                    <th>Nilai Minimum</th> 
-                                                                                    <?php foreach ($nilai_min as $min => $v) : ?> 
-                                                                                        <th><?= $v; ?></th>
-                                                                                    <?php endforeach; ?>
-                                                                                    
-                                                                                    
-                                                                                </tr>
-                                                                                
-                                                                        </tfoot>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            
                                             <div id="headingOne" class="card-header">
                                                 <button type="button" data-toggle="collapse" data-target="#collapseOne5" aria-expanded="true" aria-controls="collapseOne" class="text-left m-0 p-0 btn btn-link btn-block">
                                                     <h5 class="m-0 p-0">Menghitung nilai CPI</h5>
@@ -272,14 +205,7 @@
                                                                         <thead>
                                                                         <tr>
                                                                         <th>Nama Alternatif</th>
-                                                                        <?php
-                                                                        if ($count > 0) :
-                                                                            for ($a = 1; $a <= $count; $a++) {
-                                                                                echo "<th>Kriteria $a</th>";
-                                                                            }
-                                                                        endif;
-                                                                        ?>
-                                                                        
+                                                                        <th>Nilai CPI</th> 
                                                                         </tr>
                                                                         </thead>
 
@@ -291,9 +217,9 @@
                                                                                 <tr>
                                                                                     
                                                                                     <td><?php echo $item->alternatif; ?></td> 
-                                                                                    <?php foreach ($nilai[$item->alternatif_id] as $k => $v) : ?> 
+                                                                                    <!-- <?php foreach ($nilai[$item->alternatif_id] as $k => $v) : ?> 
                                                                                         <td><?= $v; ?></td>
-                                                                                    <?php endforeach; ?>
+                                                                                    <?php endforeach; ?> -->
                                                                                     
                                                                                 </tr>
                                                                                 <?php $i++;
@@ -302,17 +228,7 @@
                                                             
                                                                         </tbody>
                                                                         <tfoot>
-                                                                        
-                                                                                <tr>
-                                                                                    
-                                                                                    <th>Nilai Minimum</th> 
-                                                                                    <?php foreach ($nilai_min as $min => $v) : ?> 
-                                                                                        <th><?= $v; ?></th>
-                                                                                    <?php endforeach; ?>
-                                                                                    
-                                                                                    
-                                                                                </tr>
-                                                                                
+
                                                                         </tfoot>
                                                                     </table>
                                                                 </div>

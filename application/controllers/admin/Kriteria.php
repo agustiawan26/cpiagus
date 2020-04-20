@@ -11,11 +11,11 @@ class Kriteria extends CI_Controller
         $this->load->library('form_validation');
     }
 
-    public function index()
-    {
-        $data["kriteria"] = $this->kriteria_model->getAll();
-        $this->load->view("admin/kriteria/list", $data);
-    }
+    // public function index()
+    // {
+    //     $data["kriteria"] = $this->kriteria_model->getAll();
+    //     $this->load->view("admin/kriteria/list", $data);
+    // }
 
     public function add()
     {
@@ -128,12 +128,57 @@ class Kriteria extends CI_Controller
         $this->load->view("admin/kriteria/edit_form", $data);
     }
 
-    public function delete($id=null)
-    {
-        if (!isset($id)) show_404();
+    // public function delete($id=null)
+    // {
+    //     if (!isset($id)) show_404();
         
-        if ($this->kriteria_model->delete($id)) {
-            redirect(site_url('admin/kriteria'));
-        }
-    }
+    //     if ($this->kriteria_model->delete($id)) {
+    //         redirect(site_url('admin/kriteria'));
+    //     }
+    // }
+
+    // READ
+	function index(){
+		$data['alternatif'] = $this->kriteria_model->get_alternatifs();
+		$data['kriteria'] = $this->kriteria_model->get_kriterias();
+		$this->load->view('admin/kriteria/list',$data);
+	}
+
+	//CREATE
+	function create(){
+		$kriteria = $this->input->post('kriteria',TRUE);
+		$alternatif = $this->input->post('alternatif',TRUE);
+		$bobot = $this->input->post('bobot',TRUE);
+		$tren = $this->input->post('tren',TRUE);
+		$this->kriteria_model->create_kriteria($kriteria,$bobot,$tren,$alternatif);
+		redirect('admin/kriteria');
+	}
+
+	// GET DATA alternatif BERDASARKAN kriteria ID
+	function get_alternatif_by_kriteria(){
+		$kriteria_id=$this->input->post('kriteria_id');
+    	$data=$this->kriteria_model->get_alternatif_by_kriteria($kriteria_id)->result();
+    	foreach ($data as $result) {
+    		$value[] = (float) $result->alternatif_id;
+    	}
+    	echo json_encode($value);
+	}
+
+	//UPDATE
+	function update(){
+        $id = $this->input->post('edit_id',TRUE);
+		$kriteria = $this->input->post('kriteria_edit',TRUE);
+        $alternatif = $this->input->post('alternatif_edit',TRUE);
+        $bobot = $this->input->post('bobot_edit',TRUE);
+        $tren = $this->input->post('tren_edit',TRUE);        
+		$this->kriteria_model->update_kriteria($id,$kriteria,$alternatif,$bobot,$tren);
+		redirect('admin/kriteria');
+	}
+
+	// DELETE
+	function delete(){
+		$id = $this->input->post('delete_id',TRUE);
+		$this->kriteria_model->delete_kriteria($id);
+		redirect('admin/kriteria');
+	}
 }

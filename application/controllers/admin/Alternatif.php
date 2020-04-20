@@ -13,7 +13,9 @@ class Alternatif extends CI_Controller
 
     public function index()
     {
-        $data["alternatif"] = $this->alternatif_model->getAll();
+        // $data["alternatif"] = $this->alternatif_model->getAll();
+        $data['alternatif'] = $this->alternatif_model->get_alternatifs();
+		$data['kriteria'] = $this->alternatif_model->get_kriterias();
         $this->load->view("admin/alternatif/list", $data);
     }
 
@@ -27,9 +29,6 @@ class Alternatif extends CI_Controller
             $alternatif->save();
             $this->session->set_flashdata('success', 'Berhasil disimpan');
         }
-
-        
-
         $this->load->view("admin/alternatif/new_form");
     }
 
@@ -62,14 +61,14 @@ class Alternatif extends CI_Controller
     // }
 
     // DELETE
-	function delete($id=null){
-		// $id = $this->input->post('delete_id',TRUE);
-		if (!isset($id)) show_404();
+	// function delete($id=null){
+	// 	// $id = $this->input->post('delete_id',TRUE);
+	// 	if (!isset($id)) show_404();
         
-        if ($this->alternatif_model->delete_alternatif($id)) {
-            redirect(site_url('admin/alternatif'));
-        }
-	}
+    //     if ($this->alternatif_model->delete_alternatif($id)) {
+    //         redirect(site_url('admin/alternatif'));
+    //     }
+	// }
 
     //CREATE
 	function create(){
@@ -78,7 +77,7 @@ class Alternatif extends CI_Controller
 		$kecamatan = $this->input->post('kecamatan',TRUE);
 		
 		$this->alternatif_model->create_alternatif($alternatif,$kecamatan,$kriteria);
-		redirect('alternatif');
+		redirect('admin/alternatif');
 	}
 
 	// GET DATA alternatif BERDASARKAN kriteria ID
@@ -95,15 +94,17 @@ class Alternatif extends CI_Controller
 	function update(){
 		$id = $this->input->post('edit_id',TRUE);
 		$kriteria = $this->input->post('kriteria_edit',TRUE);
-		$alternatif = $this->input->post('alternatif_edit',TRUE);
-		$this->alternatif_model->update_alternatif($id,$kriteria,$alternatif);
-		redirect('alternatif');
+        $alternatif = $this->input->post('alternatif_edit',TRUE);
+        $kecamatan = $this->input->post('kecamatan_edit',TRUE);
+        $nilai = $this->input->post('nilai_edit',TRUE);
+		$this->alternatif_model->update_alternatif($id,$kriteria,$alternatif,$kecamatan,$nilai);
+		redirect('admin/alternatif');
 	}
 
-	// // DELETE
-	// function delete(){
-	// 	$id = $this->input->post('delete_id',TRUE);
-	// 	$this->alternatif_model->delete_alternatif($id);
-	// 	redirect(site_url('admin/alternatif'));
-	// }
+	// DELETE
+	function delete(){
+		$id = $this->input->post('delete_id',TRUE);
+		$this->alternatif_model->delete_alternatif($id);
+		redirect('admin/alternatif');
+	}
 }

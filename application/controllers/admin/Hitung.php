@@ -22,9 +22,8 @@ class Hitung extends CI_Controller
         $data['kriteria'] = $this->nilai_model->getKriteria();
         $data['nilai'] = $this->nilai_model->getNilai();
         $data['nilai_min'] = $this->nilai_model->getNilaiMinimum();
-        $data['tren_positif'] = $this->nilai_model->getTransformpositif();
-        $data['tren_negatif'] = $this->nilai_model->getTransformnegatif();
-
+        $data['transform'] = $this->nilai_model->getTransform();
+        $data['tren'] = $this->nilai_model->getTren();
 
 
         // var_dump($data['tren-positif']);die;

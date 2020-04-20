@@ -58,8 +58,7 @@
                                                 <div class="invalid-feedback">
                                                     <?php echo form_error('kecamatan') ?>
                                                 </div>
-                                            </div>
-                                            
+                                            </div>                                            
                                             
                                             <div class="position-relative row form-check">
                                                 <div class="col-sm-10 offset-sm-2">
