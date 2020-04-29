@@ -71,7 +71,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="dashboard-boxes.html">
+                            <a href="<?php echo site_url('admin/peringkat') ?>" class="<?php echo $this->uri->segment(2) == 'peringkat' ? 'mm-active': '' ?>">
                                     <i class="metismenu-icon pe-7s-star">
                                     </i> Hasil Peringkat
                                 </a>

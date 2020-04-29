@@ -8,6 +8,8 @@ class Nilai extends CI_Controller
     parent::__construct();
     $this->load->model('nilai_model');
     $this->load->model('alternatif_model');
+    $this->load->helper('cpi_class');
+
     // if (!$this->session->userdata['login']) {
     //   // redirect(base_url('login'));
     //   notify('Session Anda Sudah Habis, Silakan Login Ulang', 'Warning', 'login');

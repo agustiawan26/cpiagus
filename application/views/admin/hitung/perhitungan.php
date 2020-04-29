@@ -65,10 +65,10 @@
                                         <div class="card">
                                             <div id="headingOne" class="card-header">
                                                 <button type="button" data-toggle="collapse" data-target="#collapseOne2" aria-expanded="true" aria-controls="collapseOne" class="text-left m-0 p-0 btn btn-link btn-block">
-                                                    <h5 class="m-0 p-0">Mencari nilai minimum dari tiap kriteria</h5>
+                                                    <h5 class="m-0 p-0">#1 Mencari nilai minimum dari tiap kriteria</h5>
                                                 </button>
                                             </div>
-                                            <div data-parent="#accordion" id="collapseOne2" aria-labelledby="headingOne" class="collapse show">
+                                            <!-- <div data-parent="#accordion" id="collapseOne2" aria-labelledby="headingOne" class="collapse show">
                                                 <div class="card-body">
                                                     <div class="row">
                                                         <div class="col-lg-12">
@@ -112,8 +112,8 @@
                                                                                 <tr>
                                                                                     
                                                                                     <th>Nilai Minimum</th> 
-                                                                                    <?php foreach ($nilai_min as $min => $v) : ?> 
-                                                                                        <th><?= $v; ?></th>
+                                                                                    <?php foreach ($nilai_min as $min => $y) : ?> 
+                                                                                        <th><?= $y; ?></th>
                                                                                     <?php endforeach; ?>
                                                                                     
                                                                                     
@@ -126,11 +126,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <!-- START NEW ACCORDIONS HERE -->
                                             <div id="headingOne" class="card-header">
                                                 <button type="button" data-toggle="collapse" data-target="#collapseOne3" aria-expanded="true" aria-controls="collapseOne" class="text-left m-0 p-0 btn btn-link btn-block">
-                                                    <h5 class="m-0 p-0">Transformasi nilai selain nilai minimum sesuai tren</h5>
+                                                    <h5 class="m-0 p-0">#2 Transformasi nilai sesuai tren</h5>
                                                 </button>
                                             </div>
                                             <div data-parent="#accordion" id="collapseOne3" aria-labelledby="headingOne" class="collapse show">
@@ -157,19 +157,27 @@
 
                                                                         <tbody>
                                                                         
-                                                                        <?php $i = 1;
-                                                                            foreach ($alternatif as $item) : ?>
+                                                                        
                                                                                 <tr>
                                                                                     
-                                                                                    <td><?php echo $item->alternatif; ?></td>
-                                                                                    <!-- <td><?php echo $kriteria->tren; ?></td>  -->
-                                                                                    <?php foreach ($transform[$item->alternatif_id] as $k => $v) : ?> 
-                                                                                        <td><?= $v; ?></td>
+                                                                                   
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    <?php foreach ($cpi->transform as $key => $val) : ?>
+                                                                                        <tr>
+                                                                                            <td><?= $alt[$key] ?></td>
+                                                                                            <?php foreach ($val as $k => $v) : ?>
+                                                                                                <td><?= round($v, 4) ?></td>
+                                                                                            <?php endforeach ?>
+                                                                                        </tr>
                                                                                     <?php endforeach; ?>
                                                                                     
+
+                                                                                    
+                                                                                    
                                                                                 </tr>
-                                                                                <?php $i++;
-                                                                            endforeach; ?>
+                                                                                
 
                                                             
                                                                         </tbody>
@@ -192,7 +200,7 @@
                                             
                                             <div id="headingOne" class="card-header">
                                                 <button type="button" data-toggle="collapse" data-target="#collapseOne5" aria-expanded="true" aria-controls="collapseOne" class="text-left m-0 p-0 btn btn-link btn-block">
-                                                    <h5 class="m-0 p-0">Menghitung nilai CPI</h5>
+                                                    <h5 class="m-0 p-0">#3 Menghitung nilai CPI</h5>
                                                 </button>
                                             </div>
                                             <div data-parent="#accordion" id="collapseOne5" aria-labelledby="headingOne" class="collapse show">

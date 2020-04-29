@@ -6,23 +6,7 @@ class Nilai_model extends CI_Model{
       $this->load->database();
   }
 
-  public function getNilai(){
-      $query = $this->db->query("SELECT a.alternatif_id, k.kriteria_id, n.nilai
-          FROM nilai_tbl n
-          INNER JOIN alternatif a
-            ON n.nilai_alternatif_id=a.alternatif_id
-          INNER JOIN kriteria k
-            ON k.kriteria_id=n.nilai_kriteria_id
-          ORDER BY a.alternatif_id, k.kriteria_id");
-      $rows = $query->result();
-      
-      $data = array();
-      foreach($rows as $row){
-          $data[$row->alternatif_id][$row->kriteria_id] = $row->nilai;
-      }
-
-      return $data;
-  }
+  
 
   public function getListParameter()
   {
@@ -64,11 +48,50 @@ class Nilai_model extends CI_Model{
     $this->db->update('nilai_tbl',$data);
   }
 
+  public function getNilai(){
+    $query = $this->db->query("SELECT a.alternatif_id, k.kriteria_id, n.nilai
+        FROM nilai_tbl n
+        INNER JOIN alternatif a
+          ON n.nilai_alternatif_id=a.alternatif_id
+        INNER JOIN kriteria k
+          ON k.kriteria_id=n.nilai_kriteria_id
+        ORDER BY a.alternatif_id, k.kriteria_id");
+    $rows = $query->result();
+    
+    $data = array();
+    foreach($rows as $row){
+        $data[$row->alternatif_id][$row->kriteria_id] = $row->nilai;
+//        $data[$row->kriteria_id][$row->alternatif_id] = $row->nilai;
+
+    }
+
+    return $data;
+}
+
+public function getNilaifull(){
+  $query = $this->db->query("SELECT a.alternatif_id, k.kriteria_id, n.nilai
+      FROM nilai_tbl n
+      INNER JOIN alternatif a
+        ON n.nilai_alternatif_id=a.alternatif_id
+      INNER JOIN kriteria k
+        ON k.kriteria_id=n.nilai_kriteria_id
+      ORDER BY a.alternatif_id, k.kriteria_id");
+  $rows = $query->result();
+  
+  $data = array();
+  foreach($rows as $row){
+      $data[$row->alternatif_id][$row->kriteria_id] = $row->nilai;
+      // $data[$row->kriteria_id][$row->alternatif_id] = $row->nilai;
+
+  }
+
+  return $data;
+}
 
 public function getNilaiMinimum()
 {
 
-    $query = $this->db->query("SELECT DISTINCT a.nilai, a.nilai_kriteria_id  FROM nilai_tbl a
+    $query = $this->db->query("SELECT DISTINCT a.nilai, a.nilai_alternatif_id, a.nilai_kriteria_id  FROM nilai_tbl a
       INNER JOIN(
         SELECT DISTINCT b.nilai_kriteria_id, MIN(b.nilai) MinNilai
         FROM nilai_tbl b
@@ -105,10 +128,36 @@ public function getTren()
     return $data;
 }
 
+// public function getNilaiTren()
+// {
+
+//     $query = $this->db->query("SELECT a.alternatif_id, k.kriteria_id, n.nilai/(SELECT DISTINCT a.nilai FROM nilai_tbl a
+//           INNER JOIN(
+//           SELECT DISTINCT b.nilai_kriteria_id, MIN(b.nilai) MinNilai
+//           FROM nilai_tbl b
+//             GROUP BY b.nilai_kriteria_id
+//           ) NewT   
+//           ON a.nilai_kriteria_id = NewT.nilai_kriteria_id AND a.nilai = NewT.MinNilai
+//         ORDER BY a.nilai_kriteria_id) as nilaimin
+//       FROM nilai_tbl n
+//       INNER JOIN alternatif a
+//             ON n.nilai_alternatif_id=a.alternatif_id
+//           INNER JOIN kriteria k
+//             ON k.kriteria_id=n.nilai_kriteria_id
+//           ORDER BY a.alternatif_id, k.kriteria_id");
+//       $rows = $query->result();
+      
+//       $data = array();
+//       foreach($rows as $row){
+//           $data[$row->alternatif_id][$row->kriteria_id] = $row->nilai;
+//       }
+
+//       return $data;
+// }
 
 public function getTransform()
 {
-  $query = $this->db->query("SELECT a.alternatif_id, k.tren, k.kriteria_id, n.nilai
+  $query = $this->db->query("SELECT a.alternatif_id, k.kriteria_id, n.nilai
   FROM nilai_tbl n
   INNER JOIN alternatif a
     ON n.nilai_alternatif_id=a.alternatif_id

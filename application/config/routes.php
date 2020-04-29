@@ -59,3 +59,4 @@ $route['newparameter'] = 'parameter/add';
 
 $route['addpara'] = 'kriteria/addpara';
 
+$route['admin/peringkat'] = 'admin/hitung/peringkat';
