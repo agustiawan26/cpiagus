@@ -19,6 +19,8 @@ class Home extends CI_Controller
         $data["jml_kriteria"] = $this->kriteria_model->getCountKriteria();
         $data["jml_user"] = $this->user_model->getCountUser();
 
+        
+
         $this->load->view("admin/overview", $data);
     }
 }

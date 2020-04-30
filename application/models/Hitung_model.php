@@ -40,6 +40,22 @@ class Hitung_model extends CI_Model{
     // $query = json_decode($query,true);
   }
 
+  public function getKriteriaTP()
+  {
+    $this->db->order_by("kriteria_id", "ASC");
+    $query = $this->db->query("SELECT * FROM kriteria WHERE tren='positif'");
+
+    return $query->result();
+  }
+
+  public function getKriteriaTN()
+  {
+    $this->db->order_by("kriteria_id", "ASC");
+    $query = $this->db->query("SELECT * FROM kriteria WHERE tren='negatif'");
+
+    return $query->result();
+  }
+
   public function updateNilai($id, $kriteria, $value)
   {
     //var_dump($id.' == '.$kriteria.'===='.$value);die;
@@ -65,12 +81,54 @@ class Hitung_model extends CI_Model{
     
     $data = array();
     foreach($rows as $row){
- //       $data[$row->alternatif_id][$row->kriteria_id] = $row->nilai;
-       $data[$row->kriteria_id][$row->alternatif_id] = $row->nilai;
+        $data[$row->alternatif_id][$row->kriteria_id] = $row->nilai;
+ //      $data[$row->kriteria_id][$row->alternatif_id] = $row->nilai;
 
     }
 
     return $data;
+}
+
+public function getNilaiTrenPositif(){
+  $query = $this->db->query("SELECT a.alternatif_id, k.kriteria_id, n.nilai
+      FROM nilai_tbl n
+      INNER JOIN alternatif a
+        ON n.nilai_alternatif_id=a.alternatif_id
+      INNER JOIN kriteria k
+        ON k.kriteria_id=n.nilai_kriteria_id
+      WHERE k.tren = 'positif'
+      ORDER BY a.alternatif_id, k.kriteria_id");
+  $rows = $query->result();
+  
+  $data = array();
+  foreach($rows as $row){
+      $data[$row->alternatif_id][$row->kriteria_id] = $row->nilai;
+//      $data[$row->kriteria_id][$row->alternatif_id] = $row->nilai;
+
+  }
+
+  return $data;
+}
+
+public function getNilaiTrenNegatif(){
+  $query = $this->db->query("SELECT a.alternatif_id, k.kriteria_id, n.nilai
+      FROM nilai_tbl n
+      INNER JOIN alternatif a
+        ON n.nilai_alternatif_id=a.alternatif_id
+      INNER JOIN kriteria k
+        ON k.kriteria_id=n.nilai_kriteria_id
+      WHERE k.tren = 'negatif'
+      ORDER BY a.alternatif_id, k.kriteria_id");
+  $rows = $query->result();
+  
+  $data = array();
+  foreach($rows as $row){
+      $data[$row->alternatif_id][$row->kriteria_id] = $row->nilai;
+//      $data[$row->kriteria_id][$row->alternatif_id] = $row->nilai;
+
+  }
+
+  return $data;
 }
 
 public function getNilaifull(){

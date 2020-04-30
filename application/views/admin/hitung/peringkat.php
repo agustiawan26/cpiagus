@@ -42,27 +42,20 @@
                                             <tr>
                                             <th width="100">Peringkat</th>
                                             <th>Nama Alternatif</th>
-                            
+                                            <th>Nilai CPI</th>
                                             </tr>
                                             </thead>
 
 
                                             <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td>Jacob</td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">3</th>
-                                                    <td>Larry</td>
-                                                    
-                                                </tr>
+                                            <?php $rank = $rank;
+                                                foreach ($rank as $key => $val) : ?>
+                                                    <tr>
+                                                        <td><?= $rank[$key] ?></td>
+                                                        <td><?= $alt[$key] ?></td>
+                                                        <td><?= round(($cpi->nilaicpi[$key]),4) ?></td>
+                                                    </tr>
+                                                <?php endforeach; ?>
                                                             
                                             </tbody>
                                         </table>

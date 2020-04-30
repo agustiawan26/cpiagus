@@ -272,7 +272,7 @@
  
  
     <!-- Modal Delete kriteria-->
-    <form action="<?php echo site_url('admin/kriteria/delete');?>" method="post">
+    <!-- <form action="<?php echo site_url('admin/kriteria/delete');?>" method="post">
         <div class="modal fade" id="DeleteModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -295,7 +295,30 @@
             </div>
           </div>
         </div>
-    </form>
+    </form> -->
+
+<form action="<?php echo site_url('admin/kriteria/delete');?>" method="post">
+    <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Hapus Kriteria</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-0">Apakah Anda yakin ingin menghapus kriteria? Data yang sudah dihapus tidak dapat dikembalikan</p>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="delete_id" required>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-primary">Hapus</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
  
     <!--Load JavaScript File-->
     <script type="text/javascript" src="<?php echo base_url('assets/js/jquery-3.4.1.min.js');?>"></script>
