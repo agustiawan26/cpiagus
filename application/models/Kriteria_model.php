@@ -201,11 +201,20 @@ class Kriteria_model extends CI_Model
 		$this->db->trans_complete();
 	}
 
-	// DELETE
+    function reset_ai(){
+        //$query = $this->db->query("ALTER TABLE 'kriteria' AUTO_INCREMENT = (SELECT MAX(kriteria_id) FROM kriteria)");
+        //$query = $this->db->query("ALTER TABLE 'kriteria' AUTO_INCREMENT = 9");
+    }
+    
+    // DELETE
 	function delete_kriteria($id){
-		$this->db->trans_start();
+        $this->db->trans_start();
+            
+
+
 			$this->db->delete('nilai_tbl', array('nilai_kriteria_id' => $id));
-			$this->db->delete('kriteria', array('kriteria_id' => $id));
+            $this->db->delete('kriteria', array('kriteria_id' => $id));
+            $this->reset_ai();
 		$this->db->trans_complete();
 	}
 

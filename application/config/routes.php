@@ -53,10 +53,12 @@ $route['default_controller'] = 'beranda';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['admin'] = 'admin/home';
+$route['admin'] = 'home';
+$route['manager'] = 'home';
 
 $route['newparameter'] = 'parameter/add';
 
 $route['addpara'] = 'kriteria/addpara';
 
-$route['admin/peringkat'] = 'admin/hitung/peringkat';
+
+$route['peringkat'] = 'hitung/peringkat';

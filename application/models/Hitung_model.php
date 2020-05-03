@@ -42,7 +42,7 @@ class Hitung_model extends CI_Model{
 
   public function getKriteriaTP()
   {
-    $this->db->order_by("kriteria_id", "ASC");
+    // $this->db->order_by("tren", "ASC");
     $query = $this->db->query("SELECT * FROM kriteria WHERE tren='positif'");
 
     return $query->result();
@@ -50,8 +50,9 @@ class Hitung_model extends CI_Model{
 
   public function getKriteriaTN()
   {
-    $this->db->order_by("kriteria_id", "ASC");
-    $query = $this->db->query("SELECT * FROM kriteria WHERE tren='negatif'");
+    // $this->db->order_by("tren", "ASC");
+    $query = $this->db->query("SELECT kriteria_id, kriteria FROM kriteria
+    ORDER BY tren ASC");
 
     return $query->result();
   }

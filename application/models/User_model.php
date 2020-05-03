@@ -31,6 +31,12 @@ class User_model extends CI_Model
     {
         return $this->db->get($this->_table)->result();
     }
+
+    public function getUser()
+    {
+        $query = $this->db->get('user');
+		return $query;
+    }
     
     public function getById($id)
     {
@@ -144,5 +150,13 @@ class User_model extends CI_Model
     public function getCountUser(){
         $query = $this->db->query("SELECT COUNT(*) as jumlah_user FROM user");
         return $query->row();
-      }
+    }
+
+    // DELETE
+	function delete_user($id){
+		$this->db->trans_start();
+            $this->_deletePhoto($id);
+            $this->db->delete($this->_table, array("user_id" => $id));
+		$this->db->trans_complete();
+	}
 }
