@@ -8,8 +8,6 @@ class Kriteria_model extends CI_Model
     public $kriteria;
     public $bobot;
     public $tren;
-    // public $image = "default.jpg";
-    // public $description;
 
     public function rules()
     {

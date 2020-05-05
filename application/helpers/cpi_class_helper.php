@@ -84,10 +84,8 @@ class Cpi{
 			foreach($val as $k => $v){
 				$this->transformasinegatif[$key][$k] = $this->datamin[$k] / $v * 100;
 			}
-		}			
+		}
 	}
-	
-
 	
 	function terbobot(){		
 		foreach($this->transformasinegatif as $key => $val){

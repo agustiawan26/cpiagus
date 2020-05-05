@@ -45,11 +45,18 @@
                                             <div data-parent="#accordion" id="collapseOne1" aria-labelledby="headingOne" class="collapse">
                                                 <div class="card-body">
                                                 <?php $i = 1;
+                                                    foreach ($kriteria as $kriteriatbl) : ?>
+                                                    <td>Kriteria <?php echo $i; ?>   =>   <?php echo $kriteriatbl->kriteria; ?><br></td>
+                                                    <?php $i++;
+                                                    endforeach; ?>
+                                                </div>
+                                                <!-- <div class="card-body">
+                                                <?php $i = 1;
                                                     foreach ($kriteria as $kriteria) : ?>
                                                     <td>Kriteria <?php echo $i; ?>   =>   <?php echo $kriteria->kriteria; ?><br></td>
                                                     <?php $i++;
                                                     endforeach; ?>
-                                                </div>
+                                                </div> -->
                                             </div>
                                         </div>
                                     </div>
@@ -136,12 +143,16 @@
                                                                         <tr>
                                                                         <th>Nama Alternatif</th>
                                                                         <?php foreach ($cpi->transformasipositif as $key => $val) : ?>
-                                                                            <?php if ($tren='positif') { ?>
+                                                                            
                                                                             <th><?= $krtp[$key]?></th>
-                                                                            <?php } ?>
+                                                                           
                                                                         <?php endforeach; ?>
+
+                                                                        
+                                                                    
                                                                         </tr>
                                                                         </thead>
+                                                                        
                                                                         <tbody>
                                                                             <tr>
                                                                                 <?php foreach ($cpi->transformasipositif as $key => $val) : ?>
@@ -193,6 +204,13 @@
                                                                                 <?php endforeach; ?>   
                                                                             </tr>   
                                                                         </tbody>
+                                                                        <tfoot>
+                                                                            <tr>
+                                                                                <!--  -->
+                                                                                   
+                                                                                
+                                                                            </tr>
+                                                                        </tfoot>
                                                                     </table>
                                                                 </div>
                                                             </div>
@@ -204,7 +222,7 @@
                                             
                                             <div id="headingOne" class="card-header">
                                                 <button type="button" data-toggle="collapse" data-target="#collapseOne5" aria-expanded="true" aria-controls="collapseOne" class="text-left m-0 p-0 btn btn-link btn-block">
-                                                    <h5 class="m-0 p-0">#3 Menghitung nilai CPI</h5>
+                                                    <h5 class="m-0 p-0">#4 Menghitung nilai CPI</h5>
                                                 </button>
                                             </div>
                                             <div data-parent="#accordion" id="collapseOne5" aria-labelledby="headingOne" class="collapse show">
@@ -230,6 +248,7 @@
                                                                                 <?php endforeach; ?>   
                                                                             </tr>   
                                                                         </tbody>
+                                                                        
                                                                     </table>
                                                                 </div>
                                                             </div>

@@ -152,7 +152,7 @@
 
 
 <!-- Modal Add New kriteria-->
-<form action="<?php echo site_url('admin/kriteria/create');?>" method="post">
+<form action="<?php echo site_url('kriteria/create');?>" method="post">
         <div class="modal fade" id="addNewModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -209,7 +209,7 @@
     </form>
 
  <!-- Modal Update kriteria-->
- <form action="<?php echo site_url('admin/kriteria/update');?>" method="post">
+ <form action="<?php echo site_url('kriteria/update');?>" method="post">
         <div class="modal fade" id="UpdateModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -247,8 +247,6 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">alternatif</label>
                     <div class="col-sm-10">
-                        
-
                         <select class="form-control" name="alternatif_edit[]" data-width="100%" data-live-search="true" multiple required readonly="readonly">
                             <?php foreach ($alternatif->result() as $row) :?>
                                 <option selected="selected" value="<?php echo $row->alternatif_id;?>">
@@ -297,7 +295,7 @@
         </div>
     </form> -->
 
-<form action="<?php echo site_url('admin/kriteria/delete');?>" method="post">
+<form action="<?php echo site_url('kriteria/delete');?>" method="post">
     <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

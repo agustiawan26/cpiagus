@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="page-title-actions">
                                     <div class="d-inline-block dropdown">
-                                    <button type="button" class="mb-2 mr-2 btn btn-info" data-toggle="modal" data-target="#addNewModal"><i class="fa fa-plus"></i> New alternatif</button>  
+                                    <button type="button" class="mb-2 mr-2 btn btn-info" data-toggle="modal" data-target="#addNewModal"><i class="fa fa-plus"></i> Tambah Alternatif</button>  
                                     </div>
                                 </div>    
                             </div>
@@ -91,17 +91,8 @@
     <?php $this->load->view("_partials/scrolltop.php") ?>
     <?php $this->load->view("_partials/js.php") ?>
     
-
-    <!-- <script>
-    function deleteConfirm(url){
-        $('#btn-delete').attr('href', url);
-        $('#deleteModal').modal();
-    }
-    </script> -->
 </body>
-
 </html>
-
 
 <!-- Modal Add New alternatif-->
 <form action="<?php echo site_url('alternatif/create');?>" method="post">
@@ -109,21 +100,21 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add New alternatif</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Tambah Alternatif</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">alternatif</label>
+                            <label class="col-sm-2 col-form-label">Alternatif</label>
                             <div class="col-sm-10">
                                 <input type="text" name="alternatif" class="form-control" placeholder="alternatif" required>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">kecamatan</label>
+                            <label class="col-sm-2 col-form-label">Kecamatan</label>
                             <div class="col-sm-10">
                                 <input type="text" name="kecamatan" class="form-control" placeholder="kecamatan" required>
                             </div>
@@ -132,7 +123,7 @@
                         <div class="form-group row" type="hidden">
                             <label class="col-sm-2 col-form-label">Kriteria</label>
                             <div class="col-sm-10">
-                            <select class="form-control" name="kriteria[]" data-width="100%" data-live-search="true" default="select-all" multiple required>
+                            <select class="form-control" name="kriteria[]" data-width="100%" data-live-search="true" default="select-all" multiple required readonly="readonly">
                                     <?php foreach ($kriteria->result() as $row) :?>
                                         <option selected="selected" value="<?php echo $row->kriteria_id;?>">
                                             <?php echo $row->kriteria;?>

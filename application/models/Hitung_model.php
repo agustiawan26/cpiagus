@@ -6,8 +6,6 @@ class Hitung_model extends CI_Model{
       $this->load->database();
   }
 
-  
-
   public function getListParameter()
   {
     $query = $this->db->query("SELECT a.kriteria, b.nama_parameter FROM kriteria as a INNER JOIN parameter as b ON a.kriteria_id = b.kriteria_id");
@@ -23,6 +21,11 @@ class Hitung_model extends CI_Model{
 
   public function getCountKriteria(){
     $query = $this->db->query("SELECT COUNT(*) as jumlah FROM kriteria");
+    return $query->row();
+  }
+
+  public function getCountKriteriaTP(){
+    $query = $this->db->query("SELECT COUNT(*) as jumlah FROM kriteria WHERE tren='positif'");
     return $query->row();
   }
 
@@ -42,17 +45,19 @@ class Hitung_model extends CI_Model{
 
   public function getKriteriaTP()
   {
-    // $this->db->order_by("tren", "ASC");
-    $query = $this->db->query("SELECT * FROM kriteria WHERE tren='positif'");
+    $this->db->order_by("kriteria_id", "ASC");
+    $query = $this->db->get_where("kriteria","tren='positif'");
+
+
+    //$query = $this->db->query("SELECT * FROM kriteria WHERE tren='positif'");
 
     return $query->result();
   }
 
   public function getKriteriaTN()
   {
-    // $this->db->order_by("tren", "ASC");
-    $query = $this->db->query("SELECT kriteria_id, kriteria FROM kriteria
-    ORDER BY tren ASC");
+    $this->db->order_by("kriteria_id", "ASC");
+    $query = $this->db->query("SELECT * FROM kriteria WHERE tren='negatif'");
 
     return $query->result();
   }
@@ -86,12 +91,11 @@ class Hitung_model extends CI_Model{
  //      $data[$row->kriteria_id][$row->alternatif_id] = $row->nilai;
 
     }
-
     return $data;
 }
 
 public function getNilaiTrenPositif(){
-  $query = $this->db->query("SELECT a.alternatif_id, k.kriteria_id, n.nilai
+  $query = $this->db->query("SELECT a.alternatif_id, k.kriteria_id, k.kriteria, n.nilai
       FROM nilai_tbl n
       INNER JOIN alternatif a
         ON n.nilai_alternatif_id=a.alternatif_id
@@ -105,9 +109,7 @@ public function getNilaiTrenPositif(){
   foreach($rows as $row){
       $data[$row->alternatif_id][$row->kriteria_id] = $row->nilai;
 //      $data[$row->kriteria_id][$row->alternatif_id] = $row->nilai;
-
   }
-
   return $data;
 }
 
@@ -126,9 +128,7 @@ public function getNilaiTrenNegatif(){
   foreach($rows as $row){
       $data[$row->alternatif_id][$row->kriteria_id] = $row->nilai;
 //      $data[$row->kriteria_id][$row->alternatif_id] = $row->nilai;
-
   }
-
   return $data;
 }
 
@@ -146,9 +146,7 @@ public function getNilaifull(){
   foreach($rows as $row){
       $data[$row->alternatif_id][$row->kriteria_id] = $row->nilai;
       // $data[$row->kriteria_id][$row->alternatif_id] = $row->nilai;
-
   }
-
   return $data;
 }
 
@@ -167,13 +165,9 @@ public function getNilaiMinimum()
         $datamin = $query->result();
 
         $data=array();
-        
-        
-          foreach($datamin as $row){
-            $data[$row->nilai_kriteria_id] = $row->nilai;
-          }
-        
-
+        foreach($datamin as $row){
+          $data[$row->nilai_kriteria_id] = $row->nilai;
+        }
     return $data;
 }
 
@@ -185,42 +179,15 @@ public function getTren()
         ON k.kriteria_id = a.nilai_kriteria_id
       ORDER BY a.nilai_kriteria_id;");
 
-        $tren = $query->result();
+    $tren = $query->result();
 
-        $data=array();
-        foreach($tren as $row){
-          $data[$row->nilai_kriteria_id] = $row->tren;
-        }
+    $data=array();
+    foreach($tren as $row){
+      $data[$row->nilai_kriteria_id] = $row->tren;
+    }
 
     return $data;
 }
-
-// public function getNilaiTren()
-// {
-
-//     $query = $this->db->query("SELECT a.alternatif_id, k.kriteria_id, n.nilai/(SELECT DISTINCT a.nilai FROM nilai_tbl a
-//           INNER JOIN(
-//           SELECT DISTINCT b.nilai_kriteria_id, MIN(b.nilai) MinNilai
-//           FROM nilai_tbl b
-//             GROUP BY b.nilai_kriteria_id
-//           ) NewT   
-//           ON a.nilai_kriteria_id = NewT.nilai_kriteria_id AND a.nilai = NewT.MinNilai
-//         ORDER BY a.nilai_kriteria_id) as nilaimin
-//       FROM nilai_tbl n
-//       INNER JOIN alternatif a
-//             ON n.nilai_alternatif_id=a.alternatif_id
-//           INNER JOIN kriteria k
-//             ON k.kriteria_id=n.nilai_kriteria_id
-//           ORDER BY a.alternatif_id, k.kriteria_id");
-//       $rows = $query->result();
-      
-//       $data = array();
-//       foreach($rows as $row){
-//           $data[$row->alternatif_id][$row->kriteria_id] = $row->nilai;
-//       }
-
-//       return $data;
-// }
 
 public function getTransform()
 {

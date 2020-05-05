@@ -31,9 +31,9 @@
                                 </div>
                                 <div class="page-title-actions">
                                     <div class="d-inline-block dropdown">
-                                    <a href="<?php echo site_url('admin/user/add/')?>"
-                                                        class="mb-2 mr-2 btn btn-info"><i class="fa fa-plus"></i>  Tambah Pengguna</a>
-                                        
+                                    <!-- <a href="<?php echo site_url('admin/user/add/')?>"
+                                                        class="mb-2 mr-2 btn btn-info"><i class="fa fa-plus"></i>  Tambah Pengguna</a> -->
+                                        <button type="button" class="mb-2 mr-2 btn btn-info" data-toggle="modal" data-target="#addNewModal"><i class="fa fa-plus"></i> Tambah Pengguna</button>  
                                     </div>
                                 </div>    
                             </div>
@@ -111,11 +111,13 @@
                                                                 <?php echo $row->phone;?>
                                                             </td>
                                                             <td width="300">
-                                                                <a href="#" class="mb-2 mr-2 btn btn-info btn-sm update-record" data-user_id="<?php echo $row->user_id;?>" 
+                                                                <a href="#" class="mb-2 mr-2 btn btn-info btn-sm update-record" 
+                                                                data-user_id="<?php echo $row->user_id;?>"
                                                                 data-photo="<?php echo $row->photo;?>" 
                                                                 data-full_name="<?php echo $row->full_name;?>"
                                                                 data-email="<?php echo $row->email;?>"
                                                                 data-username="<?php echo $row->username;?>"
+                                                                data-password="<?php echo $row->password;?>"
                                                                 data-role="<?php echo $row->role;?>"
                                                                 data-phone="<?php echo $row->phone;?>"
                                                                 >
@@ -144,16 +146,47 @@
     <?php $this->load->view("_partials/modal.php") ?>
     <?php $this->load->view("_partials/js.php") ?>
     
-
-    <script>
-    function deleteConfirm(url){
-        $('#btn-delete').attr('href', url);
-        $('#deleteModal').modal();
-    }
-    </script>
 </body>
 
 </html>
+
+<!-- Modal Add New user-->
+<form action="<?php echo site_url('user/create');?>" method="post">
+        <div class="modal fade" id="addNewModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Tambah Alternatif</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Photo</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="alternatif" class="form-control" placeholder="alternatif" required>
+                            </div>
+                        </div>
+<!-- ////////////////////////////////////////////// -->
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Kecamatan</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="kecamatan" class="form-control" placeholder="kecamatan" required>
+                            </div>
+                        </div>
+                        
+                                
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success btn-sm">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 
 <!-- Modal Update User-->
 <form action="<?php echo site_url('user/update');?>" method="post">
@@ -200,18 +233,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Kriteria</label>
-                        <div class="col-sm-10">
-                            <select class="form-control" name="kriteria_edit[]" data-width="100%" data-live-search="true" multiple required readonly="readonly">
-                                <?php foreach ($kriteria->result() as $row) :?>
-                                    <option selected="selected" value="<?php echo $row->kriteria_id;?>">
-                                        <?php echo $row->kriteria;?>
-                                    </option>
-                                    <?php endforeach;?>
-                            </select>
-                        </div>
-                    </div>
+                    
 
 
 
@@ -280,27 +302,7 @@
                 $('[name="username_edit"]').val(username);
                 $('[name="role_edit"]').val(role);
                 $('[name="phone_edit"]').val(phone);
-                //AJAX REQUEST TO GET SELECTED alternatif
-                $.ajax({
-                    url: "<?php echo site_url('alternatif/get_kriteria_by_alternatif');?>",
-                    method: "POST",
-                    data: {
-                        alternatif_id: alternatif_id
-                    },
-                    cache: false,
-                    success: function(data) {
-                        var item = data;
-                        var val1 = item.replace("[", "");
-                        var val2 = val1.replace("]", "");
-                        var values = val2;
-                        $.each(values.split(","), function(i, e) {
-                            $(".strings option[value='" + e + "']").prop("selected", true).trigger('change');
-                            $(".strings").selectpicker('refresh');
-
-                        });
-                    }
-
-                });
+                
                 return false;
             // });
 

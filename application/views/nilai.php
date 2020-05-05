@@ -82,7 +82,6 @@
                                             <?php $i = 1;
                                                 foreach ($alternatif as $item) : ?>
                                                     <tr>
-                                                        
                                                         <td><?php echo $item->alternatif; ?></td> 
                                                         <?php foreach ($nilai[$item->alternatif_id] as $k => $v) : ?> 
                                                             <td><?= $v; ?></td>
@@ -92,9 +91,6 @@
                                                     </tr>
                                                     <?php $i++;
                                                 endforeach; ?>
-
-                                            
-                                            
                                             </tbody>
                                         </table>
                                     </div>
@@ -113,13 +109,6 @@
     <?php $this->load->view("_partials/modal.php") ?>
     <?php $this->load->view("_partials/js.php") ?>
     
-
-    <script>
-    function deleteConfirm(url){
-        $('#btn-delete').attr('href', url);
-        $('#deleteModal').modal();
-    }
-    </script>
 </body>
 
 </html>

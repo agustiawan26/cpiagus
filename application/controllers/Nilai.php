@@ -22,13 +22,9 @@ class Nilai extends CI_Controller
     $data['alternatif'] = $this->nilai_model->getAlternatif();
     $data['kriteria'] = $this->nilai_model->getKriteria();
     $data['nilai'] = $this->nilai_model->getNilai();
-    
-    
-    // $data['view_name'] = "nilai/nilai";
+  
     $data['message'] = $this->session->flashdata('msg');
-    //$data['kriteria'] = $this->nilai_model->getkriteria();
-    // $data['parameter'] = $this->alternatif_model->getParameter();
-    //var_dump($data['nilai_min']);die;
+    
     $this->load->view("nilai", $data);
     
   }
@@ -47,9 +43,9 @@ class Nilai extends CI_Controller
               </button>
               <strong>Berhasil Merubah Nilai</strong>
           </div>');
-      redirect(base_url('admin/nilai'));
+      redirect(base_url('nilai'));
     } elseif ($this->input->post('back')) {
-      redirect(base_url('admin/nilai'));
+      redirect(base_url('nilai'));
     } else {
       $data["selectalt"] = $this->nilai_model->getSelectedAlternatif($id);
       

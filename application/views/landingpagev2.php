@@ -119,70 +119,40 @@ The above copyright notice and this permission notice shall be included in all c
               <div class="main-card mb-3 card ">
                   <div class="card-body">
                       <table class="table table-striped">
-                          <thead>
+                        <thead>
                           <tr>
-                              <th>#</th>
-                              <th>Nama Kriteria</th>
-                              <th>Bobot</th>
-                              <th>Tren</th>
+                            <th>#</th>
+                            <th>Nama Kriteria</th>
+                            <th>Bobot</th>
+                            <th>Tren</th>
+                            
                           </tr>
-                          </thead>
-                          <tbody>
+                        </thead>
+                        <tbody>
+                          <?php 
+                          $count = 0;
+                          foreach ($kriteria as $kriteria): 
+                          $count++;
+                          ?>
                           <tr>
-                              <th scope="row">1</th>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
+                            <td>
+                              <?php echo $count ?>
+                            </td>
+                            <td>
+                              <?php echo $kriteria->kriteria ?>
+                            </td>
+                            <td>
+                              <?php echo $kriteria->bobot ?>
+                            </td>
+                            <td>
+                              <?php echo $kriteria->tren ?>
+                            </td>
+                            
+                            
                           </tr>
-                          <tr>
-                              <th scope="row">2</th>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
-                              <td>@fat</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">3</th>
-                              <td>Larry</td>
-                              <td>the Bird</td>
-                              <td>@twitter</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">1</th>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">2</th>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
-                              <td>@fat</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">3</th>
-                              <td>Larry</td>
-                              <td>the Bird</td>
-                              <td>@twitter</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">1</th>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">2</th>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
-                              <td>@fat</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">3</th>
-                              <td>Larry</td>
-                              <td>the Bird</td>
-                              <td>@twitter</td>
-                          </tr>
-                          </tbody>
+                          <?php endforeach; ?>
+
+                        </tbody>
                       </table>
                   </div>
               </div>
@@ -198,64 +168,35 @@ The above copyright notice and this permission notice shall be included in all c
           <div class="progress-bar " role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
         <div class="row justify-content-center">
-          <div class="col-lg-8 ">
+          <div class="col-lg-6 ">
               <div class="main-card mb-3 card ">
                   <div class="card-body">
                       <table class="table table-striped">
-                          <thead>
+                        <thead>
                           <tr>
-                              <th>#</th>
-                              <th>Nama Alternatif</th>
-                              <th>Kecamatan</th>
+                            <th>#</th>
+                            <th>Nama Lokasi</th>
+                            <th>Kecamatan</th>
                           </tr>
-                          </thead>
-                          <tbody>
+                        </thead>
+                        <tbody>
+                          <?php 
+                          $count = 0;
+                          foreach ($alternatif as $alternatif): 
+                          $count++;?>
                           <tr>
-                              <th scope="row">1</th>
-                              <td>Mark</td>
-                              <td>Otto</td>
+                            <td>
+                                <?php echo $count;?>
+                            </td>
+                            <td>
+                              <?php echo $alternatif->alternatif ?>
+                            </td>
+                            <td>
+                              <?php echo $alternatif->kecamatan ?>
+                            </td>
                           </tr>
-                          <tr>
-                              <th scope="row">2</th>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">3</th>
-                              <td>Larry</td>
-                              <td>the Bird</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">1</th>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">2</th>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">3</th>
-                              <td>Larry</td>
-                              <td>the Bird</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">1</th>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">2</th>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">3</th>
-                              <td>Larry</td>
-                              <td>the Bird</td>
-                          </tr>
-                          </tbody>
+                          <?php endforeach; ?>
+                        </tbody>
                       </table>
                   </div>
               </div>
@@ -275,127 +216,38 @@ The above copyright notice and this permission notice shall be included in all c
               <div class="main-card mb-3 card ">
                   <div class="card-body">
                       <table class="table table-striped">
-                          <thead>
+                        <thead>
                           <tr>
-                              <th>#</th>
-                              <th>Nama Alternatif</th>
-                              <th>K1</th>
-                              <th>K2</th>
-                              <th>K3</th>
-                              <th>K4</th>
-                              <th>K5</th>
-                              <th>K6</th>
-                              <th>K7</th>
+                          <th>Nama Alternatif</th>
+                          <?php
+                          if ($count > 0) :
+                              for ($a = 1; $a < $count; $a++) {
+                                  echo "<th>Kriteria $a</th>";
+                              }
+                          endif;
+                          ?>
                           </tr>
                           </thead>
+
+
                           <tbody>
-                          <tr>
-                              <th scope="row">1</th>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                              <td>Mark</td>
-                              <td>Josh</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">2</th>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                              <td>Mark</td>
-                              <td>Josh</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">3</th>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                              <td>Mark</td>
-                              <td>Josh</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">1</th>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                              <td>Mark</td>
-                              <td>Josh</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">2</th>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                              <td>Mark</td>
-                              <td>Josh</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">3</th>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                              <td>Mark</td>
-                              <td>Josh</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">1</th>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                              <td>Mark</td>
-                              <td>Josh</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">2</th>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                              <td>Mark</td>
-                              <td>Josh</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">3</th>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                              <td>Mark</td>
-                              <td>Josh</td>
-                          </tr>
+                          
+                          <?php $i = 1;
+                              foreach ($alternatiff as $item) : ?>
+                                  <tr>
+                                      <td><?php echo $item->alternatif; ?></td> 
+                                      <?php foreach ($nilai[$item->alternatif_id] as $k => $v) : ?> 
+                                          <td><?= $v; ?></td>
+                                      <?php endforeach; ?>
+                                  </tr>
+                                  <?php $i++;
+                              endforeach; ?>
                           </tbody>
                       </table>
                   </div>
               </div>
           </div>
         </div>
-
-
 
         <div class="sharing-area text-center">
           <div class="row justify-content-center section-peringkat" id="peringkatSection">
@@ -410,59 +262,25 @@ The above copyright notice and this permission notice shall be included in all c
               <div class="main-card mb-3 card ">
                   <div class="card-body">
                       <table class="table table-striped">
-                          <thead>
+                      <thead>
                           <tr>
-                              <th>Peringkat</th>
-                              <th>Nama Alternatif</th>
-                              <th>Kecamatan</th>
+                          <th width="100">Peringkat</th>
+                          <th>Nama Alternatif</th>
+                          <th>Nilai CPI</th>
                           </tr>
                           </thead>
+
+
                           <tbody>
-                          <tr>
-                              <th scope="row">1</th>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">2</th>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">3</th>
-                              <td>Larry</td>
-                              <td>the Bird</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">1</th>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">2</th>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">3</th>
-                              <td>Larry</td>
-                              <td>the Bird</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">1</th>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">2</th>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
-                          </tr>
-                          <tr>
-                              <th scope="row">3</th>
-                              <td>Larry</td>
-                              <td>the Bird</td>
-                          </tr>
+                          <?php $rank = $rank;
+                              foreach ($rank as $key => $val) : ?>
+                                  <tr>
+                                      <td><?= $rank[$key] ?></td>
+                                      <td><?= $alt[$key] ?></td>
+                                      <td><?= round(($cpi->nilaicpi[$key]),4) ?></td>
+                                  </tr>
+                              <?php endforeach; ?>
+                                          
                           </tbody>
                       </table>
                   </div>
