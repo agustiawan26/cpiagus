@@ -51,13 +51,13 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label">Nama Kriteria</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control form-control-round" placeholder="Masukan Nama Kriteria" name="kriteria" required>
+                                                        <input type="text" class="form-control form-control-round" placeholder="Masukkan Nama Kriteria" name="kriteria" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label">Bobot</label>
                                                     <div class="col-sm-8">
-                                                        <input type="number" step="0.000000000000001" min="0" class="form-control form-control-round" placeholder="Masukan Bobot" name="bobot" required>
+                                                        <input type="number" step="0.000000000000001" min="0" class="form-control form-control-round" placeholder="Masukkan Bobot" name="bobot" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">

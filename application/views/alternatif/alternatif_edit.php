@@ -50,13 +50,13 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label">Nama Alternatif</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control form-control-round" placeholder="Masukan Nama Alternatif" name="alternatif" value="<?php echo $select->alternatif; ?>" required>
+                                                        <input type="text" class="form-control form-control-round" placeholder="Masukkan Nama Alternatif" name="alternatif" value="<?php echo $select->alternatif; ?>" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label">Kecamatan</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control form-control-round" placeholder="Masukan Kecamatan" name="kecamatan" value="<?php echo $select->kecamatan; ?>" required>
+                                                        <input type="text" class="form-control form-control-round" placeholder="Masukkan Kecamatan" name="kecamatan" value="<?php echo $select->kecamatan; ?>" required>
                                                     </div>
                                                 </div>
                                                 <!-- <div class="position-relative row form-check">

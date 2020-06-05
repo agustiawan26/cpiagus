@@ -49,7 +49,6 @@
                                             <?php foreach ($form as $row) : ?>
                                             <label class="col-sm-2 col-form-label"><?= $row->kriteria ?></label>
                                             <div class="col-sm-2">
-                                                <!-- <input type="text" class="form-control form-control-round" placeholder="Masukan Nilai" name="<?= $row->nilai_kriteria_id ?>" value=""> -->
                                                 <!-- <input name="<?= $row->nilai_kriteria_id ?>" id="<?= $row->nilai_kriteria_id ?>" placeholder="masukkan nilai" type="text" class="form-control" value="<?php echo $nilai_tbl->nilai ?>" > -->
                                                 <?php  foreach($nilai_tbl as $item): if($item->nilai_kriteria_id != $row->nilai_kriteria_id){continue;} ?>
                                                 <input name="<?= $row->nilai_kriteria_id ?>" id="<?= $row->nilai_kriteria_id ?>" placeholder="masukkan nilai" class="form-control" type="text" value="<?php echo $item->nilai; ?>"></option>

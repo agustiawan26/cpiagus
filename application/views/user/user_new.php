@@ -47,33 +47,33 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label">Nama Lengkap</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control form-control-round" placeholder="Masukan Nama Lengkap" name="full_name" required>
+                                                        <input type="text" class="form-control form-control-round" placeholder="Masukkan Nama Lengkap" name="full_name" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label">Username</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control form-control-round" placeholder="Masukan Username" name="username" required>
+                                                        <input type="text" class="form-control form-control-round" placeholder="Masukkan Username" name="username" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label">Password</label>
                                                     <div class="col-sm-8">
-                                                        <input type="password" class="form-control form-control-round" placeholder="Masukan Password" name="password" required>
+                                                        <input type="password" class="form-control form-control-round" placeholder="Masukkan Password" name="password" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label">Email</label>
                                                     <div class="col-sm-8">
-                                                        <input type="email" class="form-control form-control-round" placeholder="Masukan Email" name="email" required>
+                                                        <input type="email" class="form-control form-control-round" placeholder="Masukkan Email" name="email" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label">No Telepon</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control form-control-round" placeholder="Masukan No Telepon" name="phone" required>
+                                                        <input type="text" class="form-control form-control-round" placeholder="Masukkan No Telepon" name="phone" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
