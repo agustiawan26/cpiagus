@@ -1,209 +1,395 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
+<!--
+=========================================================
+Material Kit - v2.0.7
+=========================================================
 
+Product Page: https://www.creative-tim.com/product/material-kit
+Copyright 2020 Creative Tim (https://www.creative-tim.com/)
 
+Coded by Creative Tim
+
+=========================================================
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>SPK-CPI</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
-        <!-- Third party plugin CSS-->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="assets/css/styles.css" rel="stylesheet" />
-    </head>
-    <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-            <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top">Composite Performance Index (CPI)</a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#kriteria">Kriteria</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Alternatif</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Peringkat</a></li>
-						<li class="nav-item"><a class="nav-link js-scroll-trigger" href="<?php echo site_url('login') ?>">Login</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- Masthead-->
-        <header class="masthead">
-            <div class="container h-100">
-                <div class="row h-100 align-items-center justify-content-center text-center">
-                    <div class="col-lg-10 align-self-end">
-                        <h1 class="text-uppercase text-white font-weight-bold">Sistem Pendukung Keputusan</h1>
-                        <hr class="divider my-4" />
-                    </div>
-                    <div class="col-lg-8 align-self-baseline">
-                        <p class="text-white-75 font-weight-light mb-5">Menggunakan Metode Composite Performance Index (CPI) untuk menentukan prioritas lokasi pembangunan embung di Kabupaten Semarang</p>
-                        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Mulai</a>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!-- About-->
-        <section class="page-section bg-primary" id="about">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8 text-center">
-                        <h2 class="text-white mt-0">Metode Composite Performance Index</h2>
-                        <hr class="divider light my-4" />
-                        <p class="text-white-50 mb-4">Composite Performance Index yang merupakan indeks gabungan (Composite Index) yang dapat digunakan untuk menentukan penilaian atau peringkat dari berbagai alternatif (i) berdasarkan beberapa kriteria (j). Metode Composite Performance Index merupakan salah satu metode perhitungan dari pengambilan keputusan berbasis indeks kinerja, metode Composite Performance Index digunakan untuk penilaian dengan kriteria yang tidak seragam.</p>
-                        <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Lanjut</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Services-->
-        <section class="page-section" id="services">
-            <div class="container">
-                <h2 class="text-center mt-0">At Your Service</h2>
-                <hr class="divider my-4" />
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="mt-5">
-                            <i class="fas fa-4x fa-gem text-primary mb-4"></i>
-                            <h3 class="h4 mb-2">Sturdy Themes</h3>
-                            <p class="text-muted mb-0">Our themes are updated regularly to keep them bug free!</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="mt-5">
-                            <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
-                            <h3 class="h4 mb-2">Up to Date</h3>
-                            <p class="text-muted mb-0">All dependencies are kept current to keep things fresh.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="mt-5">
-                            <i class="fas fa-4x fa-globe text-primary mb-4"></i>
-                            <h3 class="h4 mb-2">Ready to Publish</h3>
-                            <p class="text-muted mb-0">You can use this design as is, or you can make changes!</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="mt-5">
-                            <i class="fas fa-4x fa-heart text-primary mb-4"></i>
-                            <h3 class="h4 mb-2">Made with Love</h3>
-                            <p class="text-muted mb-0">Is it really open source if it's not made with love?</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Portfolio-->
-        <section id="portfolio">
-            <div class="container-fluid p-0">
-                <div class="row no-gutters">
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/images/portfolio/fullsize/1.jpg"
-                            ><img class="img-fluid" src="assets/images/portfolio/thumbnails/1.jpg" alt="" />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
-                            </div></a
-                        >
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/images/portfolio/fullsize/2.jpg"
-                            ><img class="img-fluid" src="assets/images/portfolio/thumbnails/2.jpg" alt="" />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
-                            </div></a
-                        >
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/images/portfolio/fullsize/3.jpg"
-                            ><img class="img-fluid" src="assets/images/portfolio/thumbnails/3.jpg" alt="" />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
-                            </div></a
-                        >
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/images/portfolio/fullsize/4.jpg"
-                            ><img class="img-fluid" src="assets/images/portfolio/thumbnails/4.jpg" alt="" />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
-                            </div></a
-                        >
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/images/portfolio/fullsize/5.jpg"
-                            ><img class="img-fluid" src="assets/images/portfolio/thumbnails/5.jpg" alt="" />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
-                            </div></a
-                        >
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/images/portfolio/fullsize/6.jpg"
-                            ><img class="img-fluid" src="assets/images/portfolio/thumbnails/6.jpg" alt="" />
-                            <div class="portfolio-box-caption p-3">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
-                            </div></a
-                        >
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Call to action-->
-        <section class="page-section bg-dark text-white">
-            <div class="container text-center">
-                <h2 class="mb-4">Free Download at Start Bootstrap!</h2>
-                <a class="btn btn-light btn-xl" href="https://startbootstrap.com/themes/creative/">Download Now!</a>
-            </div>
-        </section>
-        <!-- Contact-->
-        <section class="page-section" id="contact">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8 text-center">
-                        <h2 class="mt-0">Let's Get In Touch!</h2>
-                        <hr class="divider my-4" />
-                        <p class="text-muted mb-5">Ready to start your next project with us? Give us a call or send us an email and we will get back to you as soon as possible!</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
-                        <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
-                        <div>+1 (555) 123-4567</div>
-                    </div>
-                    <div class="col-lg-4 mr-auto text-center">
-                        <i class="fas fa-envelope fa-3x mb-3 text-muted"></i
-                        ><!-- Make sure to change the email address in BOTH the anchor text and the link target below!--><a class="d-block" href="mailto:contact@yourwebsite.com">contact@yourwebsite.com</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Footer-->
-        <footer class="bg-light py-5">
-            <div class="container"><div class="small text-center text-muted">Copyright © 2020 - Start Bootstrap</div></div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-        <!-- Third party plugin JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="assets/js/scripts.js"></script>
-    </body>
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="./assets/img/favicon.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    SPK - CPI
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- CSS Files -->
+  <link href="./assets/css/material-kit.css?v=2.0.7" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="./assets/demo/demo.css" rel="stylesheet" />
+</head>
+
+<body class="index-page sidebar-collapse">
+  <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+    <div class="container">
+      <div class="navbar-translate">
+        <a class="navbar-brand" href="#">
+          SPK-CPI </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0)" onclick="scrollToKriteria()">
+                <i class="material-icons">layers</i> Kriteria
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0)" onclick="scrollToAlternatif()">
+                <i class="material-icons">location_on</i> Alternatif
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0)" onclick="scrollToNilai()">
+                <i class="material-icons">apps</i> Nilai
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0)" onclick="scrollToPeringkat()">
+                <i class="material-icons">star_outline</i> Peringkat
+            </a>
+          </li>
+          
+          <li class="nav-item"><a class="btn btn-primary btn-round" href="<?php echo site_url('login') ?>">Login</a></li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('./assets/img/bg2.jpg');">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+          <div class="brand">
+            <h1>Sistem Pendukung Keputusan</h1>
+            <h3>Menggunakan Metode Composite Performance Index (CPI) untuk Penentuan Prioritas Lokasi Pembangunan Embung di Kabupaten Semarang</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main main-raised">
+    <div class="section section-download" id="downloadSection">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-md-8 mx-auto">
+            <h2>Metode Composite Performance Index (CPI)</h2>
+            <h4>Composite Performance Index yang merupakan indeks gabungan (Composite Index) yang dapat digunakan <b>untuk menentukan penilaian atau peringkat</b> dari berbagai alternatif (i) berdasarkan beberapa kriteria (j). Metode Composite Performance Index merupakan salah satu metode perhitungan dari pengambilan keputusan <b>berbasis indeks kinerja</b>, metode Composite Performance Index digunakan untuk penilaian dengan kriteria yang tidak seragam.</h4>
+            
+          </div>
+        </div>
+      
+        <div class="card bg-dark text-white">
+          <img class="card-img" src="assets/images/embung-doho.png" rel="nofollow" alt="Card image">
+          <div class="card-img-overlay">
+            <h4 class="card-title">Embung</h4>
+            <p class="card-text">Embung atau cekungan penampung (retention basin) adalah cekungan yang digunakan untuk mengatur dan menampung suplai aliran air hujan serta untuk meningkatkan kualitas air di badan air yang terkait (sungai, danau). Embung digunakan untuk menjaga kualitas air tanah, mencegah banjir, estetika, hingga pengairan. Embung menampung air hujan di musim hujan dan lalu digunakan petani untuk mengairi lahan di musim kemarau.</p>
+            <p class="card-text">Sumber gambar: <link>liputan6.com</link></p>
+
+          </div>
+        </div>
+
+        <div class="sharing-area text-center">
+          <div class="row justify-content-center section-kriteria" id="kriteriaSection">
+            <h3>Kriteria</h3>
+          </div>
+        </div>
+        <div class="progress">
+          <div class="progress-bar " role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-8 ">
+              <div class="main-card mb-3 card ">
+                  <div class="card-body">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Nama Kriteria</th>
+                            <th>Bobot</th>
+                            <th>Tren</th>
+                            
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php 
+                          $count = 0;
+                          foreach ($kriteria as $kriteria): 
+                          $count++;
+                          ?>
+                          <tr>
+                            <td>
+                              <?php echo ("Kriteria ").$count ?>
+                            </td>
+                            <td>
+                              <?php echo $kriteria->kriteria ?>
+                            </td>
+                            <td>
+                              <?php echo $kriteria->bobot ?>
+                            </td>
+                            <td>
+                              <?php echo $kriteria->tren ?>
+                            </td>
+                            
+                            
+                          </tr>
+                          <?php endforeach; ?>
+
+                        </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="sharing-area text-center">
+          <div class="row justify-content-center section-alternatif" id="alternatifSection">
+            <h3>Alternatif</h3>
+          </div>
+        </div>
+        <div class="progress">
+          <div class="progress-bar " role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-6 ">
+              <div class="main-card mb-3 card ">
+                  <div class="card-body">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Nama Lokasi</th>
+                            <th>Kecamatan</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php 
+                          $count = 0;
+                          foreach ($alternatif as $alternatif): 
+                          $count++;?>
+                          <tr>
+                            <td>
+                                <?php echo $count;?>
+                            </td>
+                            <td>
+                              <?php echo $alternatif->alternatif ?>
+                            </td>
+                            <td>
+                              <?php echo $alternatif->kecamatan ?>
+                            </td>
+                          </tr>
+                          <?php endforeach; ?>
+                        </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="sharing-area text-center">
+          <div class="row justify-content-center section-nilai" id="nilaiSection">
+            <h3>Nilai</h3>
+          </div>
+        </div>
+        <div class="progress">
+          <div class="progress-bar " role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-12">
+              <div class="main-card mb-3 card ">
+                  <div class="card-body">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                          <th>Nama Alternatif</th>
+                          <?php
+                          if ($count > 0) :
+                              for ($a = 1; $a < $count; $a++) {
+                                  echo "<th>Kriteria $a</th>";
+                              }
+                          endif;
+                          ?>
+                          </tr>
+                          </thead>
+
+
+                          <tbody>
+                          
+                          <?php $i = 1;
+                              foreach ($alternatiff as $item) : ?>
+                                  <tr>
+                                      <td><?php echo $item->alternatif; ?></td> 
+                                      <?php foreach ($nilai[$item->alternatif_id] as $k => $v) : ?> 
+                                          <td><?= $v; ?></td>
+                                      <?php endforeach; ?>
+                                  </tr>
+                                  <?php $i++;
+                              endforeach; ?>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="sharing-area text-center">
+          <div class="row justify-content-center section-peringkat" id="peringkatSection">
+            <h3>Peringkat</h3>
+          </div>
+        </div>
+        <div class="progress">
+          <div class="progress-bar " role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-6 ">
+              <div class="main-card mb-3 card ">
+                  <div class="card-body">
+                      <table class="table table-striped">
+                      <thead>
+                          <tr>
+                          <th width="100">Peringkat</th>
+                          <th>Nama Alternatif</th>
+                          <th>Nilai CPI</th>
+                          </tr>
+                          </thead>
+
+
+                          <tbody>
+                          <?php $rank = $rank;
+                              foreach ($rank as $key => $val) : ?>
+                                  <tr>
+                                      <td><?= $rank[$key] ?></td>
+                                      <td><?= $alt[$key] ?></td>
+                                      <td><?= round(($cpi->nilaicpi[$key]),4) ?></td>
+                                  </tr>
+                              <?php endforeach; ?>
+                                          
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer" data-background-color="black">
+    <div class="container">
+      <nav class="float-left">
+        <ul>
+          <li>
+            <a href="https://www.creative-tim.com/">
+              Creative Tim
+            </a>
+          </li>
+          <li>
+            <a href="https://www.creative-tim.com/presentation">
+              About Us
+            </a>
+          </li>
+          <li>
+            <a href="https://www.creative-tim.com/blog">
+              Blog
+            </a>
+          </li>
+          <li>
+            <a href="https://www.creative-tim.com/license">
+              Licenses
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="copyright float-right">
+        &copy;
+        <script>
+          document.write(new Date().getFullYear())
+        </script>, made with <i class="material-icons">favorite</i> by
+        <a href="https://www.creative-tim.com/" target="_blank">Creative Tim</a> for a better web.
+      </div>
+    </div>
+  </footer>
+  <!--   Core JS Files   -->
+  <script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
+  <script src="./assets/js/core/popper.min.js" type="text/javascript"></script>
+  <script src="./assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
+  <script src="./assets/js/plugins/moment.min.js"></script>
+  <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+  <script src="./assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
+  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+  <script src="./assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+  <!--  Google Maps Plugin    -->
+  <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+  <script src="./assets/js/material-kit.js?v=2.0.7" type="text/javascript"></script>
+  <script>
+    $(document).ready(function() {
+      //init DateTimePickers
+      materialKit.initFormExtendedDatetimepickers();
+
+      // Sliders Init
+      materialKit.initSliders();
+    });
+
+
+    function scrollToDownload() {
+      if ($('.section-download').length != 0) {
+        $("html, body").animate({
+          scrollTop: $('.section-download').offset().top
+        }, 1000);
+      }
+    }
+
+    function scrollToKriteria() {
+      if ($('.section-kriteria').length != 0) {
+        $("html, body").animate({
+          scrollTop: $('.section-kriteria').offset().top
+        }, 1000);
+      }
+    }
+
+    function scrollToAlternatif() {
+      if ($('.section-alternatif').length != 0) {
+        $("html, body").animate({
+          scrollTop: $('.section-alternatif').offset().top
+        }, 1000);
+      }
+    }
+
+    function scrollToNilai() {
+      if ($('.section-nilai').length != 0) {
+        $("html, body").animate({
+          scrollTop: $('.section-nilai').offset().top
+        }, 1000);
+      }
+    }
+
+    function scrollToPeringkat() {
+      if ($('.section-peringkat').length != 0) {
+        $("html, body").animate({
+          scrollTop: $('.section-peringkat').offset().top
+        }, 1000);
+      }
+    }
+  </script>
+</body>
+
 </html>

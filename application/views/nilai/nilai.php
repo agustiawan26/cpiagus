@@ -21,7 +21,7 @@
                             <div class="page-title-wrapper">
                                 <div class="page-title-heading">
                                     <div class="page-title-icon">
-                                        <i class="pe-7s-drawer icon-gradient bg-happy-itmeo">
+                                        <i class="pe-7s-display2 icon-gradient bg-happy-itmeo">
                                         </i>
                                     </div>
                                     <div>Nilai
@@ -31,6 +31,7 @@
                                 </div>
                             </div>
                         </div>
+                        <?= $this->session->flashdata('message'); ?>              
                         <div class="">
                             <div class="row">
                                 

@@ -33,14 +33,69 @@
                     <div class="app-sidebar__inner">
                         <ul class="vertical-nav-menu">
                         <?php if($this->session->userdata('role')==='admin'):?>
+
+                            <!-- <li class="app-sidebar__heading">Akun Saya</li>
+                            <img width="60" class="rounded-circle" src="<?php echo base_url('upload/user/'.$this->session->userdata('photo')); ?>" />
+                            <p><?php echo $this->session->userdata('username');?></p>
+                                        <?php if ($this->session->userdata('role')=='admin'){?>
+                                            <p style="font-size: 10px;">&nbsp;Administrator&nbsp;&nbsp;
+                                        <?php } else if ($this->session->userdata('hak_akses')==2){?>
+                                            <p style="font-size: 10px;">&nbsp;Manager&nbsp;&nbsp;
+                                        <?php } else if ($this->session->userdata('hak_akses')==3){?>
+                                            <p style="font-size: 10px;">&nbsp;Client&nbsp;&nbsp;
+                                        <?php } ?>  
+                                    <a href="#" style="font-size: 10px;"><i class="fa fa-circle text-success"></i> Online</a></p>
+                            <li>
+                                <a href=<?php echo site_url('myprofile') ?> class="<?php echo $this->uri->segment(1) == 'myprofile' ? 'mm-active': '' ?>">
+                                
+    
+                                Profil Saya
+                                </a>
+                            </li>
+                            <div class="widget-content-left mr-3">
+                                                                            <img width="42" class="rounded-circle" src="assets/images/avatars/9.jpg" alt="">
+                                                                        </div>
+                                                                        <div class="widget-content-left">
+                                                                            <div class="widget-heading">Ella-Rose Henry</div>
+                                                                            <div class="widget-subheading">Web Developer</div>
+                                                                        </div>
+                            <div class="user-panel">
+                                <div class="pull-left image">
+                                    <img src="<?php echo base_url();?>assets/dist/img/fix-user.png" class="img-circle" alt="User Image">
+                                </div>
+                                <div class="pull-left info">
+                                    <p><?php echo $this->session->userdata('username');?></p>
+                                        <?php if ($this->session->userdata('role')=='admin'){?>
+                                            <p style="font-size: 10px;">&nbsp;Administrator&nbsp;&nbsp;
+                                        <?php } else if ($this->session->userdata('hak_akses')==2){?>
+                                            <p style="font-size: 10px;">&nbsp;Manager&nbsp;&nbsp;
+                                        <?php } else if ($this->session->userdata('hak_akses')==3){?>
+                                            <p style="font-size: 10px;">&nbsp;Client&nbsp;&nbsp;
+                                        <?php } ?>  
+                                    <a href="#" style="font-size: 10px;"><i class="fa fa-circle text-success"></i> Online</a></p>
+                                </div>
+                            </div>
+
+                            <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
+                                <button type="button" tabindex="0" class="dropdown-item">Profil Saya</button>
+                                <div tabindex="-1" class="dropdown-divider"></div>
+                                <a type="button" tabindex="0" class="dropdown-item" href="<?php echo site_url('login/logout');?>">Logout</a>
+
+                            </div>    -->
+
                             <li class="app-sidebar__heading">Dashboards</li>
                             <li>
                                 <a href=<?php echo site_url('admin') ?> class="<?php echo $this->uri->segment(1) == 'admin' ? 'mm-active': '' ?>">
-                                    <i class="metismenu-icon pe-7s-rocket "></i> Beranda
+                                    <i class="metismenu-icon pe-7s-home "></i> Beranda
                                 </a>
                             </li>
 
                             <li class="app-sidebar__heading">Data</li>
+                            <li>
+                                <a href="<?php echo site_url('user') ?>" class="<?php echo $this->uri->segment(1) == 'user' ? 'mm-active': '' ?>">
+                                    <i class="metismenu-icon pe-7s-users"></i> Pengguna
+                                </a>
+                            </li>
                             <li>
                                 <a href="<?php echo site_url('kriteria') ?>" class="<?php echo $this->uri->segment(1) == 'kriteria' ? 'mm-active': '' ?>">
                                     <i class="metismenu-icon pe-7s-keypad"></i> Kriteria
@@ -78,12 +133,12 @@
                                 </a>
                             </li>
 
-                            <li class="app-sidebar__heading">Data Pengguna</li>
+                            <!-- <li class="app-sidebar__heading">Data Pengguna</li>
                             <li>
                                 <a href="<?php echo site_url('user') ?>" class="<?php echo $this->uri->segment(1) == 'user' ? 'mm-active': '' ?>">
                                     <i class="metismenu-icon pe-7s-users"></i> Daftar Pengguna
                                 </a>
-                            </li>
+                            </li> -->
                         <?php else:?>
                             <li class="app-sidebar__heading">Dashboards</li>
                             <li>

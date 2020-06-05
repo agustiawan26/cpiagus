@@ -6,11 +6,11 @@ class Hitung_model extends CI_Model{
       $this->load->database();
   }
 
-  public function getListParameter()
-  {
-    $query = $this->db->query("SELECT a.kriteria, b.nama_parameter FROM kriteria as a INNER JOIN parameter as b ON a.kriteria_id = b.kriteria_id");
-    return $query->result();
-  }
+  // public function getListParameter()
+  // {
+  //   $query = $this->db->query("SELECT a.kriteria, b.nama_parameter FROM kriteria as a INNER JOIN parameter as b ON a.kriteria_id = b.kriteria_id");
+  //   return $query->result();
+  // }
 
   public function getAlternatif(){
     $this->db->order_by("alternatif_id", "ASC");
@@ -19,20 +19,20 @@ class Hitung_model extends CI_Model{
     return $query->result();
   }
 
-  public function getCountKriteria(){
-    $query = $this->db->query("SELECT COUNT(*) as jumlah FROM kriteria");
-    return $query->row();
-  }
+  // public function getCountKriteria(){
+  //   $query = $this->db->query("SELECT COUNT(*) as jumlah FROM kriteria");
+  //   return $query->row();
+  // }
 
-  public function getCountKriteriaTP(){
-    $query = $this->db->query("SELECT COUNT(*) as jumlah FROM kriteria WHERE tren='positif'");
-    return $query->row();
-  }
+  // public function getCountKriteriaTP(){
+  //   $query = $this->db->query("SELECT COUNT(*) as jumlah FROM kriteria WHERE tren='positif'");
+  //   return $query->row();
+  // }
 
-  public function getCountAlternatif(){
-    $query = $this->db->query("SELECT COUNT(*) as jumlah FROM alternatif");
-    return $query->row();
-  }
+  // public function getCountAlternatif(){
+  //   $query = $this->db->query("SELECT COUNT(*) as jumlah FROM alternatif");
+  //   return $query->row();
+  // }
 
   public function getKriteria()
   {
@@ -62,18 +62,16 @@ class Hitung_model extends CI_Model{
     return $query->result();
   }
 
-  public function updateNilai($id, $kriteria, $value)
-  {
-    //var_dump($id.' == '.$kriteria.'===='.$value);die;
-
-
-    $where = array('nilai_alternatif_id' => $id, 'nilai_kriteria_id' => $kriteria );
-    $data = array(
-        'nilai' => $value,
-    );
-    $this->db->where($where);
-    $this->db->update('nilai_tbl',$data);
-  }
+  // public function updateNilai($id, $kriteria, $value)
+  // {
+  //   //var_dump($id.' == '.$kriteria.'===='.$value);die;
+  //   $where = array('nilai_alternatif_id' => $id, 'nilai_kriteria_id' => $kriteria );
+  //   $data = array(
+  //       'nilai' => $value,
+  //   );
+  //   $this->db->where($where);
+  //   $this->db->update('nilai_tbl',$data);
+  // }
 
   public function getNilai(){
     $query = $this->db->query("SELECT a.alternatif_id, k.kriteria_id, n.nilai
@@ -132,23 +130,23 @@ public function getNilaiTrenNegatif(){
   return $data;
 }
 
-public function getNilaifull(){
-  $query = $this->db->query("SELECT a.alternatif_id, k.kriteria_id, n.nilai
-      FROM nilai_tbl n
-      INNER JOIN alternatif a
-        ON n.nilai_alternatif_id=a.alternatif_id
-      INNER JOIN kriteria k
-        ON k.kriteria_id=n.nilai_kriteria_id
-      ORDER BY a.alternatif_id, k.kriteria_id");
-  $rows = $query->result();
+// public function getNilaifull(){
+//   $query = $this->db->query("SELECT a.alternatif_id, k.kriteria_id, n.nilai
+//       FROM nilai_tbl n
+//       INNER JOIN alternatif a
+//         ON n.nilai_alternatif_id=a.alternatif_id
+//       INNER JOIN kriteria k
+//         ON k.kriteria_id=n.nilai_kriteria_id
+//       ORDER BY a.alternatif_id, k.kriteria_id");
+//   $rows = $query->result();
   
-  $data = array();
-  foreach($rows as $row){
-      $data[$row->alternatif_id][$row->kriteria_id] = $row->nilai;
-      // $data[$row->kriteria_id][$row->alternatif_id] = $row->nilai;
-  }
-  return $data;
-}
+//   $data = array();
+//   foreach($rows as $row){
+//       $data[$row->alternatif_id][$row->kriteria_id] = $row->nilai;
+//       // $data[$row->kriteria_id][$row->alternatif_id] = $row->nilai;
+//   }
+//   return $data;
+// }
 
 public function getNilaiMinimum()
 {
@@ -189,72 +187,72 @@ public function getTren()
     return $data;
 }
 
-public function getTransform()
-{
-  $query = $this->db->query("SELECT a.alternatif_id, k.kriteria_id, n.nilai
-  FROM nilai_tbl n
-  INNER JOIN alternatif a
-    ON n.nilai_alternatif_id=a.alternatif_id
-  INNER JOIN kriteria k
-    ON k.kriteria_id=n.nilai_kriteria_id
-  ORDER BY a.alternatif_id, k.kriteria_id
-  ");
-$rows = $query->result();
+// public function getTransform()
+// {
+//   $query = $this->db->query("SELECT a.alternatif_id, k.kriteria_id, n.nilai
+//   FROM nilai_tbl n
+//   INNER JOIN alternatif a
+//     ON n.nilai_alternatif_id=a.alternatif_id
+//   INNER JOIN kriteria k
+//     ON k.kriteria_id=n.nilai_kriteria_id
+//   ORDER BY a.alternatif_id, k.kriteria_id
+//   ");
+// $rows = $query->result();
 
-$data = array();
-foreach($rows as $row){
-  $data[$row->alternatif_id][$row->kriteria_id] = $row->nilai;
-}
+// $data = array();
+// foreach($rows as $row){
+//   $data[$row->alternatif_id][$row->kriteria_id] = $row->nilai;
+// }
 
-return $data;
+// return $data;
 
-}
+// }
 
-public function getTransformnegatif()
-{
-  $query = $this->db->query("SELECT a.alternatif_id, k.tren, k.kriteria_id, n.nilai
-  FROM nilai_tbl n
-  INNER JOIN alternatif a
-    ON n.nilai_alternatif_id=a.alternatif_id
-  INNER JOIN kriteria k
-    ON k.kriteria_id=n.nilai_kriteria_id
-  WHERE k.tren='negatif'
-  ORDER BY a.alternatif_id, k.kriteria_id
-  ");
-$rows = $query->result();
+// public function getTransformnegatif()
+// {
+//   $query = $this->db->query("SELECT a.alternatif_id, k.tren, k.kriteria_id, n.nilai
+//   FROM nilai_tbl n
+//   INNER JOIN alternatif a
+//     ON n.nilai_alternatif_id=a.alternatif_id
+//   INNER JOIN kriteria k
+//     ON k.kriteria_id=n.nilai_kriteria_id
+//   WHERE k.tren='negatif'
+//   ORDER BY a.alternatif_id, k.kriteria_id
+//   ");
+// $rows = $query->result();
 
-$data = array();
-foreach($rows as $row){
-  $data[$row->alternatif_id][$row->kriteria_id] = $row->nilai;
-}
+// $data = array();
+// foreach($rows as $row){
+//   $data[$row->alternatif_id][$row->kriteria_id] = $row->nilai;
+// }
 
-return $data;
+// return $data;
 
-}
+// }
 
 
-public function getListForm($id){
-  //    $query = $this->db->query("SELECT ra.ID, k.kode_kriteria, k.nama_kriteria,ra.nilai FROM tbl_relasi ra INNER JOIN tbl_kriteria k ON k.kode_kriteria=ra.kode_kriteria  WHERE kode_alternatif='$id' ORDER BY kode_kriteria");
+// public function getListForm($id){
+//   //    $query = $this->db->query("SELECT ra.ID, k.kode_kriteria, k.nama_kriteria,ra.nilai FROM tbl_relasi ra INNER JOIN tbl_kriteria k ON k.kode_kriteria=ra.kode_kriteria  WHERE kode_alternatif='$id' ORDER BY kode_kriteria");
       
-  return $this->db->query('SELECT a.nilai_id, a.nilai_kriteria_id, a.nilai_alternatif_id, a.nilai, c.kriteria FROM nilai_tbl as a INNER JOIN kriteria as c  ON a.nilai_kriteria_id=c.kriteria_id WHERE nilai_alternatif_id= "'.$id.'" and c.kriteria_id = a.nilai_kriteria_id ORDER BY nilai_kriteria_id')->result();
-    }
+//   return $this->db->query('SELECT a.nilai_id, a.nilai_kriteria_id, a.nilai_alternatif_id, a.nilai, c.kriteria FROM nilai_tbl as a INNER JOIN kriteria as c  ON a.nilai_kriteria_id=c.kriteria_id WHERE nilai_alternatif_id= "'.$id.'" and c.kriteria_id = a.nilai_kriteria_id ORDER BY nilai_kriteria_id')->result();
+//     }
 
-    public function getSelectedAlternatif($id)
-    {
-      $query = $this->db->query("SELECT * FROM alternatif WHERE alternatif_id='$id'");
-      return $query->row();
-    }
+    // public function getSelectedAlternatif($id)
+    // {
+    //   $query = $this->db->query("SELECT * FROM alternatif WHERE alternatif_id='$id'");
+    //   return $query->row();
+    // }
 
-    public function getNilaialternatif($id)
-    {
-      $query = $this->db->query("SELECT * FROM nilai_tbl WHERE nilai_alternatif_id='$id'");
-      return $query->result();
-    }
+    // public function getNilaialternatif($id)
+    // {
+    //   $query = $this->db->query("SELECT * FROM nilai_tbl WHERE nilai_alternatif_id='$id'");
+    //   return $query->result();
+    // }
 
-    public function getNilaitabel()
-  {
-    return $this->db->get('nilai_tbl')->result();
-  }
+  //   public function getNilaitabel()
+  // {
+  //   return $this->db->get('nilai_tbl')->result();
+  // }
   
 
 }

@@ -21,7 +21,7 @@
                             <div class="page-title-wrapper">
                                 <div class="page-title-heading">
                                     <div class="page-title-icon">
-                                        <i class="pe-7s-drawer icon-gradient bg-happy-itmeo">
+                                        <i class="pe-7s-star icon-gradient bg-happy-itmeo">
                                         </i>
                                     </div>
                                     <div>Peringkat
@@ -40,7 +40,7 @@
                                         <table class="mb-0 table table-hover">
                                             <thead>
                                             <tr>
-                                            <th width="100">Peringkat</th>
+                                            <th class="text-center" width="100">Peringkat</th>
                                             <th>Nama Alternatif</th>
                                             <th>Nilai CPI</th>
                                             </tr>
@@ -51,7 +51,7 @@
                                             <?php $rank = $rank;
                                                 foreach ($rank as $key => $val) : ?>
                                                     <tr>
-                                                        <td><?= $rank[$key] ?></td>
+                                                        <td class="text-center text-muted"><?= $rank[$key] ?></td>
                                                         <td><?= $alt[$key] ?></td>
                                                         <td><?= round(($cpi->nilaicpi[$key]),4) ?></td>
                                                     </tr>

@@ -72,6 +72,7 @@
                                     <div tabindex="-1" class="dropdown-divider"></div>
                                     <button type="button" tabindex="0" class="dropdown-item" >Logout</button>
                                     <li><a href="<?php echo site_url('login/logout');?>">Sign Out</a></li>
+                                    
 
                                 </div>
                             </div>

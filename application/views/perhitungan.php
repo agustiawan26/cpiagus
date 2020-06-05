@@ -21,68 +21,45 @@
                             <div class="page-title-wrapper">
                                 <div class="page-title-heading">
                                     <div class="page-title-icon">
-                                        <i class="pe-7s-drawer icon-gradient bg-happy-itmeo">
+                                        <i class="pe-7s-tools icon-gradient bg-happy-itmeo">
                                         </i>
                                     </div>
-                                    <div>Nilai
-                                        <div class="page-title-subheading">Nilai kriteria tiap alternatif
+                                    <div>Perhitungan
+                                        <div class="page-title-subheading">Menggunakan metode Composite Performance Index (CPI)
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="">
-                            <div class="row">
-                                
-                                <div class="col-md-6">
-                                    <div id="accordion" class="accordion-wrapper mb-3">
-                                        <div class="card">
-                                            <div id="headingOne" class="card-header">
-                                                <button type="button" data-toggle="collapse" data-target="#collapseOne1" aria-expanded="true" aria-controls="collapseOne" class="text-left m-0 p-0 btn btn-link btn-block">
-                                                    <h5 class="m-0 p-0">Keterangan Kriteria</h5>
-                                                </button>
-                                            </div>
-                                            <div data-parent="#accordion" id="collapseOne1" aria-labelledby="headingOne" class="collapse">
-                                                <div class="card-body">
-                                                <?php $i = 1;
-                                                    foreach ($kriteria as $kriteriatbl) : ?>
-                                                    <td>Kriteria <?php echo $i; ?>   =>   <?php echo $kriteriatbl->kriteria; ?><br></td>
-                                                    <?php $i++;
-                                                    endforeach; ?>
-                                                </div>
-                                                <!-- <div class="card-body">
-                                                <?php $i = 1;
-                                                    foreach ($kriteria as $kriteria) : ?>
-                                                    <td>Kriteria <?php echo $i; ?>   =>   <?php echo $kriteria->kriteria; ?><br></td>
-                                                    <?php $i++;
-                                                    endforeach; ?>
-                                                </div> -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
+                        
 
                         <div class="">
                             <div class="row">
-                                
                                 <div class="col-md-12">
                                     <div id="accordion" class="accordion-wrapper mb-3">
                                         <div class="card">
                                             <div id="headingOne" class="card-header">
                                                 <button type="button" data-toggle="collapse" data-target="#collapseOne2" aria-expanded="true" aria-controls="collapseOne" class="text-left m-0 p-0 btn btn-link btn-block">
-                                                    <h5 class="m-0 p-0">#1 Mencari nilai minimum dari tiap kriteria</h5>
+                                                    <h5 class="m-0 p-0">#1 Identifikasi nilai minimum dan tren tiap kriteria</h5>
                                                 </button>
                                             </div>
                                             <div data-parent="#accordion" id="collapseOne2" aria-labelledby="headingOne" class="collapse show">
                                                 <div class="card-body">
+                                                    <div id="exampleAccordion" data-children=".item">
+                                                        <div class="item">
+                                                            <button type="button" aria-expanded="true" aria-controls="exampleAccordion1" data-toggle="collapse" href="#ket1" class="m-0 p-0 btn btn-link"><h5>Keterangan</h5></button>
+                                                            <div data-parent="#exampleAccordion" id="ket1" class="collapse">
+                                                                <p class="mb-3">Identifikasi nilai minimum dari tiap kriteria. Data nilai minimum digunakan untuk transformasi nilai di tahap selanjutnya.</p>
+                                                                <p class="mb-3">Identifikasi tren kriteria apakah tren negatif atau positif. Tren positif berarti semakin tinggi nilainya maka semakin baik, sedangkan tren negatif berati semakin rendah nilainya maka semakin baik.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="main-card mb-3 card">
                                                                 <div class="card-body">
                                                                     <table class="mb-0 table table-hover">
-                                                                        <thead>
+                                                                        <!-- <thead>
                                                                         <tr>
                                                                         <th>Nama Alternatif</th>
                                                                         <?php
@@ -93,10 +70,23 @@
                                                                         endif;
                                                                         ?>
                                                                         </tr>
+                                                                        </thead> -->
+                                                                        <thead>
+                                                                        <tr>
+                                                                        <th>Data</th>
+                                                                        <?php foreach ($cpi->data as $key => $val) : ?>
+                                                                            
+                                                                            <th><?= $kriteriaa[$key]?></th>
+                                                                           
+                                                                        <?php endforeach; ?>
+
+                                                                        
+                                                                    
+                                                                        </tr>
                                                                         </thead>
 
 
-                                                                        <tbody>
+                                                                        <!-- <tbody>
                                                                         
                                                                         <?php $i = 1;
                                                                             foreach ($alternatif as $item) : ?>
@@ -110,15 +100,25 @@
                                                                                 </tr>
                                                                                 <?php $i++;
                                                                             endforeach; ?>
-                                                                        </tbody>
+                                                                        </tbody> -->
+                                                                        <tfoot>
+                                                                            <tr>
+                                                                                <th>Tren</th> 
+                                                                                <?php foreach ($tren as $tren => $y) : ?> 
+                                                                                    <td><?= $y; ?></td>
+                                                                                <?php endforeach; ?>
+                                                                            </tr>
+                                                                        </tfoot>
                                                                         <tfoot>
                                                                             <tr>
                                                                                 <th>Nilai Minimum</th> 
                                                                                 <?php foreach ($nilai_min as $min => $y) : ?> 
-                                                                                    <th><?= $y; ?></th>
+                                                                                    <td><?= $y; ?></td>
                                                                                 <?php endforeach; ?>
+                                                                                
                                                                             </tr>
                                                                         </tfoot>
+                                                                        
                                                                     </table>
                                                                 </div>
                                                             </div>
@@ -126,6 +126,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            
                                             <!-- START NEW ACCORDIONS HERE -->
                                             <div id="headingOne" class="card-header">
                                                 <button type="button" data-toggle="collapse" data-target="#collapseOne3" aria-expanded="true" aria-controls="collapseOne" class="text-left m-0 p-0 btn btn-link btn-block">
@@ -133,7 +134,17 @@
                                                 </button>
                                             </div>
                                             <div data-parent="#accordion" id="collapseOne3" aria-labelledby="headingOne" class="collapse show">
-                                                <div class="card-body">
+                                                <div class="card-body">     
+                                                    <div id="exampleAccordion" data-children=".item">
+                                                        <div class="item">
+                                                            <button type="button" aria-expanded="true" aria-controls="exampleAccordion1" data-toggle="collapse" href="#ket2" class="m-0 p-0 btn btn-link"><h5>Keterangan</h5></button>
+                                                            <div data-parent="#exampleAccordion" id="ket2" class="collapse">
+                                                                <p class="mb-3">Untuk kriteria tren positif, nilai minimum pada setiap kriteria ditransformasi ke seratus, sedangkan nilai lainnya ditransformasi secara proporsional lebih tinggi.</p>
+                                                                <img src="assets/images/transformpositif.png" height="124" width="208">
+                                                                <img src="assets/images/kettransform.png" height="124" width="360">
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="main-card mb-3 card">
@@ -147,9 +158,6 @@
                                                                             <th><?= $krtp[$key]?></th>
                                                                            
                                                                         <?php endforeach; ?>
-
-                                                                        
-                                                                    
                                                                         </tr>
                                                                         </thead>
                                                                         
@@ -179,6 +187,16 @@
                                             </div>
                                             <div data-parent="#accordion" id="collapseOne4" aria-labelledby="headingOne" class="collapse show">
                                                 <div class="card-body">
+                                                    <div id="exampleAccordion" data-children=".item">
+                                                        <div class="item">
+                                                            <button type="button" aria-expanded="true" aria-controls="exampleAccordion1" data-toggle="collapse" href="#ket3" class="m-0 p-0 btn btn-link"><h5>Keterangan</h5></button>
+                                                            <div data-parent="#exampleAccordion" id="ket3" class="collapse">
+                                                                <p class="mb-3">Untuk kriteria tren negatif, nilai minimum pada setiap kriteria ditransformasi ke seratus, sedangkan nilai lainnya ditransformasi secara proporsional lebih rendah.</p>
+                                                                <img src="assets/images/transformnegatif.png" height="124" width="208">
+                                                                <img src="assets/images/kettransform.png" height="124" width="360">
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="main-card mb-3 card">
@@ -227,6 +245,17 @@
                                             </div>
                                             <div data-parent="#accordion" id="collapseOne5" aria-labelledby="headingOne" class="collapse show">
                                                 <div class="card-body">
+                                                    <div id="exampleAccordion" data-children=".item">
+                                                        <div class="item">
+                                                            <button type="button" aria-expanded="true" aria-controls="exampleAccordion1" data-toggle="collapse" href="#ket4" class="m-0 p-0 btn btn-link"><h5>Keterangan</h5></button>
+                                                            <div data-parent="#exampleAccordion" id="ket4" class="collapse">
+                                                                <p class="mb-3">Menghitung indeks gabungan kriteria pada alternatif ke-j. Perhitungan dilakukan dengan melakukan perkalian nilai yang sudah ditransformasikan dengan bobot kriteria. Kemudian menjumlahkan hasil perhitungan tiap alternatif.</p>
+                                                                <p class="mb-3">Alternatif dengan total nilai indeks gabungan tertinggi merupakan alternatif terbaik</p>
+                                                                <img src="assets/images/perhitungan.png" height="130" width="150">
+                                                                <img src="assets/images/ketperhitungan.png" height="124" width="470">
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="row">
                                                         <div class="col-lg-6">
                                                             <div class="main-card mb-3 card">
@@ -265,7 +294,6 @@
                 <!-- FOOTER HERE -->
                 <?php $this->load->view("_partials/footer.php") ?>
             </div>
-            <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
         </div>
     </div>
     <!-- ETC HERE -->
@@ -273,13 +301,6 @@
     <?php $this->load->view("_partials/modal.php") ?>
     <?php $this->load->view("_partials/js.php") ?>
     
-
-    <script>
-    function deleteConfirm(url){
-        $('#btn-delete').attr('href', url);
-        $('#deleteModal').modal();
-    }
-    </script>
 </body>
 
 </html>

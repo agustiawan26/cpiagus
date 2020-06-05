@@ -4,131 +4,12 @@ class User_model extends CI_Model
 {
     private $_table = "user";
 
-    public $user_id;
-    public $full_name;
-    public $password;
-    public $email;
-    public $role;
-
-    public function rules()
-    {
-        return [
-            ['field' => 'full_name',
-            'label' => 'Name',
-            'rules' => 'required'],
-			
-            ['field' => 'password',
-            'label' => 'Password',
-            'rules' => 'required|min_length[3]'],
-            
-            ['field' => 'email',
-            'label' => 'Email',
-            'rules' => 'required|valid_email']
-        ];
-    }
-
-    public function getAll()
-    {
-        return $this->db->get($this->_table)->result();
-    }
 
     public function getUser()
     {
         $query = $this->db->get('user');
 		return $query;
     }
-    
-    public function getById($id)
-    {
-        return $this->db->get_where($this->_table, ["user_id" => $id])->row();
-    }
-
-    public function save()
-    {
-        $post = $this->input->post();
-        $this->username = $post["username"];
-        $this->full_name = $post["full_name"];
-        $this->email = $post["email"];
-        $this->phone = $post["phone"];
-        $this->password = password_hash($post["password"], PASSWORD_DEFAULT);
-        $this->role = $post["role"] ?? "manager";
-        $this->photo = $this->_uploadPhoto();
-        $this->db->insert($this->_table, $this);
-    }
-
-    public function update()
-    {
-        $post = $this->input->post();
-        $this->user_id = $post["id"];
-        $this->username = $post["username"];
-        $this->full_name = $post["full_name"];
-        $this->email = $post["email"];
-        $this->phone = $post["phone"];
-        $this->password = password_hash($post["password"], PASSWORD_DEFAULT);
-        $this->role = $post["role"] ?? "manager";
-
-        if (!empty($_FILES["photo"]["name"])) {
-            $this->photo = $this->_uploadPhoto();
-        } else {
-            $this->photo = $post["old_photo"];
-		}
-
-        $this->db->update($this->_table, $this, array('user_id' => $post['id']));
-    }
-
-    public function doLogin(){
-		$post = $this->input->post();
-
-        $this->db->where('email', $post["email"])
-                ->or_where('username', $post["email"]);
-        $user = $this->db->get($this->_table)->row();
-
-        if($user){
-            $isPasswordTrue = password_verify($post["password"], $user->password);
-            $isAdmin = $user->role == "admin";
-            if($isPasswordTrue && $isAdmin){ 
-                $this->session->set_userdata(['user_logged' => $user]);
-                $this->_updateLastLogin($user->user_id);
-                return true;
-            }
-		}
-		return false;
-    }
-
-    public function isNotLogin(){
-        return $this->session->userdata('user_logged') === null;
-    }
-
-    private function _updateLastLogin($user_id){
-        $sql = "UPDATE {$this->_table} SET last_login=now() WHERE user_id={$user_id}";
-        $this->db->query($sql);
-    }
-
-    public function delete($id)
-    {
-        $this->_deletePhoto($id);
-        return $this->db->delete($this->_table, array("user_id" => $id));
-    }
-
-    private function _uploadPhoto()
-	{
-		$config['upload_path']          = './upload/user/';
-		$config['allowed_types']        = 'gif|jpg|png';
-		$config['file_name']            = $this->user_id;
-		$config['overwrite']			= true;
-		$config['max_size']             = 1024; // 1MB
-		// $config['max_width']            = 1024;
-		// $config['max_height']           = 768;
-
-		$this->load->library('upload', $config);
-
-		if ($this->upload->do_upload('photo')) {
-			return $this->upload->data("file_name");
-		}
-        
-        // print_r($this->upload->display_errors());
-		return "user.png";
-	}
 
 	private function _deletePhoto($id)
 	{
@@ -138,25 +19,225 @@ class User_model extends CI_Model
 			return array_map('unlink', glob(FCPATH."upload/user/$filename.*"));
 		}
     }
-    
-    public function countUser()
-    {
-        //$query = $this->db->get('count_admin');
-        $query = $this
-            ->db
-            ->query("SELECT COUNT(user_id) as jumlah_user FROM user");
-        return $query->row();
+
+    public function _updateLastLogin($user_id){
+        $sql = "UPDATE {$this->_table} SET last_login=now() WHERE user_id={$user_id}";
+        $this->db->query($sql);
     }
+
+    public function _updateIsActive($user_id){
+        $sql = "UPDATE {$this->_table} SET is_active='1' WHERE user_id={$user_id}";
+        $this->db->query($sql);
+    }
+
+    public function _updateIsNonActive($user_id){
+        $sql = "UPDATE {$this->_table} SET is_active='0' WHERE user_id={$user_id}";
+        $this->db->query($sql);
+    }
+
+    public function delete_user($id)
+    {
+        $this->_deletePhoto($id);
+        $this->db->delete('user', array("user_id" => $id));
+    }
+
     public function getCountUser(){
         $query = $this->db->query("SELECT COUNT(*) as jumlah_user FROM user");
         return $query->row();
     }
 
-    // DELETE
-	function delete_user($id){
-		$this->db->trans_start();
-            $this->_deletePhoto($id);
-            $this->db->delete($this->_table, array("user_id" => $id));
-		$this->db->trans_complete();
-	}
+    public function getselecteduser($id)
+    {
+        $where = array(
+            'user_id' => $id
+        );
+
+        $query = $this->db->get_where('user',$where);
+        return $query->row();
+    }
+
+    public function createuser()
+    {
+        $this->user_id = $this->input->post('user_id');
+        $photo = $this->_uploadPhoto();
+
+        $data = array(
+            'user_id' => $this->input->post('user_id'),
+            'username' => $this->input->post('username'),
+            'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+            'email' => $this->input->post('email'),
+            'full_name' => $this->input->post('full_name'),
+            'phone' => $this->input->post('phone'),
+            'role' => $this->input->post('role'),
+            'photo' => $photo,
+        );
+        $this->db->insert('user',$data);
+        $this->session->set_flashdata('message', '<div class="alert alert-info fade show" role="alert">
+            <i class="fa fa-info-circle mr-3"></i>
+            <span>Data pengguna berhasil ditambahkan!</span>
+            <button type="button" class="close" aria-label="Close" data-dismiss="alert">
+			<span aria-hidden="true">×</span>
+            </button> </div>');
+	
+        redirect('user');
+    }
+
+    public function updateuser($id)
+	  {
+        $where = array('user_id' => $id );
+        // $photo = $this->_uploadPhoto();
+        $this->user_id = $this->input->post("user_id");
+
+        if (!empty($_FILES["photo"]["name"])) {
+            $photo = $this->_uploadPhoto();
+        } else {
+            $photo = $this->input->post("old_photo");
+        }
+
+        if (!empty($_POST["password"])) {
+            $password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+        } else {
+            $password = $this->input->post('old_password');
+        }
+        
+        //  $photo = $this->_uploadPhoto();
+
+
+		$data = array(
+            'user_id' => $this->input->post('user_id'),
+            'username' => $this->input->post('username'),
+            'password' => $password,
+            'email' => $this->input->post('email'),
+            'full_name' => $this->input->post('full_name'),
+            'phone' => $this->input->post('phone'),
+            'role' => $this->input->post('role'),
+            'photo' => $photo,
+        );
+        
+        $this->db->where($where);
+        //var_dump($data);die;
+        $this->db->update('user',$data);
+        $this->session->set_flashdata('message', '<div class="alert alert-info fade show" role="alert">
+            <i class="fa fa-info-circle mr-3"></i>
+            <span>Data pengguna berhasil diedit!</span>
+            <button type="button" class="close" aria-label="Close" data-dismiss="alert">
+			<span aria-hidden="true">×</span>
+            </button> </div>');
+	  }
+
+    private function _uploadPhoto()
+	{
+		$config['upload_path']          = './upload/user/';
+		$config['allowed_types']        = 'jpeg|jpg|png';
+		$config['file_name']            = $this->user_id;
+		$config['overwrite']			= true;
+		$config['max_size']             = 1024; // 1MB
+		// $config['max_width']            = 1024;
+		// $config['max_height']           = 768;
+
+		$this->load->library('upload', $config);
+
+		if ($this->upload->do_upload('photo')) {
+			return $this->upload->data('file_name');
+		}
+        print_r($this->upload->display_errors());
+		//return "user.png";
+    }
+
+    public function updateprofile()
+	  {
+        $where = array('user_id' => $this->input->post('user_id') );
+        // $photo = $this->_uploadPhoto();
+        $this->user_id = $this->input->post("user_id");
+
+        if (!empty($_FILES["photo"]["name"])) {
+            $photo = $this->_uploadPhoto();
+        } else {
+            $photo = $this->input->post("old_photo");
+        }
+        
+		$data = array(
+            'user_id' => $this->input->post('user_id'),
+            'username' => $this->input->post('username'),
+            // 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+            'email' => $this->input->post('email'),
+            'full_name' => $this->input->post('full_name'),
+            'phone' => $this->input->post('phone'),
+            // 'role' => $this->input->post('role'),
+            'photo' => $photo,
+        );
+        
+        $this->db->where($where);
+        //var_dump($data);die;
+        $this->db->update('user',$data);
+        $this->session->set_flashdata('message', '<div class="alert alert-info fade show" role="alert">
+            <i class="fa fa-info-circle mr-3"></i>
+            <span>Data profil saya berhasil diedit!</span>
+            <button type="button" class="close" aria-label="Close" data-dismiss="alert">
+			<span aria-hidden="true">×</span>
+            </button> </div>');
+      }
+      
+      public function changepassword()
+	  {
+        //$where = array('user_id' => $this->input->post('user_id') );
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        // $photo = $this->_uploadPhoto();
+        //$this->user_id = $this->input->post("user_id");
+        $password = $this->input->post('password');
+        $password_new = $this->input->post('password_new');
+        $password_new_confirm = $this->input->post('password_new_confirm');
+
+        //var_dump($password,$password_new,$password_new_confirm);die;
+
+        
+        if (!password_verify($password, $data['user']['password'])) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger fade show" role="alert">
+                <i class="fa fa-info-circle mr-3"></i>
+                <span>Password lama yang Anda masukkan tidak sesuai!</span>
+                <button type="button" class="close" aria-label="Close" data-dismiss="alert">
+                <span aria-hidden="true">×</span>
+                </button> </div>');
+            redirect('profile/changePassword/');
+        } elseif ($password == $password_new) {
+            
+            $this->session->set_flashdata('message', '<div class="alert alert-danger fade show" role="alert">
+                <i class="fa fa-info-circle mr-3"></i>
+                <span>Password baru tidak boleh sama dengan password lama!</span>
+                <button type="button" class="close" aria-label="Close" data-dismiss="alert">
+                <span aria-hidden="true">×</span>
+                </button> </div>');
+            redirect('profile/changePassword/');
+        } elseif ($password_new != $password_new_confirm) {
+                
+            $this->session->set_flashdata('message', '<div class="alert alert-danger fade show" role="alert">
+                <i class="fa fa-info-circle mr-3"></i>
+                <span>Konfirmasi password baru Anda tidak sama!</span>
+                <button type="button" class="close" aria-label="Close" data-dismiss="alert">
+                <span aria-hidden="true">×</span>
+                </button> </div>');
+            redirect('profile/changePassword/');
+        } else {
+            $password_hash = password_hash($password_new, PASSWORD_DEFAULT);
+
+
+            $this->db->set('password', $password_hash);
+            $this->db->where('email', $this->session->userdata('email'));
+            $this->db->update('user');
+            $this->session->set_flashdata('message', '<div class="alert alert-success fade show" role="alert">
+                <i class="fa fa-info-circle mr-3"></i>
+                <span>Password berhasil diubah!</span>
+                <button type="button" class="close" aria-label="Close" data-dismiss="alert">
+                <span aria-hidden="true">×</span>
+                </button> </div>');
+            redirect('profile/');
+        }
+    }
+    
+    public function getMaxKode(){
+		$query = $this->db->query("SELECT (MAX(user_id))+1 as max_id FROM user");
+		return $query->row();
+	  }
+
 }

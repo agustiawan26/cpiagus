@@ -17,7 +17,7 @@
             <div class="app-main__outer">
                 <div class="app-main__inner">
                     <!-- BREADCRUMB HERE -->
-                    <?php $this->load->view("_partials/breadcrumb.php") ?>
+                    <!--  -->
                     
                     <div class="row">
                         <div class="col-md-6 col-xl-4">
@@ -115,7 +115,7 @@
                 <!-- FOOTER HERE -->
                 <?php $this->load->view("_partials/footer.php") ?>
             </div>
-            <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+            
         </div>
     </div>
     <!-- ETC HERE -->

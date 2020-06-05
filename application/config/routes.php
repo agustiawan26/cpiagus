@@ -56,9 +56,19 @@ $route['translate_uri_dashes'] = FALSE;
 $route['admin'] = 'home';
 $route['manager'] = 'home';
 
-$route['newparameter'] = 'parameter/add';
 
-$route['addpara'] = 'kriteria/addpara';
 
+$route['kriteria/createKriteriaWP/(:any)'] = 'kriteria/createkriteriawp/$1';
+$route['kriteria/createKriteria'] = 'kriteria/createkriteria/';
+$route['kriteria/updateKriteriaWP/(:any)'] = 'kriteria/updatekriteriawp/$1';
+$route['kriteria/updateKriteria/(:any)'] = 'kriteria/updatekriteria/$1';
+
+$route['alternatif/createAlternatif'] = 'alternatif/createalternatif/';
+$route['alternatif/updateAlternatif/(:any)'] = 'alternatif/updatealternatif/$1';
+
+$route['user/createUser'] = 'user/createuser/';
+
+$route['user/updateUser/(:any)'] = 'user/updateuser/$1';
+$route['profile/updateProfile'] = 'profile/updateprofile/';
 
 $route['peringkat'] = 'hitung/peringkat';

@@ -16,13 +16,13 @@ class Beranda extends CI_Controller {
 	
 	public function index()
 	{
-		$data['count'] = $this->hitung_model->getCountKriteria()->jumlah;
+		$data['count'] = $this->nilai_model->getCountKriteria()->jumlah;
         $data['alternatiff'] = $this->nilai_model->getAlternatif(); // show in Nilai
         $data['alternatif'] = $this->nilai_model->getAlternatif(); // show in Alternatif and Hitung
-        $data['kriteria'] = $this->nilai_model->getKriteria();
+        $data['kriteria'] = $this->hitung_model->getKriteria();
         $data['nilai'] = $this->nilai_model->getNilai();
-        $datatp['nilai-tren-positif'] = $this->hitung_model->getNilaiTrenPositif();
-        $datatn['nilai-tren-negatif'] = $this->hitung_model->getNilaiTrenNegatif();
+        $datatp['nilai_tren_positif'] = $this->hitung_model->getNilaiTrenPositif();
+        $datatn['nilai_tren_negatif'] = $this->hitung_model->getNilaiTrenNegatif();
         $datamin['nilai_min'] = $this->hitung_model->getNilaiMinimum();
         $datatren['tren'] = $this->hitung_model->getTren();
     
@@ -33,7 +33,7 @@ class Beranda extends CI_Controller {
         } 
         $data['alt'] = $ALT;
 
-        $rows = $this->nilai_model->getKriteria();
+        $rows = $this->hitung_model->getKriteria();
         foreach($rows as $row){
             $KRT[$row->kriteria_id] = array(
                 'kriteria'=>$row->kriteria,
@@ -47,23 +47,15 @@ class Beranda extends CI_Controller {
             $bobot[$key] = $val['bobot'];
         }
         
-        $data['cpi'] = new Cpi($data['nilai'], $datamin['nilai_min'], $datatren['tren'], $datatp['nilai-tren-positif'], $datatn['nilai-tren-negatif'],  $bobot);
+        // $data['cpi'] = new Cpi($data['nilai'], $datamin['nilai_min'], $datatren['tren'], $datatp['nilai-tren-positif'], $datatn['nilai-tren-negatif'],  $bobot);
+        $data['cpi'] = new Cpi($data['nilai'], $datamin['nilai_min'], $datatp['nilai_tren_positif'], $datatn['nilai_tren_negatif'],  $bobot);
 
         //var_dump($data['krtn']);die;
 		$data['rank'] = $this->get_rank($data['cpi']->nilaicpi);
 
-		// $data['count'] = $this->nilai_model->getCountKriteria()->jumlah;
-		// $data['alternatif'] = $this->nilai_model->getAlternatif();
-		// $data['kriteria'] = $this->nilai_model->getKriteria();
-		// $data['nilai'] = $this->nilai_model->getNilai();
-    
-         //   var_dump($data['nilai']);die;
-
-  
-    //$data['message'] = $this->session->flashdata('msg');
-    
-
-		$this->load->view("landingpagev2", $data);
+        //var_dump($data['nilai']);die;
+        //$data['message'] = $this->session->flashdata('msg');
+		$this->load->view("landingpage", $data);
 		
     }
 

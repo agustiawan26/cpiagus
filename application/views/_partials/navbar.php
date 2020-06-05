@@ -64,24 +64,30 @@
                         <div class="widget-content-left">
                             <div class="btn-group">
                                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                    <!-- <img width="42" class="rounded-circle" src="assets/images/avatars/1.jpg" alt=""> -->
                                     <img width="42" class="rounded-circle" src="<?php echo base_url('upload/user/'.$this->session->userdata('photo')); ?>" />
                                     <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                 </a>
                                 <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                    <button type="button" tabindex="0" class="dropdown-item">Profil Saya</button>
+                                    <a type="button" tabindex="0" class="dropdown-item" href="<?php echo site_url('profile');?>"><i class="pe-7s-user mr-3"></i>  Profil Saya</a>
                                     <div tabindex="-1" class="dropdown-divider"></div>
-                                    <a type="button" tabindex="0" class="dropdown-item" href="<?php echo site_url('login/logout');?>">Logout</a>
+                                    <!-- <a type="button" tabindex="0" class="dropdown-item" href="<?php echo site_url('login/logout');?>">Logout</a> -->
+                                    <a type="button" tabindex="0" class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"><i class="pe-7s-back mr-3"></i>Logout</a>
+                                    <!-- <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-800"></i>
+                                        Keluar
+                                    </a> -->
                                     <!-- <a href="<?php echo site_url('login/logout');?>">Sign Out</a> -->
 
                                 </div>
+                                
                             </div>
                         </div>
                         <div class="widget-content-left  ml-3 header-user-info">
                             <div class="widget-heading">
-                                <?php echo $this->session->userdata("username"); ?>
+                                <?php echo $this->session->userdata("full_name"); ?>
                             </div>
-                            <div class="widget-subheading">
+                            <div class="widget-subheading">Role : 
+
                             <?php echo $this->session->userdata("role"); ?>
                             </div>
                         </div>

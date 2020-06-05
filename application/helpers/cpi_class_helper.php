@@ -24,11 +24,11 @@ class Cpi{
 	// public $agregate;
 	public $nilaicpi;
 
-	function __construct($data, $datamin, $datatren, $datatp, $datatn, $bobot){
+	function __construct($data, $datamin, $datatp, $datatn, $bobot){
 		error_reporting(0);
 		$this->data = $data;
 		$this->datamin = $datamin;
-		$this->datatren = $datatren;
+		//$this->datatren = $datatren;
 		$this->datatn = $datatn;
 		$this->datatp = $datatp;
 		$this->bobot = $bobot;

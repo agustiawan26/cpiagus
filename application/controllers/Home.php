@@ -11,6 +11,9 @@ class Home extends CI_Controller
         $this->load->model("kriteria_model");
         $this->load->model("user_model");
         $this->load->library('form_validation');
+        if (!$this->session->userdata('email')) {
+            redirect('login');
+        }
     }
 
     public function index()
