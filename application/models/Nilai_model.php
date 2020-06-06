@@ -24,20 +24,45 @@ class Nilai_model extends CI_Model{
     return $query->row();
   }
 
+  // public function getKriteria()
+  // {
+  //   $query = $this->db->query("SELECT kriteria
+  //       FROM kriteria k");
+  //   return $query->result();
+  // }
+
+  // public function getKriteria()
+  // {
+  //   $this->db->order_by("kriteria_id", "ASC");
+  //   $query = $this->db->get("kriteria");
+
+  //   return $query->result();
+  //   // $query = json_decode($query,true);
+  // }
+
   public function getKriteria()
   {
-    $query = $this->db->query("SELECT kriteria
-        FROM kriteria k");
-    return $query->result();
+    $this->db->order_by("kriteria_id", "ASC");
+    $query = $this->db->query("SELECT * FROM kriteria");
+
+    return $query->result_object();
   }
 
-  public function getKriteriawp()
+  public function getKriteriaHead()
   {
-    $query = $this->db->query("SELECT kriteria
-        FROM kriteria k
-        WHERE k.is_para = '1'");
-    return $query->result();
+    $this->db->order_by("kriteria_id", "ASC");
+    $query = $this->db->query("SELECT * FROM kriteria");
+
+    return $query->result_object();
   }
+
+  // public function getKriteriawp()
+  // {
+  //   $query = $this->db->query("SELECT kriteria
+  //       FROM kriteria k
+  //       WHERE k.is_para = '1'");
+  //   return $query->result();
+  // }
 
   public function updateNilai($id, $kriteria, $value)
   {

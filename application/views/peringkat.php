@@ -29,6 +29,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="page-title-actions">
+                                    <a class="mb-2 mr-2 btn btn-light" href="<?= base_url('hitung/printperingkat'); ?>">
+                                        <i class="fa fa-print"></i> Print Data
+                                    </a>
+                                </div> 
                             </div>
                         </div>
                         
@@ -41,19 +46,18 @@
                                             <thead>
                                             <tr>
                                             <th class="text-center" width="100">Peringkat</th>
-                                            <th>Nama Alternatif</th>
-                                            <th>Nilai CPI</th>
+                                            <th class="text-center">Nama Alternatif</th>
+                                            <th class="text-center">Nilai CPI</th>
                                             </tr>
                                             </thead>
-
 
                                             <tbody>
                                             <?php $rank = $rank;
                                                 foreach ($rank as $key => $val) : ?>
                                                     <tr>
-                                                        <td class="text-center text-muted"><?= $rank[$key] ?></td>
-                                                        <td><?= $alt[$key] ?></td>
-                                                        <td><?= round(($cpi->nilaicpi[$key]),4) ?></td>
+                                                        <td class="text-center"><?= $rank[$key] ?></td>
+                                                        <td class="text-center"><?= $alt[$key] ?></td>
+                                                        <td class="text-center"><?= round(($cpi->nilaicpi[$key]),4) ?></td>
                                                     </tr>
                                                 <?php endforeach; ?>
                                                             

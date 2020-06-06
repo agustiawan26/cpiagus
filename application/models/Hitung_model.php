@@ -39,7 +39,16 @@ class Hitung_model extends CI_Model{
     $this->db->order_by("kriteria_id", "ASC");
     $query = $this->db->get("kriteria");
 
-    return $query->result();
+    return $query;
+    // $query = json_decode($query,true);
+  }
+
+  public function getKriteriaHead()
+  {
+    $this->db->order_by("kriteria_id", "ASC");
+    $query = $this->db->get("kriteria");
+
+    return $query->result_object();
     // $query = json_decode($query,true);
   }
 
@@ -47,11 +56,13 @@ class Hitung_model extends CI_Model{
   {
     $this->db->order_by("kriteria_id", "ASC");
     $query = $this->db->get_where("kriteria","tren='positif'");
+    
+    // return $this->db->get_where('kriteria',"tren='positif'")->result();
 
 
-    //$query = $this->db->query("SELECT * FROM kriteria WHERE tren='positif'");
+    // $query = $this->db->query("SELECT * FROM kriteria WHERE tren='positif'");
 
-    return $query->result();
+    return $query->result_object();
   }
 
   public function getKriteriaTN()
@@ -59,7 +70,7 @@ class Hitung_model extends CI_Model{
     $this->db->order_by("kriteria_id", "ASC");
     $query = $this->db->query("SELECT * FROM kriteria WHERE tren='negatif'");
 
-    return $query->result();
+    return $query->result_object();
   }
 
   // public function updateNilai($id, $kriteria, $value)

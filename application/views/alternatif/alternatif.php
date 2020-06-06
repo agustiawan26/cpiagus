@@ -34,6 +34,9 @@
                                     <button type="button" class="btn btn-success " name="addalternatif" value="addalternatif">Add Al</button>
                                     <button type="button" class="mb-2 mr-2 btn btn-info" data-toggle="modal" data-target="#addNewModal"><i class="fa fa-plus"></i> Tambah Alternatif</button>  
                                     </div> -->
+                                    <a class="mb-2 mr-2 btn btn-light" href="<?= base_url('alternatif/print'); ?>">
+                                        <i class="fa fa-print"></i> Print Data
+                                    </a>
                                     <a class="mb-2 mr-2 btn btn-info" href="<?= base_url('alternatif/createAlternatif'); ?>">
                                         <i class="fa fa-plus"></i> Tambah Alternatif
                                     </a>

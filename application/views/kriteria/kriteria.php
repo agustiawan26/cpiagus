@@ -30,6 +30,9 @@
                                 </div>
                             </div>
                             <div class="page-title-actions">
+                                <a class="mb-2 mr-2 btn btn-light" href="<?= base_url('kriteria/print'); ?>">
+                                        <i class="fa fa-print"></i> Print Data
+                                    </a>
                                 <div class="d-inline-block dropdown">
                                     <button type="button" class="mb-2 mr-2 btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Tambah Kriteria</button>     
                                 </div>
@@ -44,7 +47,7 @@
                                     <table class="mb-0 table table-hover">
                                         <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th>Kriteria ID</th>
                                             <th>Nama Kriteria</th>
                                             <th>Bobot</th>
                                             <th>Tren</th>
@@ -59,7 +62,7 @@
                                             ?>
                                                 <tr>
                                                     <td>
-                                                        <?php echo $count;?>
+                                                        <?php echo "K".$row->kriteria_id?>
                                                     </td>
                                                     <td>
                                                         <?php echo $row->kriteria;?>
@@ -93,7 +96,7 @@
                                     <table class="mb-0 table table-hover">
                                         <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th>ID Kriteria</th>
                                             <th>Nama Kriteria</th>
                                             <th>Bobot</th>
                                             <th>Tren</th>
@@ -110,7 +113,7 @@
                                             ?>
                                                 <tr>
                                                     <td>
-                                                        <?php echo $count;?>
+                                                        <?php echo "K".$row->kriteria_id;?>
                                                     </td>
                                                     <td>
                                                         <?php echo $row->kriteria;?>

@@ -29,6 +29,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="page-title-actions">
+                                    <a class="mb-2 mr-2 btn btn-light" href="<?= base_url('nilai/print'); ?>">
+                                            <i class="fa fa-print"></i> Print Data
+                                        </a>
+                                </div> 
                             </div>
                         </div>
                         <?= $this->session->flashdata('message'); ?>              
@@ -45,11 +50,11 @@
                                             </div>
                                             <div data-parent="#accordion" id="collapseOne1" aria-labelledby="headingOne" class="collapse show">
                                                 <div class="card-body">
-                                                <?php $i = 1;
-                                                    foreach ($kriteria as $kriteria) : ?>
-                                                    <td>Kriteria <?php echo $i; ?>   =>   <?php echo $kriteria->kriteria; ?><br></td>
-                                                    <?php $i++;
-                                                    endforeach; ?>
+                                                <?php foreach ($kriteria as $kriteria) : ?>
+                                                    <td>K<?php echo $kriteria->kriteria_id; ?>   =>   <?php echo $kriteria->kriteria; ?><br></td>
+                                                <?php endforeach; ?>
+                                                
+
                                                 </div>
                                             </div>
                                         </div>
@@ -62,18 +67,15 @@
                             <div class="col-lg-12">
                                 <div class="main-card mb-3 card">
                                     <div class="card-body">
+                                    <div class="table-responsive">
                                         <table class="mb-0 table table-hover">
                                             <thead>
                                             <tr>
-                                            <th>Nama Alternatif</th>
-                                            <?php
-                                            if ($count > 0) :
-                                                for ($a = 1; $a <= $count; $a++) {
-                                                    echo "<th>Kriteria $a</th>";
-                                                }
-                                            endif;
-                                            ?>
-                                            <th>Aksi</th>
+                                            <th class="text-center">Nama Alternatif</th>
+                                            <?php foreach ($kriteriahead as $kriteria) : ?>
+                                                    <th class="text-center">K<?php echo $kriteria->kriteria_id; ?></th>
+                                                <?php endforeach; ?>
+                                            <th class="text-center">Aksi</th>
                                             </tr>
                                             </thead>
 
@@ -83,17 +85,18 @@
                                             <?php $i = 1;
                                                 foreach ($alternatif as $item) : ?>
                                                     <tr>
-                                                        <td><?php echo $item->alternatif; ?></td> 
+                                                        <td class="text-center"><?php echo $item->alternatif; ?></td> 
                                                         <?php foreach ($nilai[$item->alternatif_id] as $k => $v) : ?> 
-                                                            <td><?= $v; ?></td>
+                                                            <td class="text-center"><?= $v; ?></td>
                                                         <?php endforeach; ?>
-                                                        <td><a class="mb-2 mr-2 btn btn-info" href="<?php echo site_url('nilai/updateNilai/'.$item->alternatif_id) ?>"><i class="fas fa-edit"></i> Edit</a>
+                                                        <td class="text-center"><a class="mb-2 mr-2 btn btn-info" href="<?php echo site_url('nilai/updateNilai/'.$item->alternatif_id) ?>"><i class="fas fa-edit"></i> Edit</a>
                                                         </td>
                                                     </tr>
                                                     <?php $i++;
                                                 endforeach; ?>
                                             </tbody>
                                         </table>
+                                    </div>
                                     </div>
                                 </div>
                             </div>

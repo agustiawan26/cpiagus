@@ -20,12 +20,12 @@ class Beranda extends CI_Controller {
         $data['alternatiff'] = $this->nilai_model->getAlternatif(); // show in Nilai
         $data['alternatif'] = $this->nilai_model->getAlternatif(); // show in Alternatif and Hitung
         $data['kriteria'] = $this->hitung_model->getKriteria();
+        $data['kriteriahead'] = $this->hitung_model->getKriteriaHead();
         $data['nilai'] = $this->nilai_model->getNilai();
         $datatp['nilai_tren_positif'] = $this->hitung_model->getNilaiTrenPositif();
         $datatn['nilai_tren_negatif'] = $this->hitung_model->getNilaiTrenNegatif();
         $datamin['nilai_min'] = $this->hitung_model->getNilaiMinimum();
         $datatren['tren'] = $this->hitung_model->getTren();
-    
 
         $rows = $this->nilai_model->getAlternatif();
         foreach($rows as $row){
@@ -33,7 +33,7 @@ class Beranda extends CI_Controller {
         } 
         $data['alt'] = $ALT;
 
-        $rows = $this->hitung_model->getKriteria();
+        $rows = $this->hitung_model->getKriteria()->result();
         foreach($rows as $row){
             $KRT[$row->kriteria_id] = array(
                 'kriteria'=>$row->kriteria,
@@ -50,7 +50,7 @@ class Beranda extends CI_Controller {
         // $data['cpi'] = new Cpi($data['nilai'], $datamin['nilai_min'], $datatren['tren'], $datatp['nilai-tren-positif'], $datatn['nilai-tren-negatif'],  $bobot);
         $data['cpi'] = new Cpi($data['nilai'], $datamin['nilai_min'], $datatp['nilai_tren_positif'], $datatn['nilai_tren_negatif'],  $bobot);
 
-        //var_dump($data['krtn']);die;
+        //var_dump($data['kriteriahead']);die;
 		$data['rank'] = $this->get_rank($data['cpi']->nilaicpi);
 
         //var_dump($data['nilai']);die;

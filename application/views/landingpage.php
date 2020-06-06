@@ -120,10 +120,11 @@ The above copyright notice and this permission notice shall be included in all c
           <div class="col-lg-8 ">
               <div class="main-card mb-3 card ">
                   <div class="card-body">
+                  <div class="table-responsive">
                       <table class="table table-striped">
                         <thead>
                           <tr>
-                            <th>#</th>
+                            <th>ID Kriteria</th>
                             <th>Nama Kriteria</th>
                             <th>Bobot</th>
                             <th>Tren</th>
@@ -133,12 +134,12 @@ The above copyright notice and this permission notice shall be included in all c
                         <tbody>
                           <?php 
                           $count = 0;
-                          foreach ($kriteria as $kriteria): 
+                          foreach ($kriteria->result() as $kriteria): 
                           $count++;
                           ?>
                           <tr>
                             <td>
-                              <?php echo ("Kriteria ").$count ?>
+                              <?php echo ("K").$kriteria->kriteria_id ?>
                             </td>
                             <td>
                               <?php echo $kriteria->kriteria ?>
@@ -157,6 +158,7 @@ The above copyright notice and this permission notice shall be included in all c
                         </tbody>
                       </table>
                   </div>
+                  </div>
               </div>
           </div>
         </div>
@@ -173,11 +175,12 @@ The above copyright notice and this permission notice shall be included in all c
           <div class="col-lg-6 ">
               <div class="main-card mb-3 card ">
                   <div class="card-body">
+                  <div class="table-responsive">
                       <table class="table table-striped">
                         <thead>
                           <tr>
                             <th>#</th>
-                            <th>Nama Lokasi</th>
+                            <th>Nama Alternatif</th>
                             <th>Kecamatan</th>
                           </tr>
                         </thead>
@@ -201,6 +204,7 @@ The above copyright notice and this permission notice shall be included in all c
                         </tbody>
                       </table>
                   </div>
+                  </div>
               </div>
           </div>
         </div>
@@ -217,24 +221,18 @@ The above copyright notice and this permission notice shall be included in all c
           <div class="col-lg-12">
               <div class="main-card mb-3 card ">
                   <div class="card-body">
+                  <div class="table-responsive">
                       <table class="table table-striped">
                         <thead>
                           <tr>
                           <th>Nama Alternatif</th>
-                          <?php
-                          if ($count > 0) :
-                              for ($a = 1; $a < $count; $a++) {
-                                  echo "<th>Kriteria $a</th>";
-                              }
-                          endif;
-                          ?>
+                          <?php foreach ($kriteriahead as $kriteriahead) : ?>
+                              <th>K<?php echo $kriteriahead->kriteria_id; ?></th>
+                          <?php endforeach; ?>
                           </tr>
                           </thead>
-
-
                           <tbody>
-                          
-                          <?php $i = 1;
+                          <?php 
                               foreach ($alternatiff as $item) : ?>
                                   <tr>
                                       <td><?php echo $item->alternatif; ?></td> 
@@ -242,10 +240,11 @@ The above copyright notice and this permission notice shall be included in all c
                                           <td><?= $v; ?></td>
                                       <?php endforeach; ?>
                                   </tr>
-                                  <?php $i++;
+                                  <?php 
                               endforeach; ?>
                           </tbody>
                       </table>
+                  </div>
                   </div>
               </div>
           </div>
@@ -263,6 +262,7 @@ The above copyright notice and this permission notice shall be included in all c
           <div class="col-lg-6 ">
               <div class="main-card mb-3 card ">
                   <div class="card-body">
+                  <div class="table-responsive">
                       <table class="table table-striped">
                       <thead>
                           <tr>
@@ -285,6 +285,7 @@ The above copyright notice and this permission notice shall be included in all c
                                           
                           </tbody>
                       </table>
+                  </div>
                   </div>
               </div>
           </div>
