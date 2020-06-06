@@ -30,7 +30,7 @@
                                     </div>
                                 </div>
                                 <div class="page-title-actions">
-                                    <a class="mb-2 mr-2 btn btn-light" href="<?= base_url('hitung/print_perhitungan'); ?>">
+                                    <a class="mb-2 mr-2 btn btn-light" href="<?= base_url('hitung/print'); ?>">
                                         <i class="fa fa-print"></i> Print Data
                                     </a>
                                 </div> 

@@ -119,28 +119,28 @@ class Nilai extends CI_Controller
     // $pdf->Cell(170,8,'3. Data Nilai',0,1,'L');
     $pdf->Cell(10,4,'',0,1);
 
-    $pdf->SetFont('Arial','B',12);
+    $pdf->SetFont('Arial','B',10);
     $pdf->Cell(15,8,'',0,0,'L');
-    $pdf->Cell(40,10,'Nama Alternatif',1,0,'C');
+    $pdf->Cell(35,10,'Nama Alternatif',1,0,'C');
 
     $countkriteria = $this->nilai_model->getCountKriteria()->jumlah;
     if ($countkriteria > 0) :
         for ($a = 1; $a < $countkriteria; $a++) {
-            $pdf->Cell(30,10,"Kriteria ".$a,1,0,'C');
+            $pdf->Cell(25,10,"Kriteria ".$a,1,0,'C');
         }
-        $pdf->Cell(30,10,"Kriteria ".$countkriteria,1,1,'C');
+        $pdf->Cell(25,10,"Kriteria ".$countkriteria,1,1,'C');
     endif;
     
-    $pdf->SetFont('Arial','',12);
+    $pdf->SetFont('Arial','',10);
 
     $nilai = $this->nilai_model->getNilai();
 
     foreach ($alternatif as $item) :
         $pdf->Cell(15,8,'',0,0,'L');
-        $pdf->Cell(40,10,$item->alternatif,1,0,'C');    
+        $pdf->Cell(35,10,$item->alternatif,1,0,'C');    
         if ($countkriteria > 0) :
                 foreach ($nilai[$item->alternatif_id] as $k => $v) : 
-                    $pdf->Cell(30,10,$v,1,0,'C');
+                    $pdf->Cell(25,10,$v,1,0,'C');
                 endforeach;       
                 $pdf->Cell(30,10,'',0,1);
             endif;
