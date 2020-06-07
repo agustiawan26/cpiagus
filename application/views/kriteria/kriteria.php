@@ -47,7 +47,7 @@
                                     <table class="mb-0 table table-hover">
                                         <thead>
                                         <tr>
-                                            <th>Kriteria ID</th>
+                                            <th>ID Kriteria</th>
                                             <th>Nama Kriteria</th>
                                             <th>Bobot</th>
                                             <th>Tren</th>

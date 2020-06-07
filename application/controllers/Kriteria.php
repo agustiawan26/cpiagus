@@ -122,7 +122,7 @@ class Kriteria extends CI_Controller
 
       $pdf->SetFont('Arial','I',8);
       $NOW = date("Y-m-d h:i:sa");
-      $User = $this->session->userdata('username');
+      $User = $this->session->userdata('full_name');
       $pdf->Cell(150,8,$NOW,0,0,'L');
       $pdf->Cell(0,8,"Dicetak Oleh : ".$User,0,1,'L');
       // setting jenis font yang akan digunakan
@@ -150,7 +150,7 @@ class Kriteria extends CI_Controller
       $pdf->Cell(25,8,'Tren',1,1,'C');
       $pdf->SetFont('Arial','',10);
 
-      $kriteria = $this->hitung_model->getKriteria();
+      $kriteria = $this->hitung_model->getKriteria()->result();
       $count = 0;
       foreach($kriteria as $row):
       $count++;

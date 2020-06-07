@@ -67,6 +67,11 @@ The above copyright notice and this permission notice shall be included in all c
                 <i class="material-icons">star_outline</i> Peringkat
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0)" onclick="scrollToPeta()">
+                <i class="material-icons">maps</i> Peta
+            </a>
+          </li>
           
           <li class="nav-item"><a class="btn btn-primary btn-round" href="<?php echo site_url('login') ?>">Login</a></li>
 
@@ -290,6 +295,24 @@ The above copyright notice and this permission notice shall be included in all c
               </div>
           </div>
         </div>
+        
+
+        <div class="sharing-area text-center">
+          <div class="row justify-content-center section-peta" id="petaSection">
+            <h3>Peta</h3>
+          </div>
+        </div>
+        <div class="progress">
+          <div class="progress-bar " role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="card">
+              <div class="card-body">
+              <iframe width="100%" height="550" frameborder="0" src="https://agustiawan26.carto.com/builder/ff6073e9-ee2d-4f3e-a1c6-ca651f69551c/embed" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
   </div>
@@ -387,6 +410,14 @@ The above copyright notice and this permission notice shall be included in all c
       if ($('.section-peringkat').length != 0) {
         $("html, body").animate({
           scrollTop: $('.section-peringkat').offset().top
+        }, 1000);
+      }
+    }
+
+    function scrollToPeta() {
+      if ($('.section-peta').length != 0) {
+        $("html, body").animate({
+          scrollTop: $('.section-peta').offset().top
         }, 1000);
       }
     }

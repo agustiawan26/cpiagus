@@ -125,7 +125,7 @@ class Hitung extends CI_Controller
         // setting jenis font yang akan digunakan
         $pdf->SetFont('Arial','I',8);
         $NOW = date("Y-m-d h:i:sa");
-        $User = $this->session->userdata('username');
+        $User = $this->session->userdata('full_name');
         $pdf->Cell(230,8,$NOW,0,0,'L');
         $pdf->Cell(0,8,"Dicetak Oleh : ".$User,0,1,'L');
         // mencetak string 
@@ -200,31 +200,31 @@ class Hitung extends CI_Controller
         $pdf->SetFont('Arial','B',10);
         $pdf->Cell(15,2,'',0,1,'L');
         $pdf->Cell(15,8,'',0,0,'L');
-        $pdf->Cell(30,8,'Data',1,0,'C');
+        $pdf->Cell(30,10,'Data',1,0,'C');
         $i = 1;
         foreach ($kriteriahead as $kriteria) :
-            $pdf->Cell(23,8,"K".$kriteria->kriteria_id,1,0,'C');   
+            $pdf->Cell(23,10,"K".$kriteria->kriteria_id,1,0,'C');   
             $i++;                                                             
         endforeach; 
 
         $pdf->SetFont('Arial','B',10);
-        $pdf->Cell(15,8,'',0,1,'L');
-        $pdf->Cell(15,8,'',0,0,'L');
-        $pdf->Cell(30,8,'Nilai Min',1,0,'C');
+        $pdf->Cell(15,10,'',0,1,'L');
+        $pdf->Cell(15,10,'',0,0,'L');
+        $pdf->Cell(30,10,'Nilai Min',1,0,'C');
         $pdf->SetFont('Arial','',10);
         
         foreach ($nilai_min as $min => $y) : 
-            $pdf->Cell(23,8,$y,1,0,'C');   
+            $pdf->Cell(23,10,$y,1,0,'C');   
         endforeach;
 
         $pdf->SetFont('Arial','B',10);
-        $pdf->Cell(15,8,'',0,1,'L');
-        $pdf->Cell(15,8,'',0,0,'L');
-        $pdf->Cell(30,8,'Tren',1,0,'C');
+        $pdf->Cell(15,10,'',0,1,'L');
+        $pdf->Cell(15,10,'',0,0,'L');
+        $pdf->Cell(30,10,'Tren',1,0,'C');
         $pdf->SetFont('Arial','',10);
         
         foreach ($tren as $tren => $y) : 
-            $pdf->Cell(23,8,$y,1,0,'C');   
+            $pdf->Cell(23,10,$y,1,0,'C');   
         endforeach;
 
         $pdf->SetFont('Arial','',10);
@@ -382,7 +382,7 @@ class Hitung extends CI_Controller
 
         $pdf->SetFont('Arial','I',8);
         $NOW = date("Y-m-d h:i:sa");
-        $User = $this->session->userdata('username');
+        $User = $this->session->userdata('full_name');
         $pdf->Cell(150,8,$NOW,0,0,'L');
         $pdf->Cell(0,8,"Dicetak Oleh : ".$User,0,1,'L');
         // setting jenis font yang akan digunakan

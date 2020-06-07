@@ -26,15 +26,14 @@
                             <div class="page-title-wrapper">
                                 <div class="page-title-heading">
                                     <div class="page-title-icon">
-                                        <i class="pe-7s-graph text-success">
+                                        <i class="pe-7s-display2 icon-gradient bg-happy-itmeo">
                                         </i>
                                     </div>
-                                    <div>Edit Nilai Kriteria
-                                        <div class="page-title-subheading"><h5>Alternatif <?= $selectalt->alternatif ?>
+                                    <div>Edit Nilai
+                                        <div class="page-title-subheading">Nilai kriteria alternatif <?= $selectalt->alternatif ?>
                                         </div>
                                     </div>
                                 </div>
-                                  
                             </div>
                         </div>            
                         <div class="tab-content">

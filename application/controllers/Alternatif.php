@@ -72,7 +72,7 @@ class Alternatif extends CI_Controller
 
         $pdf->SetFont('Arial','I',8);
         $NOW = date("Y-m-d h:i:sa");
-        $User = $this->session->userdata('username');
+        $User = $this->session->userdata('full_name');
         $pdf->Cell(150,8,$NOW,0,0,'L');
         $pdf->Cell(0,8,"Dicetak Oleh : ".$User,0,1,'L');
         // setting jenis font yang akan digunakan

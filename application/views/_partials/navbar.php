@@ -71,7 +71,7 @@
                                     <a type="button" tabindex="0" class="dropdown-item" href="<?php echo site_url('profile');?>"><i class="pe-7s-user mr-3"></i>  Profil Saya</a>
                                     <div tabindex="-1" class="dropdown-divider"></div>
                                     <!-- <a type="button" tabindex="0" class="dropdown-item" href="<?php echo site_url('login/logout');?>">Logout</a> -->
-                                    <a type="button" tabindex="0" class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"><i class="pe-7s-back mr-3"></i>Logout</a>
+                                    <a type="button" tabindex="0" class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-3"></i>Logout</a>
                                     <!-- <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-800"></i>
                                         Keluar

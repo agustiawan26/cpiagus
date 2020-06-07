@@ -172,7 +172,7 @@ class User_model extends CI_Model
         $this->db->update('user',$data);
         $this->session->set_flashdata('message', '<div class="alert alert-info fade show" role="alert">
             <i class="fa fa-info-circle mr-3"></i>
-            <span>Data profil saya berhasil diedit!</span>
+            <span>Data profil berhasil diedit! Silakan logout dan login kembali untuk melihat perubahan</span>
             <button type="button" class="close" aria-label="Close" data-dismiss="alert">
 			<span aria-hidden="true">×</span>
             </button> </div>');
