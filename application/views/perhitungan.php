@@ -30,8 +30,8 @@
                                     </div>
                                 </div>
                                 <div class="page-title-actions">
-                                    <a class="mb-2 mr-2 btn btn-light" href="<?= base_url('hitung/print'); ?>">
-                                        <i class="fa fa-print"></i> Print Data
+                                    <a class="mb-2 mr-2 btn btn-light" target="_blank" href="<?= base_url('hitung/print'); ?>">
+                                        <i class="fa fa-file-pdf"></i> Ekspor Data                                    
                                     </a>
                                 </div> 
                             </div>
@@ -270,7 +270,6 @@
         </div>
     </div>
     <!-- ETC HERE -->
-    <?php $this->load->view("_partials/scrolltop.php") ?>
     <?php $this->load->view("_partials/modal.php") ?>
     <?php $this->load->view("_partials/js.php") ?>
     

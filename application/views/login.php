@@ -37,7 +37,7 @@ The above copyright notice and this permission notice shall be included in all c
   <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
     <div class="container">
       <div class="navbar-translate">
-        <a class="navbar-brand" href="<?php echo site_url('beranda') ?>">
+        <a class="navbar-brand" href="<?php echo site_url('landingpage') ?>">
           SPK-CPI </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
@@ -86,7 +86,7 @@ The above copyright notice and this permission notice shall be included in all c
               <br>
               <br>
               <div class=" text-center">
-              <a href="<?php echo site_url('beranda')?>" class="btn btn-primary btn-link btn-wd btn-lg">Kembali ke Halaman Utama</a>
+              <a href="<?php echo site_url('landingpage')?>" class="btn btn-secondary btn-link btn-wd btn-lg">Kembali ke Halaman Utama</a>
               </div>
             </form>
           </div>
@@ -95,7 +95,7 @@ The above copyright notice and this permission notice shall be included in all c
     </div>
     <footer class="footer">
       <div class="container">
-        <nav class="float-left">
+        <!-- <nav class="float-left">
           <ul>
             <li>
               <a href="https://www.creative-tim.com/">
@@ -118,13 +118,13 @@ The above copyright notice and this permission notice shall be included in all c
               </a>
             </li>
           </ul>
-        </nav>
-        <div class="copyright float-right">
+        </nav> -->
+        <div class="copyright float-center">
           &copy;
           <script>
             document.write(new Date().getFullYear())
           </script>, made with <i class="material-icons">favorite</i> by
-          <a href="https://www.creative-tim.com/" target="_blank">Creative Tim</a> for a better web.
+          <a href="https://www.instagram.com/awan_agusti/" target="_blank">Agustiawan</a>
         </div>
       </div>
     </footer>

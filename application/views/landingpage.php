@@ -313,13 +313,14 @@ The above copyright notice and this permission notice shall be included in all c
               </div>
             </div>
           </div>
+        </div>
       </div>
     </div>
   </div>
 
   <footer class="footer" data-background-color="black">
     <div class="container">
-      <nav class="float-left">
+      <!-- <nav class="float-left">
         <ul>
           <li>
             <a href="https://www.creative-tim.com/">
@@ -342,13 +343,13 @@ The above copyright notice and this permission notice shall be included in all c
             </a>
           </li>
         </ul>
-      </nav>
-      <div class="copyright float-right">
+      </nav> -->
+      <div class="copyright float-center">
         &copy;
         <script>
           document.write(new Date().getFullYear())
         </script>, made with <i class="material-icons">favorite</i> by
-        <a href="https://www.creative-tim.com/" target="_blank">Creative Tim</a> for a better web.
+        <a href="https://www.instagram.com/awan_agusti/" target="_blank">Agustiawan</a>
       </div>
     </div>
   </footer>

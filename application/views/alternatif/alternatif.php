@@ -34,8 +34,8 @@
                                     <button type="button" class="btn btn-success " name="addalternatif" value="addalternatif">Add Al</button>
                                     <button type="button" class="mb-2 mr-2 btn btn-info" data-toggle="modal" data-target="#addNewModal"><i class="fa fa-plus"></i> Tambah Alternatif</button>  
                                     </div> -->
-                                    <a class="mb-2 mr-2 btn btn-light" href="<?= base_url('alternatif/print'); ?>">
-                                        <i class="fa fa-print"></i> Print Data
+                                    <a class="mb-2 mr-2 btn btn-light" target="_blank" href="<?= base_url('alternatif/print'); ?>">
+                                        <i class="fa fa-file-pdf"></i> Ekspor Data
                                     </a>
                                     <a class="mb-2 mr-2 btn btn-info" href="<?= base_url('alternatif/createAlternatif'); ?>">
                                         <i class="fa fa-plus"></i> Tambah Alternatif
@@ -98,7 +98,6 @@
         </div>
     </div>
     <!-- ETC HERE -->
-    <?php $this->load->view("_partials/scrolltop.php") ?>
     <?php $this->load->view("_partials/js.php") ?>
     <?php $this->load->view("_partials/modal.php") ?>
 
@@ -112,8 +111,10 @@
 </body>
 </html>
 
-    <!--Load JavaScript File-->
-    <script type="text/javascript" src="<?php echo base_url('assets/js/jquery-3.4.1.min.js');?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.bundle.js');?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap-select.js');?>"></script>
+<!--Load JavaScript File-->
+<script type="text/javascript" src="<?php echo base_url('./assets/scripts/main.js') ?>"></script>
+
+<script type="text/javascript" src="<?php echo base_url('assets/js/jquery-3.4.1.min.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.bundle.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap-select.js');?>"></script>
     

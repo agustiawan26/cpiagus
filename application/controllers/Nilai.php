@@ -7,7 +7,6 @@ class Nilai extends CI_Controller
   {
     parent::__construct();
     $this->load->model('nilai_model');
-    $this->load->model('alternatif_model');
     $this->load->helper('cpi_class');
     $this->load->library('pdf');
 
@@ -19,17 +18,10 @@ class Nilai extends CI_Controller
   public function index()
   {
     $data['count'] = $this->nilai_model->getCountKriteria()->jumlah;
-    //$data['countwp'] = $this->nilai_model->getCountKriteriawp()->jumlah;
     $data['alternatif'] = $this->nilai_model->getAlternatif();
     $data['kriteria'] = $this->nilai_model->getKriteria();
     $data['kriteriahead'] = $this->nilai_model->getKriteria();
-    
-    // $data['kriteriatry'] = $this->nilai_model->getKriteriaTry();
     $data['nilai'] = $this->nilai_model->getNilai();
-    //$data['kriteriawp'] = $this->nilai_model->getKriteriawp();
-    //$data['nilaiwp'] = $this->nilai_model->getNilaiwp();
-    //var_dump($data['kriteriatry']); die;
-    //$data['message'] = $this->session->flashdata('msg');
     
     $this->load->view("nilai/nilai", $data);
     
@@ -41,11 +33,9 @@ class Nilai extends CI_Controller
     $data["formwp"] = $this->nilai_model->getListFormwp($id);
     if ($this->input->post('updatenilai')) {
       foreach ($data["form"] as $item) {
-       // $k = str_replace('ID-', '', $item->kode_kriteria);
         $this->nilai_model->updateNilai($id, $item->nilai_kriteria_id, $this->input->post($item->nilai_kriteria_id));
       }
       foreach ($data["formwp"] as $item) {
-        // $k = str_replace('ID-', '', $item->kode_kriteria);
          $this->nilai_model->updateNilai($id, $item->nilai_kriteria_id, $this->input->post($item->nilai_kriteria_id));
        }
       
@@ -53,21 +43,19 @@ class Nilai extends CI_Controller
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <i class="icofont icofont-close-line-circled"></i>
               </button>
-              <strong>Berhasil Merubah Nilai</strong>
+              <strong>Berhasil mengedit nilai!</strong>
           </div>');
       redirect(base_url('nilai'));
     } elseif ($this->input->post('back')) {
       redirect(base_url('nilai'));
     } else {
-      $data["selectalt"] = $this->nilai_model->getSelectedAlternatif($id);
-      
-      //$data['message'] = $this->session->flashdata('msg');
+      $data["selectalt"] = $this->nilai_model->getSelectedAlternatif($id);      
 
       //untuk value nilai di form edit
       $data['nilai_tbl'] = $this->nilai_model->getNilaialternatif($id);
       $data['nilai_tbl_wp'] = $this->nilai_model->getNilaialternatifwp($id);
 
-      $data['parameter'] = $this->alternatif_model->getParameter();
+      $data['parameter'] = $this->nilai_model->getParameter();
       //var_dump($data['parameter']); die;
 
       $this->load->view("nilai/nilai_edit", $data);
@@ -110,7 +98,7 @@ class Nilai extends CI_Controller
     $i = 1;
     foreach ($kriteria as $kriteria) :
       $pdf->Cell(15,12,'',0,0,'L');
-      $pdf->Cell(170,5,"Kriteria ".$i."  =>  ".$kriteria->kriteria,0,1,'L');
+      $pdf->Cell(170,5,"K".$i."  =>  ".$kriteria->kriteria,0,1,'L');
       $i++;
     endforeach; 
 
@@ -126,11 +114,11 @@ class Nilai extends CI_Controller
     $countkriteria = $this->nilai_model->getCountKriteria()->jumlah;
     if ($countkriteria > 0) :
         for ($a = 1; $a < $countkriteria; $a++) {
-            $pdf->Cell(25,10,"Kriteria ".$a,1,0,'C');
+            $pdf->Cell(25,10,"K".$a,1,0,'C');
         }
-        $pdf->Cell(25,10,"Kriteria ".$countkriteria,1,1,'C');
+        $pdf->Cell(25,10,"K".$countkriteria,1,1,'C');
     endif;
-    
+
     $pdf->SetFont('Arial','',10);
 
     $nilai = $this->nilai_model->getNilai();

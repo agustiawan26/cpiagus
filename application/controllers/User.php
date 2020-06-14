@@ -21,7 +21,6 @@ class User extends CI_Controller
             $data["user"] = $this->user_model->getUser();
             $this->load->view("user/user", $data);
         }else{
-            // echo "Access Denied";
             show_404();
         }
     }
@@ -40,7 +39,6 @@ class User extends CI_Controller
                 $this->load->view('user/user_new', $data);
             }
         }else{
-            // echo "Access Denied";
             show_404();
         }        
     }
@@ -62,7 +60,6 @@ class User extends CI_Controller
                 $this->load->view('user/user_edit', $data);
             }
         }else{
-            // echo "Access Denied";
             show_404();
         }   
     }
@@ -75,7 +72,6 @@ class User extends CI_Controller
             $this->user_model->delete_user($id);
             redirect(base_url('user'));
         }else{
-            // echo "Access Denied";
             show_404();
         }   
     }

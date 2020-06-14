@@ -30,9 +30,9 @@
                                     </div>
                                 </div>
                                 <div class="page-title-actions">
-                                    <a class="mb-2 mr-2 btn btn-light" href="<?= base_url('nilai/print'); ?>">
-                                            <i class="fa fa-print"></i> Print Data
-                                        </a>
+                                    <a class="mb-2 mr-2 btn btn-light" target="_blank" href="<?= base_url('nilai/print'); ?>">
+                                        <i class="fa fa-file-pdf"></i> Ekspor Data                                        
+                                    </a>
                                 </div> 
                             </div>
                         </div>
@@ -107,9 +107,7 @@
             </div>
             <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
         </div>
-    </div>
     <!-- ETC HERE -->
-    <?php $this->load->view("_partials/scrolltop.php") ?>
     <?php $this->load->view("_partials/modal.php") ?>
     <?php $this->load->view("_partials/js.php") ?>
     

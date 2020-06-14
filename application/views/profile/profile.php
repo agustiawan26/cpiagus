@@ -36,7 +36,8 @@
                             <div class="col-md-3">
                                 <div class="card-shadow-primary border mb-3 card card-body border-primary">
                                     
-                                    <img width="200" class="rounded-circle" src="<?php echo base_url('upload/user/'.$this->session->userdata('photo')); ?>" />
+                                    <img width="200" height="200" class="rounded-circle" src="<?php echo base_url('upload/user/'.$profile->photo) ?>" alt="Foto Pengguna" style="object-fit: cover; object-position: center;">
+
                                     <br>
                                     
                                     <a class="mb-2 mr-2 btn btn-primary btn-lg btn-block" href="<?php echo site_url('profile/changePassword') ?>"><i class="fa fa-lock"></i> Ubah Password</a>
@@ -49,27 +50,27 @@
                                 <div class="card-shadow-primary border mb-3 card card-body border-primary">
                                     <div class="input-group">
                                         <div class="input-group-prepend"><span class="input-group-text">Nama Lengkap</span></div>
-                                        <input type="text" class="form-control" value="<?php echo $this->session->userdata("full_name"); ?>" readonly="readonly">
+                                        <input type="text" class="form-control" value="<?php echo $profile->full_name?>" readonly="readonly">
                                     </div>
                                     <br>
                                     <div class="input-group">
                                         <div class="input-group-prepend"><span class="input-group-text">Email</span></div>
-                                        <input type="text" class="form-control" value="<?php echo $this->session->userdata("email"); ?>" readonly="readonly">
+                                        <input type="text" class="form-control" value="<?php echo $profile->email ?>" readonly="readonly">
                                     </div>
                                     <br>
                                     <div class="input-group">
                                         <div class="input-group-prepend"><span class="input-group-text">Username</span></div>
-                                        <input type="text" class="form-control" value="<?php echo $this->session->userdata("username"); ?>" readonly="readonly">
+                                        <input type="text" class="form-control" value="<?php echo $profile->username ?>" readonly="readonly">
                                     </div>
                                     <br>
                                     <div class="input-group">
                                         <div class="input-group-prepend"><span class="input-group-text">Role</span></div>
-                                        <input type="text" class="form-control" value="<?php echo $this->session->userdata("role"); ?>" readonly="readonly">
+                                        <input type="text" class="form-control" value="<?php echo $profile->role ?>" readonly="readonly">
                                     </div>
                                     <br>
                                     <div class="input-group">
                                         <div class="input-group-prepend"><span class="input-group-text">Nomor Telepon</span></div>
-                                        <input type="text" class="form-control" value="<?php echo $this->session->userdata("phone"); ?>" readonly="readonly">
+                                        <input type="text" class="form-control" value="<?php echo $profile->phone ?>" readonly="readonly">
                                     </div>
                                     <br>
                                 </div>
@@ -83,7 +84,6 @@
         </div>
     </div>
     <!-- ETC HERE -->
-    <?php $this->load->view("_partials/scrolltop.php") ?>
     <?php $this->load->view("_partials/modal.php") ?>
     <?php $this->load->view("_partials/js.php") ?>
     

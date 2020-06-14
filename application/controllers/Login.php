@@ -22,7 +22,6 @@ class Login extends CI_Controller{
         # cek password
         if (password_verify($password, $user['password'])) {
             # kalo sama
-            
             $data = [
                 // 'login' => true,
                 'user_id' => $user['user_id'],

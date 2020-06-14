@@ -12,7 +12,10 @@ class Profile extends CI_Controller {
 
   public function index() 
   {
-		$this->load->view("profile/profile");
+    $id = $this->session->userdata("user_id");
+    $data['profile'] = $this->user_model->getselecteduser($id);
+    //var_dump($data["profile"]); die;
+		$this->load->view("profile/profile", $data);
   }
 
   public function updateProfile()
@@ -24,8 +27,11 @@ class Profile extends CI_Controller {
       } elseif ($this->input->post('back')) {
         redirect(base_url('profile'));
       } else {
-        
-        $this->load->view('profile/profile_edit');
+        $id = $this->session->userdata("user_id");
+
+        $data['profile'] = $this->user_model->getselecteduser($id);
+
+        $this->load->view('profile/profile_edit',$data);
       }
     }
 
@@ -38,8 +44,11 @@ class Profile extends CI_Controller {
       } elseif ($this->input->post('back')) {
         redirect(base_url('profile'));
       } else {
+        $id = $this->session->userdata("user_id");
+
+        $data['profile'] = $this->user_model->getselecteduser($id);
         
-        $this->load->view('profile/profile_edit_password');
+        $this->load->view('profile/profile_edit_password', $data);
       }
     }
 }

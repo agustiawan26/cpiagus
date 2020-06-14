@@ -50,13 +50,13 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label">Nama Kriteria</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control form-control-round" placeholder="Masukkan Nama Kriteria" name="kriteria" value="<?php echo $select->kriteria; ?>">
+                                                        <input type="text" class="form-control form-control-round" placeholder="Masukkan Nama Kriteria" name="kriteria" value="<?php echo $select->kriteria; ?>" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label">Bobot</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control form-control-round" placeholder="Masukkan Bobot" name="bobot" value="<?php echo $select->bobot; ?>">
+                                                        <input type="text" class="form-control form-control-round" placeholder="Masukkan Bobot" name="bobot" value="<?php echo $select->bobot; ?>" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -105,7 +105,6 @@
         </div>
     </div>
     <!-- ETC HERE -->
-    <?php $this->load->view("_partials/scrolltop.php") ?>
     <?php $this->load->view("_partials/modal.php") ?>
     <?php $this->load->view("_partials/js.php") ?>
 

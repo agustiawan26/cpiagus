@@ -30,9 +30,8 @@
                                 </div>
                             </div>
                             <div class="page-title-actions">
-                                <a class="mb-2 mr-2 btn btn-light" href="<?= base_url('kriteria/print'); ?>">
-                                        <i class="fa fa-print"></i> Print Data
-                                    </a>
+                                <a class="mb-2 mr-2 btn btn-light" target="_blank" href="<?= base_url('kriteria/print'); ?>">
+                                    <i class="fa fa-file-pdf"></i> Ekspor Data</a>
                                 <div class="d-inline-block dropdown">
                                     <button type="button" class="mb-2 mr-2 btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Tambah Kriteria</button>     
                                 </div>
@@ -41,6 +40,23 @@
                     </div>
                     <?= $this->session->flashdata('message'); ?>              
                     <div class="row">
+                        <div class="col-lg-12 col-xl-4">
+                            <div class="card mb-3 widget-content">
+                                <div class="widget-content-wrapper">
+                                    <div class="widget-content-left">
+                                        <div class="widget-heading">Jumlah bobot</div>
+                                        <div class="widget-subheading">jumlah bobot kriteria harus 10!</div>
+                                    </div>
+                                    <div class="widget-content-right">
+                                        <?php if ($jumlah_bobot->jumlah_bobot == 10) { ?>
+                                            <div class="widget-numbers text-success"><span><?php echo $jumlah_bobot->jumlah_bobot;?></span></div>
+                                        <?php } else { ?>
+                                            <div class="widget-numbers text-danger"><span><?php echo $jumlah_bobot->jumlah_bobot;?></span></div>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-lg-10">
                             <div class="main-card mb-3 card">
                                 <div class="card-body"><h5 class="card-title">Kriteria Tanpa Parameter</h5>
@@ -76,8 +92,6 @@
 
                                                     <td>
                                                         <a class="mb-2 mr-2 btn btn-info btn-sm" href="<?php echo base_url('kriteria/updateKriteria/' . $row->kriteria_id); ?>"><i class="fas fa-edit"></i> Edit</a>
-                                                        <!-- <a href="#" class="mb-2 mr-2 btn btn-info btn-sm update-record" data-kriteria_id="<?php echo $row->kriteria_id;?>" data-kriteria="<?php echo $row->kriteria;?>" data-bobot="<?php echo $row->bobot;?>" data-tren="<?php echo $row->tren;?>"><i class="fas fa-edit"></i> Edit</a> -->
-                                                        <!-- <a href="#" class="mb-2 mr-2 btn btn-danger btn-sm delete-record" data-kriteria_id="<?php echo $row->kriteria_id;?>"><i class="fas fa-trash"></i> Delete</a> -->
                                                         <a onclick="deleteConfirm('<?php echo site_url('kriteria/delete/'.$row->kriteria_id) ?>')"
                                                                 href="#!" class="mb-2 mr-2 btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus</a>
                                                     </td>
@@ -146,7 +160,6 @@
         </div>
     </div>
     <!-- ETC HERE -->
-    <?php $this->load->view("_partials/scrolltop.php") ?>
     <?php $this->load->view("_partials/modal.php") ?>
     <?php $this->load->view("_partials/js.php") ?>
 
@@ -210,6 +223,8 @@
 </div>
 
     <!--Load JavaScript File-->
+    <script type="text/javascript" src="<?php echo base_url('./assets/scripts/main.js') ?>"></script>
+
     <script type="text/javascript" src="<?php echo base_url('assets/js/jquery-3.4.1.min.js');?>"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.bundle.js');?>"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap-select.js');?>"></script>

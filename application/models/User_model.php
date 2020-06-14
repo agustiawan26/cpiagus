@@ -13,7 +13,7 @@ class User_model extends CI_Model
 
 	private function _deletePhoto($id)
 	{
-		$user = $this->getById($id);
+		$user = $this->getselecteduser($id);
 		if ($user->photo != "user.png") {
 			$filename = explode(".", $user->photo)[0];
 			return array_map('unlink', glob(FCPATH."upload/user/$filename.*"));
@@ -30,6 +30,11 @@ class User_model extends CI_Model
         $this->db->query($sql);
     }
 
+    // public function getProfile($user_id){
+    //     $sql = "UPDATE {$this->_table} SET is_active='1' WHERE user_id={$user_id}";
+    //     $this->db->query($sql);
+    // }
+
     public function _updateIsNonActive($user_id){
         $sql = "UPDATE {$this->_table} SET is_active='0' WHERE user_id={$user_id}";
         $this->db->query($sql);
@@ -39,11 +44,6 @@ class User_model extends CI_Model
     {
         $this->_deletePhoto($id);
         $this->db->delete('user', array("user_id" => $id));
-    }
-
-    public function getCountUser(){
-        $query = $this->db->query("SELECT COUNT(*) as jumlah_user FROM user");
-        return $query->row();
     }
 
     public function getselecteduser($id)
@@ -72,8 +72,8 @@ class User_model extends CI_Model
             'photo' => $photo,
         );
         $this->db->insert('user',$data);
-        $this->session->set_flashdata('message', '<div class="alert alert-info fade show" role="alert">
-            <i class="fa fa-info-circle mr-3"></i>
+        $this->session->set_flashdata('message', '<div class="alert alert-success fade show" role="alert">
+            <i class="fa fa-check-circle mr-3"></i>
             <span>Data pengguna berhasil ditambahkan!</span>
             <button type="button" class="close" aria-label="Close" data-dismiss="alert">
 			<span aria-hidden="true">×</span>
@@ -117,8 +117,8 @@ class User_model extends CI_Model
         $this->db->where($where);
         //var_dump($data);die;
         $this->db->update('user',$data);
-        $this->session->set_flashdata('message', '<div class="alert alert-info fade show" role="alert">
-            <i class="fa fa-info-circle mr-3"></i>
+        $this->session->set_flashdata('message', '<div class="alert alert-success fade show" role="alert">
+            <i class="fa fa-check-circle mr-3"></i>
             <span>Data pengguna berhasil diedit!</span>
             <button type="button" class="close" aria-label="Close" data-dismiss="alert">
 			<span aria-hidden="true">×</span>
@@ -140,8 +140,8 @@ class User_model extends CI_Model
 		if ($this->upload->do_upload('photo')) {
 			return $this->upload->data('file_name');
 		}
-        print_r($this->upload->display_errors());
-		//return "user.png";
+        //print_r($this->upload->display_errors());
+		return "user.png";
     }
 
     public function updateprofile()
@@ -170,8 +170,8 @@ class User_model extends CI_Model
         $this->db->where($where);
         //var_dump($data);die;
         $this->db->update('user',$data);
-        $this->session->set_flashdata('message', '<div class="alert alert-info fade show" role="alert">
-            <i class="fa fa-info-circle mr-3"></i>
+        $this->session->set_flashdata('message', '<div class="alert alert-success fade show" role="alert">
+            <i class="fa fa-check-circle mr-3"></i>
             <span>Data profil berhasil diedit! Silakan logout dan login kembali untuk melihat perubahan</span>
             <button type="button" class="close" aria-label="Close" data-dismiss="alert">
 			<span aria-hidden="true">×</span>
@@ -226,7 +226,7 @@ class User_model extends CI_Model
             $this->db->where('email', $this->session->userdata('email'));
             $this->db->update('user');
             $this->session->set_flashdata('message', '<div class="alert alert-success fade show" role="alert">
-                <i class="fa fa-info-circle mr-3"></i>
+                <i class="fa fa-check-circle mr-3"></i>
                 <span>Password berhasil diubah!</span>
                 <button type="button" class="close" aria-label="Close" data-dismiss="alert">
                 <span aria-hidden="true">×</span>

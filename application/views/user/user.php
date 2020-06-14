@@ -74,7 +74,7 @@
                                                         <div class="widget-content-wrapper">
                                                             <div class="widget-content-left mr-3">
                                                                 <div class="widget-content-left">
-                                                                    <img width="40" class="rounded-circle" src="<?php echo base_url('upload/user/'.$row->photo) ?>" width="64" alt="">
+                                                                <img width="45" height="45" class="rounded-circle" src="<?php echo base_url('upload/user/'.$row->photo) ?>" alt="Foto Pengguna" style="object-fit: cover; object-position: center;">
                                                                 </div>
                                                             </div>
                                                             <div class="widget-content-left flex2">
@@ -122,7 +122,6 @@
         </div>
     </div>
     <!-- ETC HERE -->
-    <?php $this->load->view("_partials/scrolltop.php") ?>
     <?php $this->load->view("_partials/modal.php") ?>    
     <?php $this->load->view("_partials/js.php") ?>
     
@@ -137,7 +136,9 @@
 </html>
 
 <!--Load JavaScript File-->
-    <script type="text/javascript" src="<?php echo base_url('assets/js/jquery-3.4.1.min.js');?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.bundle.js');?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap-select.js');?>"></script>
-    
+
+<script type="text/javascript" src="<?php echo base_url('./assets/scripts/main.js') ?>"></script>
+
+<script type="text/javascript" src="<?php echo base_url('assets/js/jquery-3.4.1.min.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.bundle.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap-select.js');?>"></script>

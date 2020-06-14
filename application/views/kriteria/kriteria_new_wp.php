@@ -65,8 +65,14 @@
                                                     <div class="col-sm-8"><input type="number" step="0.000000000000001" min="0" name="bobot" id="bobot" placeholder="Bobot" type="text" class="form-control" required></div>
                                                 </div>
 
-                                                <div class="position-relative row form-group"><label for="tren" class="col-sm-4 col-form-label">Tren</label>
-                                                    <div class="col-sm-8"><input name="tren" id="tren" placeholder="Tren" type="text" class="form-control" readonly="readonly" value="positif"></div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-4 col-form-label">Tren</label>
+                                                    <div class="col-sm-8">
+                                                        <select name="tren" id="tren" class="form-control">
+                                                            <option>positif</option>
+                                                            <option>negatif</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                                 
                                                 <div class="form-group row">
@@ -98,7 +104,6 @@
         </div>
     </div>
     <!-- ETC HERE -->
-    <?php $this->load->view("_partials/scrolltop.php") ?>
     <?php $this->load->view("_partials/modal.php") ?>
     <?php $this->load->view("_partials/js.php") ?>
 

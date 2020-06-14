@@ -8,7 +8,6 @@ class Kriteria extends CI_Controller
     {
         parent::__construct();
         $this->load->model("kriteria_model");
-        $this->load->model("hitung_model");
         $this->load->library('form_validation');
         $this->load->library('pdf');
         if (!$this->session->userdata('email')) {
@@ -18,7 +17,7 @@ class Kriteria extends CI_Controller
 
     public function index()
     {
-        if ($this->input->post('addkriteriapara')) {
+      if ($this->input->post('addkriteriapara')) {
           $jumlahpara = $this->input->post('jumlahpara');
           redirect(base_url('kriteria/createKriteriaWP/' . $this->input->post('jumlahpara')));
         } elseif ($this->input->post('addkriteria')) {
@@ -27,9 +26,12 @@ class Kriteria extends CI_Controller
           //$data['alternatif'] = $this->kriteria_model->get_alternatifs();
           $data['kriteria'] = $this->kriteria_model->get_kriterias();
           $data['kriteriawp'] = $this->kriteria_model->get_kriteriaswp();
+          $data['jumlah_bobot'] = $this->kriteria_model->getJumlahBobot();
+          
           //$data['message'] = $this->session->flashdata('msg');
           $this->load->view("kriteria/kriteria", $data);
         }
+           
     }
 
     public function createKriteriaWP($id)
@@ -144,24 +146,56 @@ class Kriteria extends CI_Controller
 
       $pdf->SetFont('Arial','B',10);
       $pdf->Cell(15,8,'',0,0,'L');
+      $pdf->Cell(20,8,'- Kriteria Tanpa Parameter',0,1,'L');
+      $pdf->Cell(15,8,'',0,0,'L');
       $pdf->Cell(20,8,'ID Kriteria',1,0,'C');
       $pdf->Cell(75,8,'Nama Kriteria',1,0,'C');
       $pdf->Cell(45,8,'Bobot',1,0,'C');
       $pdf->Cell(25,8,'Tren',1,1,'C');
       $pdf->SetFont('Arial','',10);
 
-      $kriteria = $this->hitung_model->getKriteria()->result();
-      $count = 0;
+      // $kriteria = $this->hitung_model->getKriteria()->result();
+      $kriteria = $this->kriteria_model->get_kriterias();
       foreach($kriteria as $row):
-      $count++;
+      // $count++;
           $pdf->Cell(15,8,'',0,0,'L');
-          $pdf->Cell(20,8,"K".$count,1,0,'C');
+          $pdf->Cell(20,8,"K".$row->kriteria_id,1,0,'C');
           $pdf->Cell(75,8,$row->kriteria,1,0,'C');
           $pdf->Cell(45,8,$row->bobot,1,0,'C');
           $pdf->Cell(25,8,$row->tren,1,1,'C');
           // $ALT[$row->alternatif_id] = $row->alternatif;
       endforeach;
 
+      $pdf->SetFont('Arial','B',10);
+      $pdf->Cell(15,8,'',0,1,'L');
+      $pdf->Cell(15,8,'',0,0,'L');
+      $pdf->Cell(20,8,'- Kriteria Dengan Parameter',0,1,'L');
+      $pdf->Cell(15,8,'',0,0,'L');
+      $pdf->Cell(20,8,'ID Kriteria',1,0,'C');
+      $pdf->Cell(75,8,'Nama Kriteria',1,0,'C');
+      $pdf->Cell(45,8,'Bobot',1,0,'C');
+      $pdf->Cell(25,8,'Tren',1,1,'C');
+      $pdf->SetFont('Arial','',10);
+
+      // $kriteria = $this->hitung_model->getKriteria()->result();
+      $kriteria = $this->kriteria_model->get_kriteriaswp();
+      foreach($kriteria as $row):
+      // $count++;
+          $pdf->Cell(15,8,'',0,0,'L');
+          $pdf->Cell(20,8,"K".$row->kriteria_id,1,0,'C');
+          $pdf->Cell(75,8,$row->kriteria,1,0,'C');
+          $pdf->Cell(45,8,$row->bobot,1,0,'C');
+          $pdf->Cell(25,8,$row->tren,1,1,'C');
+          // $ALT[$row->alternatif_id] = $row->alternatif;
+      endforeach;
+
+      $jumlah_bobot = $this->kriteria_model->getJumlahBobot();
+      // <?php echo $jumlah_bobot->jumlah_bobot;
+      $pdf->Cell(15,8,'',0,1,'L');
+      $pdf->Cell(15,8,'',0,0,'L');
+      $pdf->SetFont('Arial','B',10);
+      $pdf->Cell(20,8,"Jumlah Bobot Keseluruhan = ".$jumlah_bobot->jumlah_bobot,0,1,'L');
+      
       $pdf->Output();
     }
 

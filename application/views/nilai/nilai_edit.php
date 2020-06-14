@@ -43,12 +43,10 @@
                                     <div class="card-body">
                                     <form method="post">
                                         
-                                          
                                         <div class="form-group row">
                                             <?php foreach ($form as $row) : ?>
-                                            <label class="col-sm-2 col-form-label"><?= $row->kriteria ?></label>
+                                            <label class="col-sm-2 col-form-label">(K<?= $row->kriteria_id ?>) <?= $row->kriteria ?></label>
                                             <div class="col-sm-2">
-                                                <!-- <input name="<?= $row->nilai_kriteria_id ?>" id="<?= $row->nilai_kriteria_id ?>" placeholder="masukkan nilai" type="text" class="form-control" value="<?php echo $nilai_tbl->nilai ?>" > -->
                                                 <?php  foreach($nilai_tbl as $item): if($item->nilai_kriteria_id != $row->nilai_kriteria_id){continue;} ?>
                                                 <input name="<?= $row->nilai_kriteria_id ?>" id="<?= $row->nilai_kriteria_id ?>" placeholder="masukkan nilai" class="form-control" type="text" value="<?php echo $item->nilai; ?>"></option>
                                                 <?php endforeach;?>
@@ -58,7 +56,7 @@
 
                                         <div class="form-group row">
                                             <?php foreach ($formwp as $row) : ?>
-                                            <label class="col-sm-2 col-form-label"><?= $row->kriteria ?></label>
+                                            <label class="col-sm-2 col-form-label">(K<?= $row->kriteria_id ?>) <?= $row->kriteria ?></label>
                                             <div class="col-sm-2">
                                                 <select class="form-control form-control" name="<?= $row->nilai_kriteria_id ?>" required>
                                                     <?php foreach ($parameter as $int) : if ($int->kriteria_id != $row->nilai_kriteria_id) {continue;} ?>
@@ -89,7 +87,6 @@
         </div>
     </div>
     <!-- ETC HERE -->
-    <?php $this->load->view("_partials/scrolltop.php") ?>
     <?php $this->load->view("_partials/modal.php") ?>
     <?php $this->load->view("_partials/js.php") ?>
 

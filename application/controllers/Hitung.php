@@ -7,10 +7,6 @@ class Hitung extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model("alternatif_model");
-        $this->load->model("kriteria_model");
-        $this->load->model("user_model");
-        $this->load->model("nilai_model");
         $this->load->model("hitung_model");
 
         $this->load->library('form_validation');
@@ -23,21 +19,21 @@ class Hitung extends CI_Controller
 
     public function index()
     {
-        $a = $this->nilai_model->getNilaiNilai();
-        if($a !== 0){
+        $jumlahbobot = $this->hitung_model->getJumlahBobot();
+        if($jumlahbobot->jumlah_bobot == 10){
 
             $data['nilai'] = $this->hitung_model->getNilai(); // untuk perhitungan
             $datatp['nilai_tren_positif'] = $this->hitung_model->getNilaiTrenPositif(); // untuk mendapatkan nilai dr nilai tbl dg tren positif
             $datatn['nilai_tren_negatif'] = $this->hitung_model->getNilaiTrenNegatif(); // untuk mendapatkan nilai dr nilai tbl dg tren positif
             $datamin['nilai_min'] = $this->hitung_model->getNilaiMinimum(); // datamin untuk perhitungan
-            $data['nilai_min'] = $this->nilai_model->getNilaiMinimum(); //untuk menampilkan nilai min tiap kriteria tahap 1
-            $data['tren'] = $this->nilai_model->getTren();   //untuk menampilkan tren tiap kriteria tahap 1 
-            $data['kriteria'] = $this->nilai_model->getKriteria(); //untuk header tahap 1
+            $data['nilai_min'] = $this->hitung_model->getNilaiMinimum(); //untuk menampilkan nilai min tiap kriteria tahap 1
+            $data['tren'] = $this->hitung_model->getTren();   //untuk menampilkan tren tiap kriteria tahap 1 
+            $data['kriteria'] = $this->hitung_model->getKriteriaHead(); //untuk header tahap 1
             $data['kriteriatn'] = $this->hitung_model->getKriteriaTN();  //untuk header tranformasi nilai kriteria negatif
             $data['kriteriatp'] = $this->hitung_model->getKriteriaTP(); //untuk header tranformasi nilai kriteria positif
 
             //menampilkan data alternatif
-            $rows = $this->nilai_model->getAlternatif();
+            $rows = $this->hitung_model->getAlternatif();
             foreach($rows as $row){
                 $ALT[$row->alternatif_id] = $row->alternatif;
             } 
@@ -62,49 +58,66 @@ class Hitung extends CI_Controller
             $this->load->view("perhitungan", $data);
         } else {
             //ini masih belum work
-            $this->load->view("nilai/nilai", $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-danger fade show" role="alert">
+            <i class="fa fa-info-circle mr-3"></i>
+            <span>Halaman Perhitungan tidak dapat dibuka, sesuaikan bobot kriteria sampai jumlah bobot = 10!</span>
+            <button type="button" class="close" aria-label="Close" data-dismiss="alert">
+            <span aria-hidden="true">×</span>
+            </button>
+            </div>');
+            redirect('kriteria');
             //set flashdata jika ada nilai 0 disini
         }
     }
 
     public function peringkat()
-    {        
+    {
+        $jumlahbobot = $this->hitung_model->getJumlahBobot();
+        if($jumlahbobot->jumlah_bobot == 10){
+
         $data['nilai'] = $this->hitung_model->getNilai(); // untuk perhitungan
-            $datatp['nilai_tren_positif'] = $this->hitung_model->getNilaiTrenPositif(); // untuk mendapatkan nilai dr nilai tbl dg tren positif
-            $datatn['nilai_tren_negatif'] = $this->hitung_model->getNilaiTrenNegatif(); // untuk mendapatkan nilai dr nilai tbl dg tren positif
-            $datamin['nilai_min'] = $this->hitung_model->getNilaiMinimum(); // datamin untuk perhitungan
-            $data['nilai_min'] = $this->nilai_model->getNilaiMinimum(); //untuk menampilkan nilai min tiap kriteria tahap 1
-            $data['tren'] = $this->nilai_model->getTren();   //untuk menampilkan tren tiap kriteria tahap 1 
-            $data['kriteria'] = $this->nilai_model->getKriteria(); //untuk header tahap 1
-            $data['kriteriatn'] = $this->hitung_model->getKriteriaTN();  //untuk header tranformasi nilai kriteria negatif
-            $data['kriteriatp'] = $this->hitung_model->getKriteriaTP(); //untuk header tranformasi nilai kriteria positif
+        $datatp['nilai_tren_positif'] = $this->hitung_model->getNilaiTrenPositif(); // untuk mendapatkan nilai dr nilai tbl dg tren positif
+        $datatn['nilai_tren_negatif'] = $this->hitung_model->getNilaiTrenNegatif(); // untuk mendapatkan nilai dr nilai tbl dg tren positif
+        $datamin['nilai_min'] = $this->hitung_model->getNilaiMinimum(); // datamin untuk perhitungan
+        
+        //menampilkan data alternatif
+        $rows = $this->hitung_model->getAlternatif();
+        foreach($rows as $row){
+            $ALT[$row->alternatif_id] = $row->alternatif;
+        } 
+        $data['alt'] = $ALT;
 
-            //menampilkan data alternatif
-            $rows = $this->nilai_model->getAlternatif();
-            foreach($rows as $row){
-                $ALT[$row->alternatif_id] = $row->alternatif;
-            } 
-            $data['alt'] = $ALT;
-
-            //untuk perhitungan nilai CPI
-            $rows = $this->hitung_model->getKriteria()->result();
-            foreach($rows as $row){
-                $KRT[$row->kriteria_id] = array(
-                    'kriteria'=>$row->kriteria,
-                    'bobot'=>$row->bobot,
-                    'tren'=>$row->tren
-                );
-            }
-            $data['krt'] = $KRT;
-            foreach($data['krt'] as $key => $val){
-                $bobot[$key] = $val['bobot'];
-            }
-            
-            $data['cpi'] = new Cpi($data['nilai'], $datamin['nilai_min'], $datatp['nilai_tren_positif'], $datatn['nilai_tren_negatif'],  $bobot);
+        //untuk perhitungan nilai CPI
+        $rows = $this->hitung_model->getKriteria()->result();
+        foreach($rows as $row){
+            $KRT[$row->kriteria_id] = array(
+                'kriteria'=>$row->kriteria,
+                'bobot'=>$row->bobot,
+                'tren'=>$row->tren
+            );
+        }
+        $data['krt'] = $KRT;
+        foreach($data['krt'] as $key => $val){
+            $bobot[$key] = $val['bobot'];
+        }
+        
+        $data['cpi'] = new Cpi($data['nilai'], $datamin['nilai_min'], $datatp['nilai_tren_positif'], $datatn['nilai_tren_negatif'],  $bobot);
 
         //var_dump($data['cpi']);die;
         $data['rank'] = $this->get_rank($data['cpi']->nilaicpi);
         $this->load->view("peringkat", $data);
+    } else {
+        //ini masih belum work
+        $this->session->set_flashdata('message', '<div class="alert alert-danger fade show" role="alert">
+        <i class="fa fa-info-circle mr-3"></i>
+        <span>Halaman Hasil Peringkat tidak dapat dibuka, sesuaikan bobot kriteria sampai jumlah bobot = 10!</span>
+        <button type="button" class="close" aria-label="Close" data-dismiss="alert">
+        <span aria-hidden="true">×</span>
+        </button>
+        </div>');
+        redirect('kriteria');
+        //set flashdata jika ada nilai 0 disini
+    }
     }
 
     function get_rank($array){
@@ -146,7 +159,7 @@ class Hitung extends CI_Controller
         $pdf->Cell(250,5,'Keterangan Kriteria :',0,1,'R');
         
         $pdf->SetFont('Arial','',10);
-        $kriteria = $this->nilai_model->getKriteria();
+        $kriteria = $this->hitung_model->getKriteriaHead();
         $i = 1;
         foreach ($kriteria as $kriteria) :
         $pdf->Cell(15,12,'',0,0,'R');
@@ -164,15 +177,15 @@ class Hitung extends CI_Controller
         $datatp['nilai_tren_positif'] = $this->hitung_model->getNilaiTrenPositif(); // untuk mendapatkan nilai dr nilai tbl dg tren positif
         $datatn['nilai_tren_negatif'] = $this->hitung_model->getNilaiTrenNegatif(); // untuk mendapatkan nilai dr nilai tbl dg tren positif
         $datamin['nilai_min'] = $this->hitung_model->getNilaiMinimum(); // datamin untuk perhitungan
-        $nilai_min = $this->nilai_model->getNilaiMinimum(); //untuk menampilkan nilai min tiap kriteria tahap 1
-        $tren = $this->nilai_model->getTren();   //untuk menampilkan tren tiap kriteria tahap 1 
-        $kriteria = $this->nilai_model->getKriteria(); //untuk header tahap 1
-        $kriteriahead = $this->nilai_model->getKriteria(); //untuk header tahap 1
+        $nilai_min = $this->hitung_model->getNilaiMinimum(); //untuk menampilkan nilai min tiap kriteria tahap 1
+        $tren = $this->hitung_model->getTren();   //untuk menampilkan tren tiap kriteria tahap 1 
+        //$kriteria = $this->hitung_model->getKriteriaHead(); //untuk header tahap 1
+        $kriteriahead = $this->hitung_model->getKriteriaHead(); //untuk header tahap 1
         $kriteriatn = $this->hitung_model->getKriteriaTN();  //untuk header tranformasi nilai kriteria negatif
         $kriteriatp = $this->hitung_model->getKriteriaTP(); //untuk header tranformasi nilai kriteria positif
 
         //menampilkan data alternatif
-        $rows = $this->nilai_model->getAlternatif();
+        $rows = $this->hitung_model->getAlternatif();
         foreach($rows as $row){
             $ALT[$row->alternatif_id] = $row->alternatif;
         } 
@@ -303,7 +316,7 @@ class Hitung extends CI_Controller
        
         $pdf->SetFont('Arial','',12);
     
-        $nilai = $this->nilai_model->getNilai();
+        $nilai = $this->hitung_model->getNilai();
     
         foreach ($alternatif as $item) :
             $pdf->Cell(15,8,'',0,0,'L');
@@ -357,7 +370,7 @@ class Hitung extends CI_Controller
        
         $pdf->SetFont('Arial','',12);
     
-        $nilai = $this->nilai_model->getNilai();
+        $nilai = $this->hitung_model->getNilai();
     
         foreach ($alternatif as $item) :
             $pdf->Cell(15,8,'',0,0,'L');
@@ -414,15 +427,9 @@ class Hitung extends CI_Controller
         $datatp['nilai_tren_positif'] = $this->hitung_model->getNilaiTrenPositif(); // untuk mendapatkan nilai dr nilai tbl dg tren positif
         $datatn['nilai_tren_negatif'] = $this->hitung_model->getNilaiTrenNegatif(); // untuk mendapatkan nilai dr nilai tbl dg tren positif
         $datamin['nilai_min'] = $this->hitung_model->getNilaiMinimum(); // datamin untuk perhitungan
-        $nilai_min = $this->nilai_model->getNilaiMinimum(); //untuk menampilkan nilai min tiap kriteria tahap 1
-        $tren = $this->nilai_model->getTren();   //untuk menampilkan tren tiap kriteria tahap 1 
-        $kriteria = $this->nilai_model->getKriteria(); //untuk header tahap 1
-        $kriteriahead = $this->nilai_model->getKriteria(); //untuk header tahap 1
-        $kriteriatn = $this->hitung_model->getKriteriaTN();  //untuk header tranformasi nilai kriteria negatif
-        $kriteriatp = $this->hitung_model->getKriteriaTP(); //untuk header tranformasi nilai kriteria positif
 
         //menampilkan data alternatif
-        $rows = $this->nilai_model->getAlternatif();
+        $rows = $this->hitung_model->getAlternatif();
         foreach($rows as $row){
             $ALT[$row->alternatif_id] = $row->alternatif;
         } 

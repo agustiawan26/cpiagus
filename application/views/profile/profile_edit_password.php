@@ -36,15 +36,8 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="card-shadow-primary border mb-3 card card-body border-primary">
-                                    
-                                    <img width="200" class="rounded-circle" src="<?php echo base_url('upload/user/'.$this->session->userdata('photo')); ?>" />
+                                    <img width="200" height="200" class="rounded-circle" src="<?php echo base_url('upload/user/'.$profile->photo) ?>" alt="Foto Pengguna" style="object-fit: cover; object-position: center;">
                                     <br>
-                                    
-                                    <!-- <button class="mb-2 mr-2 btn btn-primary btn-lg btn-block">Ubah Profil
-                                        </button>
-                                    <button class="mb-2 mr-2 btn btn-primary btn-lg btn-block">Ubah Password
-                                        </button> -->
-                                    
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -53,57 +46,24 @@
                                         <form method="post" enctype="multipart/form-data">
                                             <input type="hidden" name="user_id" value="<?php echo $this->session->userdata("user_id")?>">
 
-                                            <!-- <div class="position-relative form-group">
-                                                <label class="">Nama Lengkap</label>
-                                                <input name="full_name" placeholder="Masukkan Nama Lengkap" type="text" class="form-control" value="<?php echo $this->session->userdata("full_name"); ?>" required>
-                                            </div>
-                                            <div class="position-relative form-group">
-                                                <label class="">Username</label>
-                                                <input name="username" placeholder="Masukkan Username" type="text" class="form-control" value="<?php echo $this->session->userdata("username"); ?>" required>
-                                            </div>
-                                            <div class="position-relative form-group">
-                                                <label class="">Email</label>
-                                                <input name="email" placeholder="Masukkan Email" type="email" class="form-control" value="<?php echo $this->session->userdata("email"); ?>" readonly="readonly">
-                                            </div> -->
+                                            
                                             <div class="position-relative form-group">
                                                 <label class="">Password Lama</label>
                                                 <input name="password" placeholder="Masukkan Password Lama" type="password" class="form-control">
-                                                <!-- <small class="form-text text-muted">Kosongkan jika Anda tidak ingin mengubah password</small> -->
                                             </div>
                                             <div class="position-relative form-group">
                                                 <label class="">Password Baru</label>
                                                 <input name="password_new" placeholder="Masukkan Password Baru" type="password" class="form-control">
-                                                <!-- <small class="form-text text-muted">Kosongkan jika Anda tidak ingin mengubah password</small> -->
                                             </div>
                                             <div class="position-relative form-group">
                                                 <label class="">Konfirmasi Password Baru</label>
                                                 <input name="password_new_confirm" placeholder="Masukkan Password Baru" type="password" class="form-control">
-                                                <!-- <small class="form-text text-muted">Kosongkan jika Anda tidak ingin mengubah password</small> -->
                                             </div>
-                                            <!-- <div class="position-relative form-group">
-                                                <label class="">No Telepon</label>
-                                                <input name="phone" placeholder="Masukkan No Telepon" type="text" class="form-control" value="<?php echo $this->session->userdata("phone"); ?>" required>
-                                            </div> -->
-                                            <!-- <div class="position-relative form-group">
-                                                <label class="">Role</label>
-                                                <input name="role" placeholder="Masukkan Role" type="text" class="form-control" value="<?php echo $this->session->userdata("role"); ?>" readonly="readonly" required>
-                                            </div> -->
-                                            
-                                            <!-- <div class="position-relative form-group">
-                                                <label class="">Foto Profil</label>
-                                                <input name="photo" type="file" class="form-control-file">
-                                                
-                                                <small class="form-text text-muted">Ukuran maks 1 MB</small>
-                                                <small class="form-text text-muted">Format JPG/JPEG/PNG</small>
-                                                <small class="form-text text-muted">Kosongkan jika Anda tidak ingin mengubah foto profil</small>
-                                            </div> -->
-                                            <!-- <input type="hidden" name="old_photo" value="<?php echo $this->session->userdata("photo"); ?>"/> -->
 
                                             <div class="d-block text-center card-footer">
                                                 <button class="btn-wide btn-transition btn btn-outline-secondary" name="back" value="back">Kembali</button>
                                                 <button type="submit" class="btn-wide btn btn-success" name="changepassword" value="changepassword">Simpan</button>
                                             </div>
-                                            <!-- <button class="mt-1 btn btn-primary">Submit</button> -->
                                         </form>
                                     </div>
                                 </div>
@@ -116,7 +76,6 @@
         </div>
     </div>
     <!-- ETC HERE -->
-    <?php $this->load->view("_partials/scrolltop.php") ?>
     <?php $this->load->view("_partials/modal.php") ?>
     <?php $this->load->view("_partials/js.php") ?>
     

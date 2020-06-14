@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 05, 2020 at 12:18 PM
+-- Generation Time: Jun 14, 2020 at 06:42 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.27
 
@@ -67,13 +67,13 @@ CREATE TABLE `kriteria` (
 --
 
 INSERT INTO `kriteria` (`kriteria_id`, `kriteria`, `bobot`, `tren`, `is_para`) VALUES
-(1, 'Vegetasi area genangan embung', 0.936521389397292, 'negatif', 1),
-(2, 'Volume material timbunan', 0.700926126612452, 'negatif', 0),
-(3, 'Luas daerah yang akan dibebaskan', 1.84695463245222, 'negatif', 0),
-(4, 'Volume tampungan efektif', 0.981563571167843, 'positif', 0),
-(5, 'Lama operasi', 1.17282616992441, 'negatif', 0),
-(6, 'Harga air/m3', 0.95258250076859, 'negatif', 0),
-(7, 'Akses jalan menuju site bendungan', 0.752140793374472, 'negatif', 1);
+(1, 'Vegetasi area genangan embung', 1.275, 'negatif', 1),
+(2, 'Volume material timbunan', 0.954, 'negatif', 0),
+(3, 'Luas daerah yang akan dibebaskan', 2.515, 'negatif', 0),
+(4, 'Volume tampungan efektif', 1.337, 'positif', 0),
+(5, 'Lama operasi', 1.597, 'negatif', 0),
+(6, 'Harga air/m3', 1.297, 'negatif', 0),
+(7, 'Akses jalan menuju site bendungan', 1.025, 'negatif', 1);
 
 -- --------------------------------------------------------
 
@@ -203,8 +203,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `full_name`, `phone`, `role`, `last_login`, `photo`, `created_at`, `is_active`) VALUES
-(1, 'adminapaa', '$2y$10$xXCw9JRcCeGFG6ZHdeVeIuVPvXNMGhLgp/czlOKHJ8nzPi7ak3Xne', 'admin@admin.com', 'administrator', '0987656', 'admin', '2020-06-05 10:17:52', '1.jpg', '2020-01-28 13:41:55', 0),
-(2, 'manager', '$2y$10$Z.Hxi58sMWk7HC41njc0TOVM.9QX.5x1hJPA4a4rYSw86u9lRjkgG', 'manager@manager.com', 'manager', '082242376950', 'manager', '2020-06-05 10:18:06', '2.jpg', '2020-03-18 03:21:37', 1);
+(1, 'admin', '$2y$10$xXCw9JRcCeGFG6ZHdeVeIuVPvXNMGhLgp/czlOKHJ8nzPi7ak3Xne', 'admin@admin.com', 'administrator', '082242376950', 'admin', '2020-06-14 04:09:10', '1.jpg', '2020-01-28 13:41:55', 1),
+(2, 'manager', '$2y$10$Z.Hxi58sMWk7HC41njc0TOVM.9QX.5x1hJPA4a4rYSw86u9lRjkgG', 'manager@manager.com', 'manager', '082242376950', 'manager', '2020-06-05 10:18:06', '2.jpg', '2020-03-18 03:21:37', 0);
 
 --
 -- Indexes for dumped tables

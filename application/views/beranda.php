@@ -71,7 +71,7 @@
                                 <div class="tab-content">
                                     <div class="tab-pane fade active show" id="tab-eg-55">
                                         <div class="widget-chart p-3">
-                                            <div style="height: 400px">
+                                            <div style="height: 450px">
                                                 <div class="scroll-area-lg">
                                                     <div class="scrollbar-container ps--active-y">
                                                         <p>Composite Performance Index yang merupakan indeks gabungan (Composite Index) yang dapat digunakan untuk menentukan penilaian atau peringkat dari berbagai alternatif (i) berdasarkan beberapa kriteria (j). Metode Composite Performance Index merupakan salah satu metode perhitungan dari pengambilan keputusan berbasis indeks kinerja, metode Composite Performance Index digunakan untuk penilaian dengan kriteria yang tidak seragam.</p>
@@ -102,7 +102,7 @@
                                 <div class="tab-content">
                                     <div class="tab-pane fade active show" id="tab-eg-55">
                                         <div class="widget-chart p-3">
-                                            <div style="height: 400px">
+                                            <div style="height: 450px">
                                                 <iframe width="100%" height="400" frameborder="0" src="https://agustiawan26.carto.com/builder/ff6073e9-ee2d-4f3e-a1c6-ca651f69551c/embed" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
                                             </div>
                                         </div>
@@ -119,7 +119,6 @@
         </div>
     </div>
     <!-- ETC HERE -->
-    <?php $this->load->view("_partials/scrolltop.php") ?>
     <?php $this->load->view("_partials/modal.php") ?>
     <?php $this->load->view("_partials/js.php") ?>
 
