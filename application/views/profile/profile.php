@@ -36,7 +36,7 @@
                             <div class="col-md-3">
                                 <div class="card-shadow-primary border mb-3 card card-body border-primary">
                                     
-                                    <img width="200" height="200" class="rounded-circle" src="<?php echo base_url('upload/user/'.$profile->photo) ?>" alt="Foto Pengguna" style="object-fit: cover; object-position: center;">
+                                    <img class="rounded-circle" src="<?php echo base_url('upload/user/'.$profile->photo) ?>" alt="Foto Pengguna" style="object-fit: cover; object-position: center; max-width: 100%; display:block; height: auto;">
 
                                     <br>
                                     
@@ -48,31 +48,46 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="card-shadow-primary border mb-3 card card-body border-primary">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend"><span class="input-group-text">Nama Lengkap</span></div>
-                                        <input type="text" class="form-control" value="<?php echo $profile->full_name?>" readonly="readonly">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Nama Lengkap</label>
+                                        <div class="col-sm-9">
+                                            <input type="email" class="form-control form-control-round" placeholder="Masukkan Email" name="username" value="<?php echo $profile->full_name?>" required readonly
+                                            oninvalid="this.setCustomValidity('Masukkan Email dengan benar')"
+                                            oninput="setCustomValidity('')">
+                                        </div>
                                     </div>
-                                    <br>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend"><span class="input-group-text">Email</span></div>
-                                        <input type="text" class="form-control" value="<?php echo $profile->email ?>" readonly="readonly">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Email</label>
+                                        <div class="col-sm-9">
+                                            <input type="email" class="form-control form-control-round" placeholder="Masukkan Email" name="email" value="<?php echo $profile->email?>" required readonly
+                                            oninvalid="this.setCustomValidity('Masukkan Email dengan benar')"
+                                            oninput="setCustomValidity('')">
+                                        </div>
                                     </div>
-                                    <br>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend"><span class="input-group-text">Username</span></div>
-                                        <input type="text" class="form-control" value="<?php echo $profile->username ?>" readonly="readonly">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Username</label>
+                                        <div class="col-sm-9">
+                                            <input type="email" class="form-control form-control-round" placeholder="Masukkan Email" name="username" value="<?php echo $profile->username?>" required readonly
+                                            oninvalid="this.setCustomValidity('Masukkan Email dengan benar')"
+                                            oninput="setCustomValidity('')">
+                                        </div>
                                     </div>
-                                    <br>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend"><span class="input-group-text">Role</span></div>
-                                        <input type="text" class="form-control" value="<?php echo $profile->role ?>" readonly="readonly">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Role</label>
+                                        <div class="col-sm-9">
+                                            <input type="email" class="form-control form-control-round" placeholder="Masukkan Email" name="role" value="<?php echo $profile->role?>" required readonly
+                                            oninvalid="this.setCustomValidity('Masukkan Email dengan benar')"
+                                            oninput="setCustomValidity('')">
+                                        </div>
                                     </div>
-                                    <br>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend"><span class="input-group-text">Nomor Telepon</span></div>
-                                        <input type="text" class="form-control" value="<?php echo $profile->phone ?>" readonly="readonly">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">No Telepon</label>
+                                        <div class="col-sm-9">
+                                            <input type="email" class="form-control form-control-round" placeholder="Masukkan Email" name="phone" value="<?php echo $profile->phone?>" required readonly
+                                            oninvalid="this.setCustomValidity('Masukkan Email dengan benar')"
+                                            oninput="setCustomValidity('')">
+                                        </div>
                                     </div>
-                                    <br>
                                 </div>
                             </div>
                             

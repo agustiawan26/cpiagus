@@ -86,7 +86,8 @@
                                                                             <tr>
                                                                                 <th class="text-center">Nilai Minimum</th> 
                                                                                 <?php foreach ($nilai_min as $min => $y) : ?> 
-                                                                                    <td class="text-center"><?= $y; ?></td>
+                                                                                    <!-- <td class="text-center"><?= $y; ?></td> -->
+                                                                                    <td class="text-center"><?= $y ?></td>
                                                                                 <?php endforeach; ?>
                                                                                 
                                                                             </tr>
@@ -114,8 +115,10 @@
                                                             <button type="button" aria-expanded="true" aria-controls="exampleAccordion1" data-toggle="collapse" href="#ket2" class="m-0 p-0 btn btn-link"><h5>Keterangan</h5></button>
                                                             <div data-parent="#exampleAccordion" id="ket2" class="collapse">
                                                                 <p class="mb-3">Untuk kriteria tren positif, nilai minimum pada setiap kriteria ditransformasi ke seratus, sedangkan nilai lainnya ditransformasi secara proporsional lebih tinggi.</p>
+                                                                <div class="table-responsive">
                                                                 <img src="assets/images/transformpositif.png" height="124" width="208">
                                                                 <img src="assets/images/kettransform.png" height="124" width="360">
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -140,7 +143,7 @@
                                                                                     <tr>
                                                                                         <td class="text-center"><?= $alt[$key] ?></td>
                                                                                         <?php foreach ($val as $k => $v) : ?>
-                                                                                            <td class="text-center"><?= round($v, 4) ?></td>
+                                                                                            <td class="text-center"><?= number_format(($v),3,",",".") ?></td>
                                                                                         <?php endforeach ?>
                                                                                     </tr>
                                                                                 <?php endforeach; ?>   
@@ -166,8 +169,10 @@
                                                             <button type="button" aria-expanded="true" aria-controls="exampleAccordion1" data-toggle="collapse" href="#ket3" class="m-0 p-0 btn btn-link"><h5>Keterangan</h5></button>
                                                             <div data-parent="#exampleAccordion" id="ket3" class="collapse">
                                                                 <p class="mb-3">Untuk kriteria tren negatif, nilai minimum pada setiap kriteria ditransformasi ke seratus, sedangkan nilai lainnya ditransformasi secara proporsional lebih rendah.</p>
+                                                                <div class="table-responsive">
                                                                 <img src="assets/images/transformnegatif.png" height="124" width="208">
                                                                 <img src="assets/images/kettransform.png" height="124" width="360">
+                                                                <div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -194,7 +199,7 @@
                                                                                     <tr>
                                                                                         <td class="text-center"><?= $alt[$key] ?></td>
                                                                                         <?php foreach ($val as $k => $v) : ?>
-                                                                                            <td class="text-center"><?= round($v, 4) ?></td>
+                                                                                            <td class="text-center"><?= number_format(($v),3,",",".") ?></td>
                                                                                         <?php endforeach ?>
                                                                                     </tr>
                                                                                 <?php endforeach; ?>   
@@ -223,8 +228,10 @@
                                                             <div data-parent="#exampleAccordion" id="ket4" class="collapse">
                                                                 <p class="mb-3">Menghitung indeks gabungan kriteria pada alternatif ke-j. Perhitungan dilakukan dengan melakukan perkalian nilai yang sudah ditransformasikan dengan bobot kriteria. Kemudian menjumlahkan hasil perhitungan tiap alternatif.</p>
                                                                 <p class="mb-3">Alternatif dengan total nilai indeks gabungan tertinggi merupakan alternatif terbaik</p>
-                                                                <img src="assets/images/perhitungan.png" height="130" width="150">
-                                                                <img src="assets/images/ketperhitungan.png" height="124" width="470">
+                                                                <div class="table-responsive">
+                                                                <img src="assets/images/perhitungan.png" height="110" width="130">
+                                                                <img src="assets/images/ketperhitungan.png" height="85" width="340">
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -245,7 +252,7 @@
                                                                                 <?php foreach ($cpi->nilaicpi as $key => $val) : ?>
                                                                                     <tr>
                                                                                         <td class="text-center"><?= $alt[$key] ?></td>
-                                                                                        <td class="text-center"><?= round(($cpi->nilaicpi[$key]),4) ?></td>
+                                                                                        <td class="text-center"><?= number_format(($cpi->nilaicpi[$key]),3,",",".") ?></td>
                                                                                     </tr>
                                                                                 <?php endforeach; ?>   
                                                                             </tr>   

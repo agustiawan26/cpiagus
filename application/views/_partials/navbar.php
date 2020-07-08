@@ -2,7 +2,7 @@
     <div class="app-header__logo">
         <div class="logo-src"></div>
         <!-- ganti logo disini -->
-        <div class="header__pane ml-auto">
+        <div class="header__pane ml-auto" >
             <div>
                 <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
                     <span class="hamburger-box">
@@ -64,3 +64,4 @@
         </div>
     </div>
 </div>
+

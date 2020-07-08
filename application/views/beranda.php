@@ -65,7 +65,7 @@
                             <div class="mb-3 card">
                                 <div class="card-header-tab card-header">
                                     <div class="card-header-title">
-                                        <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i> Metode Composite Performance Index (CPI)
+                                        <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>Composite Performance Index (CPI)
                                     </div>
                                 </div>
                                 <div class="tab-content">

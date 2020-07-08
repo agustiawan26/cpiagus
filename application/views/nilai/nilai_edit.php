@@ -42,23 +42,31 @@
                                 <div class="main-card mb-3 card">
                                     <div class="card-body">
                                     <form method="post">
-                                        
+                                        <label class="col-sm-12 col-form-label font-weight-bold">Kriteria Tanpa Parameter</label>
+                                        <div class="divider">
+                                        </div>
                                         <div class="form-group row">
                                             <?php foreach ($form as $row) : ?>
-                                            <label class="col-sm-2 col-form-label">(K<?= $row->kriteria_id ?>) <?= $row->kriteria ?></label>
-                                            <div class="col-sm-2">
+                                            <label class="col-sm-3 col-form-label">[K<?= $row->kriteria_id ?>] <?= $row->kriteria ?></label>
+                                            <div class="col-sm-3">
                                                 <?php  foreach($nilai_tbl as $item): if($item->nilai_kriteria_id != $row->nilai_kriteria_id){continue;} ?>
-                                                <input name="<?= $row->nilai_kriteria_id ?>" id="<?= $row->nilai_kriteria_id ?>" placeholder="masukkan nilai" class="form-control" type="text" value="<?php echo $item->nilai; ?>"></option>
+                                                <input name="<?= $row->nilai_kriteria_id ?>" id="<?= $row->nilai_kriteria_id ?>" placeholder="masukkan nilai" class="form-control" type="number" step="0.000000000000001" min="0" value="<?php echo $item->nilai; ?>" required
+                                                    oninvalid="this.setCustomValidity('Masukkan nilai yang valid')"
+                                                    oninput="setCustomValidity('')"></br>
                                                 <?php endforeach;?>
                                             </div>
                                             <?php endforeach ?>
                                         </div>
-
+                                        <div class="divider">
+                                        </div>
+                                        <label class="col-sm-12 col-form-label font-weight-bold">Kriteria Dengan Parameter</label>
+                                        <div class="divider">
+                                        </div>
                                         <div class="form-group row">
                                             <?php foreach ($formwp as $row) : ?>
-                                            <label class="col-sm-2 col-form-label">(K<?= $row->kriteria_id ?>) <?= $row->kriteria ?></label>
-                                            <div class="col-sm-2">
-                                                <select class="form-control form-control" name="<?= $row->nilai_kriteria_id ?>" required>
+                                            <label class="col-sm-3 col-form-label">[K<?= $row->kriteria_id ?>] <?= $row->kriteria ?></label>
+                                            <div class="col-sm-3">
+                                                <select class="form-control form-control" name="<?= $row->nilai_kriteria_id ?>" required></br>
                                                     <?php foreach ($parameter as $int) : if ($int->kriteria_id != $row->nilai_kriteria_id) {continue;} ?>
                                                         <option value="<?php echo $int->nilai_parameter; ?>" <?php if ($row->nama_parameter == $int->nama_parameter) {
                                                             echo 'selected'; } ?>>

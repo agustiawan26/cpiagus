@@ -20,7 +20,7 @@ class Hitung extends CI_Controller
     public function index()
     {
         $jumlahbobot = $this->hitung_model->getJumlahBobot();
-        if($jumlahbobot->jumlah_bobot == 10){
+        if($jumlahbobot->jumlah_bobot == 100){
 
             $data['nilai'] = $this->hitung_model->getNilai(); // untuk perhitungan
             $datatp['nilai_tren_positif'] = $this->hitung_model->getNilaiTrenPositif(); // untuk mendapatkan nilai dr nilai tbl dg tren positif
@@ -60,7 +60,7 @@ class Hitung extends CI_Controller
             //ini masih belum work
             $this->session->set_flashdata('message', '<div class="alert alert-danger fade show" role="alert">
             <i class="fa fa-info-circle mr-3"></i>
-            <span>Halaman Perhitungan tidak dapat dibuka, sesuaikan bobot kriteria sampai jumlah bobot = 10!</span>
+            <span>Halaman Perhitungan tidak dapat dibuka, sesuaikan bobot kriteria sampai jumlah bobot = 100!</span>
             <button type="button" class="close" aria-label="Close" data-dismiss="alert">
             <span aria-hidden="true">×</span>
             </button>
@@ -73,62 +73,73 @@ class Hitung extends CI_Controller
     public function peringkat()
     {
         $jumlahbobot = $this->hitung_model->getJumlahBobot();
-        if($jumlahbobot->jumlah_bobot == 10){
+        if($jumlahbobot->jumlah_bobot == 100){
 
-        $data['nilai'] = $this->hitung_model->getNilai(); // untuk perhitungan
-        $datatp['nilai_tren_positif'] = $this->hitung_model->getNilaiTrenPositif(); // untuk mendapatkan nilai dr nilai tbl dg tren positif
-        $datatn['nilai_tren_negatif'] = $this->hitung_model->getNilaiTrenNegatif(); // untuk mendapatkan nilai dr nilai tbl dg tren positif
-        $datamin['nilai_min'] = $this->hitung_model->getNilaiMinimum(); // datamin untuk perhitungan
-        
-        //menampilkan data alternatif
-        $rows = $this->hitung_model->getAlternatif();
-        foreach($rows as $row){
-            $ALT[$row->alternatif_id] = $row->alternatif;
-        } 
-        $data['alt'] = $ALT;
+            $data['nilai'] = $this->hitung_model->getNilai(); // untuk perhitungan
+            $datatp['nilai_tren_positif'] = $this->hitung_model->getNilaiTrenPositif(); // untuk mendapatkan nilai dr nilai tbl dg tren positif
+            $datatn['nilai_tren_negatif'] = $this->hitung_model->getNilaiTrenNegatif(); // untuk mendapatkan nilai dr nilai tbl dg tren positif
+            $datamin['nilai_min'] = $this->hitung_model->getNilaiMinimum(); // datamin untuk perhitungan
+            
+            //menampilkan data alternatif
+            $rows = $this->hitung_model->getAlternatif();
+            foreach($rows as $row){
+                $ALT[$row->alternatif_id] = $row->alternatif;
+            } 
+            $data['alt'] = $ALT;
 
-        //untuk perhitungan nilai CPI
-        $rows = $this->hitung_model->getKriteria()->result();
-        foreach($rows as $row){
-            $KRT[$row->kriteria_id] = array(
-                'kriteria'=>$row->kriteria,
-                'bobot'=>$row->bobot,
-                'tren'=>$row->tren
-            );
+            //untuk perhitungan nilai CPI
+            $rows = $this->hitung_model->getKriteria()->result();
+            foreach($rows as $row){
+                $KRT[$row->kriteria_id] = array(
+                    'kriteria'=>$row->kriteria,
+                    'bobot'=>$row->bobot,
+                    'tren'=>$row->tren
+                );
+            }
+            $data['krt'] = $KRT;
+            foreach($data['krt'] as $key => $val){
+                $bobot[$key] = $val['bobot'];
+            }
+            
+            $data['cpi'] = new Cpi($data['nilai'], $datamin['nilai_min'], $datatp['nilai_tren_positif'], $datatn['nilai_tren_negatif'],  $bobot);
+
+            //var_dump($data['cpi']);die;
+            $data['rank'] = $this->get_rank($data['cpi']->nilaicpi);
+            $this->load->view("peringkat", $data);
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger fade show" role="alert">
+            <i class="fa fa-info-circle mr-3"></i>
+            <span>Halaman Hasil Peringkat tidak dapat dibuka, sesuaikan bobot kriteria sampai jumlah bobot = 100!</span>
+            <button type="button" class="close" aria-label="Close" data-dismiss="alert">
+            <span aria-hidden="true">×</span>
+            </button>
+            </div>');
+            redirect('kriteria');
+            //set flashdata jika ada nilai 0 disini
         }
-        $data['krt'] = $KRT;
-        foreach($data['krt'] as $key => $val){
-            $bobot[$key] = $val['bobot'];
-        }
-        
-        $data['cpi'] = new Cpi($data['nilai'], $datamin['nilai_min'], $datatp['nilai_tren_positif'], $datatn['nilai_tren_negatif'],  $bobot);
-
-        //var_dump($data['cpi']);die;
-        $data['rank'] = $this->get_rank($data['cpi']->nilaicpi);
-        $this->load->view("peringkat", $data);
-    } else {
-        //ini masih belum work
-        $this->session->set_flashdata('message', '<div class="alert alert-danger fade show" role="alert">
-        <i class="fa fa-info-circle mr-3"></i>
-        <span>Halaman Hasil Peringkat tidak dapat dibuka, sesuaikan bobot kriteria sampai jumlah bobot = 10!</span>
-        <button type="button" class="close" aria-label="Close" data-dismiss="alert">
-        <span aria-hidden="true">×</span>
-        </button>
-        </div>');
-        redirect('kriteria');
-        //set flashdata jika ada nilai 0 disini
-    }
     }
 
     function get_rank($array){
         $data = $array;
         arsort($data);
-        $no=1;
-        $new = array();
+        $no=0;
+        $peringkat = array();
+        // foreach($data as $key => $value){
+        //     $peringkat[$key] = $no++;
+        // var_dump($key); die;
+        // }
+        
+        $prevKey = null;
         foreach($data as $key => $value){
-            $new[$key] = $no++;
+            if ($prevKey != null && $data[$prevKey] == $value){
+                $peringkat[$key] = $no;
+            } else { 
+                $peringkat[$key] = ++$no; 
+            }
+            $prevKey = $key;
         }
-        return $new;
+         //var_dump($peringkat); die;
+        return $peringkat;
     }
 
     function print(){
@@ -160,12 +171,12 @@ class Hitung extends CI_Controller
         
         $pdf->SetFont('Arial','',10);
         $kriteria = $this->hitung_model->getKriteriaHead();
-        $i = 1;
+        
         foreach ($kriteria as $kriteria) :
         $pdf->Cell(15,12,'',0,0,'R');
-        $pdf->Cell(180,5,"K".$i."  =>  ",0,0,'R');
+        $pdf->Cell(180,5,"K".$kriteria->kriteria_id."  =>  ",0,0,'R');
         $pdf->Cell(70,5,$kriteria->kriteria,0,1,'R');
-        $i++;
+        
         endforeach; 
 
         $pdf->SetFont('Arial','B',12);
@@ -276,7 +287,7 @@ class Hitung extends CI_Controller
             $pdf->Cell(40,10,$alt[$key],1,0,'C');
             foreach ($val as $k => $v) : 
                 $pdf->SetFont('Arial','',10); 
-                $pdf->Cell(25,10,round($v, 4),1,0,'C');
+                $pdf->Cell(25,10,number_format(($v),3,",","."),1,0,'C');
             endforeach;
             $pdf->Cell(15,10,'',0,1,'L');
         endforeach;
@@ -309,7 +320,7 @@ class Hitung extends CI_Controller
             $pdf->Cell(40,10,$alt[$key],1,0,'C');
             foreach ($val as $k => $v) :
                 $pdf->SetFont('Arial','',10); 
-                $pdf->Cell(25,10,round($v, 4),1,0,'C');
+                $pdf->Cell(25,10,number_format(($v),3,",","."),1,0,'C');
             endforeach;
             $pdf->Cell(15,10,'',0,1,'L');
         endforeach; 
@@ -362,7 +373,7 @@ class Hitung extends CI_Controller
             $pdf->Cell(15,8,'',0,0,'L');
             
             $pdf->Cell(40,10,$alt[$key],1,0,'C');
-            $pdf->Cell(50,10,round(($cpi->nilaicpi[$key]),4),1,0,'C');
+            $pdf->Cell(50,10,number_format(($cpi->nilaicpi[$key]),3,",","."),1,0,'C');
 
             
             $pdf->Cell(15,10,'',0,1,'L');
@@ -462,7 +473,9 @@ class Hitung extends CI_Controller
             $pdf->Cell(15,8,'',0,0,'L');
             $pdf->Cell(30,8,$rank[$key],1,0,'C');
             $pdf->Cell(80,8,$alt[$key],1,0,'C');
-            $pdf->Cell(45,8,round(($cpi->nilaicpi[$key]),4),1,1,'C');
+            $pdf->Cell(45,8,number_format(($cpi->nilaicpi[$key]),3,",","."),1,1,'C');
+            
+            
         endforeach; 
 
         $pdf->Output();

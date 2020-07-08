@@ -4,7 +4,7 @@ class Kriteria_model extends CI_Model
 {
   public function createkriteriawp($id)
     {
-        $jPar = 0;
+        //$jPar = 0;
         $data = array(
             'kriteria_id' => $this->input->post('kriteria_id'),
             'kriteria' => $this->input->post('kriteria'),
@@ -12,17 +12,21 @@ class Kriteria_model extends CI_Model
             'tren' => $this->input->post('tren'),
             'is_para' => '1',
         );
-        for($i=0; $i<$id; $i++){
+        for($i=1; $i<=$id; $i++){
             if ($this->input->post('par'.$i)!='') {
             $jPar = $i;
             }
         }
+        //var_dump($jPar); die;
         $this->db->insert('kriteria',$data);
         $this->insertIntoNilai($this->input->post('kriteria_id'));
 
-        for($i=0; $i<=$jPar; $i++){
-            $this->insertIntoParameter($this->input->post('kriteria_id'), $this->input->post('par'.$i),$i+1);
+        $nilaipara = $jPar;
+        for($i=1; $i<=$jPar; $i++){
+            $this->insertIntoParameter($this->input->post('kriteria_id'), $this->input->post('par'.$i),$nilaipara);
+            $nilaipara=$nilaipara-1;
         }
+        //var_dump($i); die;
         $this->session->set_flashdata('message', '<div class="alert alert-success fade show" role="alert">
           <i class="fa fa-check-circle mr-3"></i>
           <span>Data kriteria berhasil ditambahkan!</span>
@@ -69,8 +73,11 @@ class Kriteria_model extends CI_Model
       );
       $this->db->where($where);
       $this->db->update('kriteria',$data);
-      for($i=0; $i< $this->countParameter($id)->jumlahpara; $i++){
-        $this->updateParameter($id, $this->input->post('par'.$i),$i);
+
+      $nilaipara = $this->countParameter($id)->jumlahpara;
+      for($i=1; $i<= $this->countParameter($id)->jumlahpara; $i++){
+        $this->updateParameter($id, $this->input->post('par'.$i),$nilaipara);
+        $nilaipara=$nilaipara-1;
       }
       $this->session->set_flashdata('message', '<div class="alert alert-success fade show" role="alert">
             <i class="fa fa-check-circle mr-3"></i>

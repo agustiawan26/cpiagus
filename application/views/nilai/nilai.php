@@ -40,7 +40,7 @@
                         <div class="">
                             <div class="row">
                                 
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div id="accordion" class="accordion-wrapper mb-3">
                                         <div class="card">
                                             <div id="headingOne" class="card-header">
@@ -51,12 +51,14 @@
                                             <div data-parent="#accordion" id="collapseOne1" aria-labelledby="headingOne" class="collapse show">
                                                 <div class="card-body">
                                                 <?php foreach ($kriteria as $kriteria) : ?>
-                                                    <td>K<?php echo $kriteria->kriteria_id; ?>   =>   <?php echo $kriteria->kriteria; ?><br></td>
+                                                    <label class="col-sm-5 col-form-label">K<?php echo $kriteria->kriteria_id; ?>   =>   <?php echo $kriteria->kriteria; ?></label>
                                                 <?php endforeach; ?>
-                                                
-
                                                 </div>
                                             </div>
+
+                                            
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -82,7 +84,7 @@
 
                                             <tbody>
                                             
-                                            <?php $i = 1;
+                                            <?php 
                                                 foreach ($alternatif as $item) : ?>
                                                     <tr>
                                                         <td class="text-center"><?php echo $item->alternatif; ?></td> 
@@ -92,7 +94,7 @@
                                                         <td class="text-center"><a class="mb-2 mr-2 btn btn-info" href="<?php echo site_url('nilai/updateNilai/'.$item->alternatif_id) ?>"><i class="fas fa-edit"></i> Edit</a>
                                                         </td>
                                                     </tr>
-                                                    <?php $i++;
+                                                    <?php 
                                                 endforeach; ?>
                                             </tbody>
                                         </table>

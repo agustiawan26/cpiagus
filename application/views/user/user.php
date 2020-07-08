@@ -65,7 +65,7 @@
                                             <?php
                                                 $count=0;
                                                 foreach ($user->result() as $row) :
-                                                    $count++;
+                                                $count++;
                                             ?>
                                             <tr>
                                                 <td class="text-center text-muted"><?php echo $count;?></td>
@@ -100,8 +100,11 @@
                                                 <td class="text-center">
                                                     <?php if($row->user_id != $this->session->userdata("user_id")) { ?>
                                                         <a class="mb-2 mr-2 btn btn-info btn-sm" href="<?php echo base_url('user/updateUser/' . $row->user_id); ?>"><i class="fas fa-edit"></i> Edit</a>
-                                                        <a onclick="deleteConfirm('<?php echo site_url('user/delete/'.$row->user_id) ?>')"
-                                                        href="#!" class="mb-2 mr-2 btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus</a>
+                                                        <!-- <a onclick="deleteConfirm('<?php echo site_url('user/delete/'.$row->user_id) ?>')"
+                                                        href="#!" class="mb-2 mr-2 btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus</a> -->
+                                                        <a href="<?php echo site_url('user/delete/'.$row->user_id) ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus pengguna <?php echo $row->full_name;?>?');"
+                                                        class="mb-2 mr-2 btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus</a>
+                                                        </a>
                                                     <?php } ?>
                                                 </td>
                                             </tr>
@@ -123,7 +126,6 @@
     </div>
     <!-- ETC HERE -->
     <?php $this->load->view("_partials/modal.php") ?>    
-    <?php $this->load->view("_partials/js.php") ?>
     
     <script>
 	function deleteConfirm(url){
@@ -140,5 +142,3 @@
 <script type="text/javascript" src="<?php echo base_url('./assets/scripts/main.js') ?>"></script>
 
 <script type="text/javascript" src="<?php echo base_url('assets/js/jquery-3.4.1.min.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.bundle.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap-select.js');?>"></script>

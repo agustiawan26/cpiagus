@@ -48,6 +48,7 @@
                             <div class="col-lg-6">
                                 <div class="main-card mb-3 card">
                                     <div class="card-body">
+                                    <div class="table-responsive">
                                         <table class="mb-0 table table-hover">
                                             <thead>
                                             <tr>
@@ -79,14 +80,19 @@
                                                                 <a class="mb-2 mr-2 btn btn-info btn-sm" href="<?php echo base_url('alternatif/updateAlternatif/' . $row->alternatif_id); ?>"><i class="fas fa-edit"></i> Edit</a>
                                                                 <!-- <a href="#" class="mb-2 mr-2 btn btn-info btn-sm update-record" data-alternatif_id="<?php echo $row->alternatif_id;?>" data-alternatif="<?php echo $row->alternatif;?>" data-kecamatan="<?php echo $row->kecamatan;?>"><i class="fas fa-edit"></i> Edit</a> -->
                                                                 <!-- <a href="#" class="mb-2 mr-2 btn btn-danger btn-sm delete-record" data-alternatif_id="<?php echo $row->alternatif_id;?>"><i class="fas fa-trash"></i> Delete</a> -->
-                                                                <a onclick="deleteConfirm('<?php echo site_url('alternatif/delete/'.$row->alternatif_id) ?>')"
-											                        href="#!" class="mb-2 mr-2 btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus</a>
+                                                                <!-- <a onclick="deleteConfirm('<?php echo site_url('alternatif/delete/'.$row->alternatif_id) ?>')"
+											                        href="#!" class="mb-2 mr-2 btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus</a> -->
+                                                                <a href="<?php echo site_url('alternatif/delete/'.$row->alternatif_id) ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus alternatif <?php echo $row->alternatif;?>?');"
+                                                                class="mb-2 mr-2 btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus</a>
+                                                                </a>
+                                                                
                                                             </td>
                                                         </tr>
                                                     <?php endforeach;?>
                                             </tbody>
                                             
                                         </table>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -98,15 +104,9 @@
         </div>
     </div>
     <!-- ETC HERE -->
-    <?php $this->load->view("_partials/js.php") ?>
     <?php $this->load->view("_partials/modal.php") ?>
 
-    <script>
-	function deleteConfirm(url){
-		$('#btn-delete').attr('href', url);
-		$('#deleteModal').modal();
-	}
-	</script>
+    
     
 </body>
 </html>
@@ -115,6 +115,12 @@
 <script type="text/javascript" src="<?php echo base_url('./assets/scripts/main.js') ?>"></script>
 
 <script type="text/javascript" src="<?php echo base_url('assets/js/jquery-3.4.1.min.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.bundle.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap-select.js');?>"></script>
+
+
+<script>
+	function deleteConfirm(url){
+		$('#btn-delete').attr('href', url);
+		$('#deleteModal').modal();
+	}
+</script>
     

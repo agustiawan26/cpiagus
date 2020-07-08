@@ -58,12 +58,20 @@ class Landingpage extends CI_Controller {
     function get_rank($array){
         $data = $array;
         arsort($data);
-        $no=1;
-        $new = array();
+        $no=0;
+        $peringkat = array();
+        
+        $prevKey = null;
         foreach($data as $key => $value){
-            $new[$key] = $no++;
+            if ($prevKey != null && $data[$prevKey] == $value){
+                $peringkat[$key] = $no;
+            } else { 
+                $peringkat[$key] = ++$no; 
+            }
+            $prevKey = $key;
         }
-        return $new;
+         //var_dump($peringkat); die;
+        return $peringkat;
     }
 		
 }

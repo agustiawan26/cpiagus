@@ -39,12 +39,7 @@ The above copyright notice and this permission notice shall be included in all c
       <div class="navbar-translate">
         <a class="navbar-brand" href="<?php echo site_url('landingpage') ?>">
           SPK-CPI </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="navbar-toggler-icon"></span>
-          <span class="navbar-toggler-icon"></span>
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        
       </div>
       
     </div>
@@ -52,14 +47,19 @@ The above copyright notice and this permission notice shall be included in all c
 
   <div class="page-header header-filter" style="background-image: url('assets/img/bg7.jpg'); background-size: cover; background-position: top center;">
     <div class="container">
+    <br>
+<br>
+<br>
+<br>
+<br>
       <div class="row">
-      
+        
         <div class="col-lg-4 col-md-6 ml-auto mr-auto">
         <?= $this->session->flashdata('flash'); ?>
           <div class="card card-login" style="height: 250px">
             <form class="form" action="<?php echo site_url('login/auth');?>" method="post">
               <div class="card-header card-header-primary text-center">
-                <h4 class="card-title">Login</h4>
+                <h4 class="card-title">Selamat Datang</h4>
               </div>
               <div class="card-body">
                 <div class="input-group">
@@ -68,7 +68,9 @@ The above copyright notice and this permission notice shall be included in all c
                       <i class="material-icons">mail</i>
                     </span>
                   </div>
-                  <input type="email" class="form-control" name="email" placeholder="Email..." required>
+                  <input type="email" class="form-control" name="email" placeholder="Email..." required
+                  oninvalid="this.setCustomValidity('Kolom email harus diisi')"
+                  oninput="setCustomValidity('')">
                 </div>
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -76,7 +78,9 @@ The above copyright notice and this permission notice shall be included in all c
                       <i class="material-icons">lock_outline</i>
                     </span>
                   </div>
-                  <input type="password" name="password" class="form-control" placeholder="Password..." required>
+                  <input type="password" name="password" class="form-control" placeholder="Password..." required
+                  oninvalid="this.setCustomValidity('Kolom password harus diisi')"
+                  oninput="setCustomValidity('')">
                 </div>
               </div>
               <div class="footer text-center">

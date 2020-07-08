@@ -39,11 +39,11 @@ class Cpi{
 		// $this->transformasipositif = $transformasipositif;
 		// $this->transformasinegatif = $transformasinegatif;
 
-		$this->transformasi();
-		$this->minval();
+		//$this->transformasi();
+		//$this->minval();
 		$this->transformasinegatif();
 		$this->transformasipositif();
-		$this->terbobot();
+		//$this->terbobot();
 		$this->terbobottp();
 		$this->terbobottn();
 		$this->nilaicpitp();
@@ -51,25 +51,13 @@ class Cpi{
 		$this->nilaicpi();
 	}	
 	
-	function minval(){		
-		foreach($this->data as $key => $val){
-			foreach($this->datamin as $k => $v){
-				$this->minval[$k] = $v;
-			}
-		}
-	}
-
-	function transformasi(){				
-		foreach($this->data as $key => $val){
-			foreach($val as $k => $v){
-				$this->transformasi[$key][$k] = $this->datamin[$k] / $v * 100;
-				// foreach($this->datatren as $a => $b){
-				// 	if($val[$a] = "positif")
-				// 		$this->transformasi[$key][$k][] = $this->datamin[$k] / $v * 100;
-				// }
-			}
-		}			
-	}
+	// function minval(){		
+	// 	foreach($this->data as $key => $val){
+	// 		foreach($this->datamin as $k => $v){
+	// 			$this->minval[$k] = $v;
+	// 		}
+	// 	}
+	// }
 	
 	function transformasipositif(){		
 		foreach($this->datatp as $key => $val){
@@ -87,13 +75,13 @@ class Cpi{
 		}
 	}
 	
-	function terbobot(){		
-		foreach($this->transformasinegatif as $key => $val){
-			foreach($val as $k => $v){				
-				$this->terbobot[$key][$k] = $v * $this->bobot[$k];
-			}
-		}		
-	}
+	// function terbobot(){		
+	// 	foreach($this->transformasinegatif as $key => $val){
+	// 		foreach($val as $k => $v){				
+	// 			$this->terbobot[$key][$k] = $v * $this->bobot[$k];
+	// 		}
+	// 	}		
+	// }
 
 	function terbobottp(){		
 		foreach($this->transformasipositif as $key => $val){

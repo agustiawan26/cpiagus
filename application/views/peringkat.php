@@ -57,7 +57,7 @@
                                                     <tr>
                                                         <td class="text-center"><?= $rank[$key] ?></td>
                                                         <td class="text-center"><?= $alt[$key] ?></td>
-                                                        <td class="text-center"><?= round(($cpi->nilaicpi[$key]),4) ?></td>
+                                                        <td class="text-center"><?= number_format(($cpi->nilaicpi[$key]),3,",",".") ?></td>
                                                     </tr>
                                                 <?php endforeach; ?>
                                                             

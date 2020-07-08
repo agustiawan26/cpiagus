@@ -72,8 +72,10 @@ The above copyright notice and this permission notice shall be included in all c
                 <i class="material-icons">maps</i> Peta
             </a>
           </li>
-          
-          <li class="nav-item"><a class="btn btn-primary btn-round" href="<?php echo site_url('login') ?>">Login</a></li>
+          <br>
+          <li class="nav-item">
+            <a class="btn btn-primary btn-round" href="<?php echo site_url('login') ?>">Login</a>
+          </li>
 
         </ul>
       </div>

@@ -45,10 +45,14 @@
                                 <div class="widget-content-wrapper">
                                     <div class="widget-content-left">
                                         <div class="widget-heading">Jumlah bobot</div>
-                                        <div class="widget-subheading">jumlah bobot kriteria harus 10!</div>
+                                        <?php if ($jumlah_bobot->jumlah_bobot == 100) { ?>
+                                            <div class="widget-subheading"></div>
+                                        <?php } else { ?>
+                                            <div class="widget-subheading">jumlah bobot kriteria harus 100!</div>
+                                        <?php } ?>
                                     </div>
                                     <div class="widget-content-right">
-                                        <?php if ($jumlah_bobot->jumlah_bobot == 10) { ?>
+                                        <?php if ($jumlah_bobot->jumlah_bobot == 100) { ?>
                                             <div class="widget-numbers text-success"><span><?php echo $jumlah_bobot->jumlah_bobot;?></span></div>
                                         <?php } else { ?>
                                             <div class="widget-numbers text-danger"><span><?php echo $jumlah_bobot->jumlah_bobot;?></span></div>
@@ -60,6 +64,7 @@
                         <div class="col-lg-10">
                             <div class="main-card mb-3 card">
                                 <div class="card-body"><h5 class="card-title">Kriteria Tanpa Parameter</h5>
+                                <div class="table-responsive">
                                     <table class="mb-0 table table-hover">
                                         <thead>
                                         <tr>
@@ -92,13 +97,17 @@
 
                                                     <td>
                                                         <a class="mb-2 mr-2 btn btn-info btn-sm" href="<?php echo base_url('kriteria/updateKriteria/' . $row->kriteria_id); ?>"><i class="fas fa-edit"></i> Edit</a>
-                                                        <a onclick="deleteConfirm('<?php echo site_url('kriteria/delete/'.$row->kriteria_id) ?>')"
-                                                                href="#!" class="mb-2 mr-2 btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus</a>
+                                                        <!-- <a onclick="deleteConfirm('<?php echo site_url('kriteria/delete/'.$row->kriteria_id) ?>')"
+                                                                href="#!" class="mb-2 mr-2 btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus</a> -->
+                                                        <a href="<?php echo site_url('kriteria/delete/'.$row->kriteria_id) ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus kriteria <?php echo $row->kriteria;?> ?');"
+                                                        class="mb-2 mr-2 btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus</a>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                                 <?php endforeach;?>
                                         </tbody>
                                     </table>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -107,6 +116,7 @@
                         <div class="col-lg-10">
                             <div class="main-card mb-3 card">
                                 <div class="card-body"><h5 class="card-title">Kriteria Dengan Parameter</h5>
+                                <div class="table-responsive">
                                     <table class="mb-0 table table-hover">
                                         <thead>
                                         <tr>
@@ -141,13 +151,17 @@
 
                                                     <td>
                                                         <a class="mb-2 mr-2 btn btn-info btn-sm" href="<?php echo base_url('kriteria/updateKriteriaWP/' . $row->kriteria_id); ?>"><i class="fas fa-edit"></i> Edit</a>
-                                                        <a onclick="deleteConfirm('<?php echo site_url('kriteria/delete/'.$row->kriteria_id) ?>')"
-                                                                href="#!" class="mb-2 mr-2 btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus</a>
+                                                        <!-- <a onclick="deleteConfirm('<?php echo site_url('kriteria/delete/'.$row->kriteria_id) ?>')"
+                                                                href="#!" class="mb-2 mr-2 btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus</a> -->
+                                                        <a href="<?php echo site_url('kriteria/delete/'.$row->kriteria_id) ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus kriteria <?php echo $row->kriteria;?> ?');"
+                                                        class="mb-2 mr-2 btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus</a>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                                 <?php endforeach;?>
                                         </tbody>
                                     </table>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -161,14 +175,6 @@
     </div>
     <!-- ETC HERE -->
     <?php $this->load->view("_partials/modal.php") ?>
-    <?php $this->load->view("_partials/js.php") ?>
-
-    <script>
-	function deleteConfirm(url){
-		$('#btn-delete').attr('href', url);
-		$('#deleteModal').modal();
-	}
-	</script>
 </body>
 
 </html>
@@ -226,7 +232,11 @@
     <script type="text/javascript" src="<?php echo base_url('./assets/scripts/main.js') ?>"></script>
 
     <script type="text/javascript" src="<?php echo base_url('assets/js/jquery-3.4.1.min.js');?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.bundle.js');?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap-select.js');?>"></script>
     
-    
+   
+    <script>
+	function deleteConfirm(url){
+		$('#btn-delete').attr('href', url);
+		$('#deleteModal').modal();
+	}
+	</script>

@@ -89,17 +89,17 @@ class Nilai extends CI_Controller
     $alternatif = $this->nilai_model->getAlternatif();
     $kriteria = $this->nilai_model->getKriteria();
     $nilai = $this->nilai_model->getNilai();
+    $kriteriahead = $this->nilai_model->getKriteria();
 
     $pdf->SetFont('Arial','B',8);
     $pdf->Cell(15,12,'',0,0,'L');
     $pdf->Cell(170,5,'Keterangan Kriteria :',0,1,'L');
     
     $pdf->SetFont('Arial','',8);
-    $i = 1;
+    
     foreach ($kriteria as $kriteria) :
       $pdf->Cell(15,12,'',0,0,'L');
-      $pdf->Cell(170,5,"K".$i."  =>  ".$kriteria->kriteria,0,1,'L');
-      $i++;
+      $pdf->Cell(170,5,"K".$kriteria->kriteria_id."  =>  ".$kriteria->kriteria,0,1,'L');
     endforeach; 
 
     $pdf->SetFont('Arial','B',12);
@@ -112,12 +112,18 @@ class Nilai extends CI_Controller
     $pdf->Cell(35,10,'Nama Alternatif',1,0,'C');
 
     $countkriteria = $this->nilai_model->getCountKriteria()->jumlah;
-    if ($countkriteria > 0) :
-        for ($a = 1; $a < $countkriteria; $a++) {
-            $pdf->Cell(25,10,"K".$a,1,0,'C');
-        }
-        $pdf->Cell(25,10,"K".$countkriteria,1,1,'C');
-    endif;
+    // if ($countkriteria > 0) :
+    //     for ($a = 1; $a < $countkriteria; $a++) {
+    //         $pdf->Cell(25,10,"K".$a,1,0,'C');
+    //     }
+    //     $pdf->Cell(25,10,"K".$countkriteria,1,1,'C');
+    // endif;
+
+    foreach ($kriteriahead as $kriteria) :
+      $pdf->Cell(25,10,"K".$kriteria->kriteria_id,1,0,'C');
+      // <th class="text-center">K<?php echo $kriteria->kriteria_id; 
+    endforeach; 
+    $pdf->Cell(10,10,'',0,1);
 
     $pdf->SetFont('Arial','',10);
 

@@ -42,32 +42,43 @@
                                         <div class="card-body">
                                             <form method="post">
                                                 <input type="hidden" name="kriteria_id" value="<?php echo $gen->max_id ?>">
-                                                <!-- <div class="form-group row">
-                                                    <label class="col-sm-4 col-form-label">Kode Kriteria</label>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-4 col-form-label">ID Kriteria</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control form-control-round" readonly="readonly" name="kriteria_id" value="<?php echo $gen->max_id; ?>">
+                                                        <input type="text" class="form-control form-control-round" placeholder="Masukkan Nama Kriteria" name="kriteria" value="K<?php echo $gen->max_id ?>" readonly="readonly" required>
                                                     </div>
-                                                </div> -->
+                                                </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label">Nama Kriteria</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control form-control-round" placeholder="Masukkan Nama Kriteria" name="kriteria" required>
+                                                        <input type="text" class="form-control form-control-round" placeholder="Masukkan Nama Kriteria" name="kriteria" required
+                                                        oninvalid="this.setCustomValidity('Kolom Nama Kriteria harus diisi')"
+                                                        oninput="setCustomValidity('')">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label">Bobot</label>
                                                     <div class="col-sm-8">
-                                                        <input type="number" step="0.000000000000001" min="0" class="form-control form-control-round" placeholder="Masukkan Bobot" name="bobot" required>
+                                                        <input type="number" step="0.000000000000001" min="0" class="form-control form-control-round" placeholder="Masukkan Bobot" name="bobot" required
+                                                        oninvalid="this.setCustomValidity('Kolom Bobot harus diisi')"
+                                                        oninput="setCustomValidity('')">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label">Tren</label>
-                                                    <div class="col-sm-8">
+                                                    <div class="col-sm-6">
                                                         <select name="tren" id="tren" class="form-control">
                                                             <option>positif</option>
                                                             <option>negatif</option>
                                                         </select>
+                                                        
                                                     </div>
+                                                    <div class="col-sm-1">
+                                                        <button type="button" class=" btn-transition btn btn-outline-info" data-toggle="tooltip" data-placement="right" title="Tren positif berarti semakin tinggi nilainya maka semakin baik, tren negatif berarti semakin rendah nilainya maka semakin baik ">
+                                                            ?
+                                                        </button>
+                                                    </div>
+                                                    
                                                 </div>
                                                 
                                                 <div class="d-block text-center card-footer">

@@ -47,33 +47,43 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label">Nama Lengkap</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control form-control-round" placeholder="Masukkan Nama Lengkap" name="full_name" required>
+                                                        <input type="text" class="form-control form-control-round" placeholder="Masukkan Nama Lengkap" name="full_name" required
+                                                        oninvalid="this.setCustomValidity('Kolom Nama Lengkap harus diisi')"
+                                                        oninput="setCustomValidity('')">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label">Username</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control form-control-round" placeholder="Masukkan Username" name="username" required>
+                                                        <input type="text" class="form-control form-control-round" placeholder="Masukkan Username" name="username" required
+                                                        oninvalid="this.setCustomValidity('Kolom Username harus diisi')"
+                                                        oninput="setCustomValidity('')">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label">Password</label>
                                                     <div class="col-sm-8">
-                                                        <input type="password" class="form-control form-control-round" placeholder="Masukkan Password" name="password" required>
+                                                        <input type="password" class="form-control form-control-round" placeholder="Masukkan Password" minlength="5" name="password" required
+                                                        oninvalid="this.setCustomValidity('Kolom Password harus diisi')"
+                                                        oninput="setCustomValidity('')">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label">Email</label>
                                                     <div class="col-sm-8">
-                                                        <input type="email" class="form-control form-control-round" placeholder="Masukkan Email" name="email" required>
+                                                        <input type="email" class="form-control form-control-round" placeholder="Masukkan Email" name="email" required
+                                                        oninvalid="this.setCustomValidity('Masukkan Email dengan benar')"
+                                                        oninput="setCustomValidity('')">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label">No Telepon</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control form-control-round" placeholder="Masukkan No Telepon" name="phone" required>
+                                                        <input type="text" class="form-control form-control-round" placeholder="Masukkan No Telepon" name="phone" required
+                                                        oninvalid="this.setCustomValidity('Kolom No Telepon harus diisi')"
+                                                        oninput="setCustomValidity('')">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
