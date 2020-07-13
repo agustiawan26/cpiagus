@@ -116,8 +116,8 @@
                                                             <div data-parent="#exampleAccordion" id="ket2" class="collapse">
                                                                 <p class="mb-3">Untuk kriteria tren positif, nilai minimum pada setiap kriteria ditransformasi ke seratus, sedangkan nilai lainnya ditransformasi secara proporsional lebih tinggi.</p>
                                                                 <div class="table-responsive">
-                                                                <img src="assets/images/transformpositif.png" height="124" width="208">
-                                                                <img src="assets/images/kettransform.png" height="124" width="360">
+                                                                <img src="assets/images/transformpositif.png" height="100" width="180">
+                                                                <img src="assets/images/kettransform.png" height="115" width="380">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -170,8 +170,8 @@
                                                             <div data-parent="#exampleAccordion" id="ket3" class="collapse">
                                                                 <p class="mb-3">Untuk kriteria tren negatif, nilai minimum pada setiap kriteria ditransformasi ke seratus, sedangkan nilai lainnya ditransformasi secara proporsional lebih rendah.</p>
                                                                 <div class="table-responsive">
-                                                                <img src="assets/images/transformnegatif.png" height="124" width="208">
-                                                                <img src="assets/images/kettransform.png" height="124" width="360">
+                                                                <img src="assets/images/transformnegatif.png" height="100" width="180">
+                                                                <img src="assets/images/kettransform.png" height="115" width="380">
                                                                 <div>
                                                             </div>
                                                         </div>
@@ -213,53 +213,51 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!--      END NEW ACCORDIONS HERE        -->
-                                            
-                                            <div id="headingFour" class="card-header">
-                                                <button type="button" data-toggle="collapse" data-target="#collapseOne5" aria-expanded="true" aria-controls="collapseOne" class="text-left m-0 p-0 btn btn-link btn-block">
-                                                    <h5 class="m-0 p-0">#4 Menghitung nilai CPI</h5>
-                                                </button>
-                                            </div>
-                                            <div data-parent="#accordion" id="collapseOne5" aria-labelledby="headingFour" class="collapse show">
-                                                <div class="card-body">
-                                                    <div id="exampleAccordion" data-children=".item">
-                                                        <div class="item">
-                                                            <button type="button" aria-expanded="true" aria-controls="exampleAccordion1" data-toggle="collapse" href="#ket4" class="m-0 p-0 btn btn-link"><h5>Keterangan</h5></button>
-                                                            <div data-parent="#exampleAccordion" id="ket4" class="collapse">
-                                                                <p class="mb-3">Menghitung indeks gabungan kriteria pada alternatif ke-j. Perhitungan dilakukan dengan melakukan perkalian nilai yang sudah ditransformasikan dengan bobot kriteria. Kemudian menjumlahkan hasil perhitungan tiap alternatif.</p>
-                                                                <p class="mb-3">Alternatif dengan total nilai indeks gabungan tertinggi merupakan alternatif terbaik</p>
-                                                                <div class="table-responsive">
-                                                                <img src="assets/images/perhitungan.png" height="110" width="130">
-                                                                <img src="assets/images/ketperhitungan.png" height="85" width="340">
-                                                                </div>
-                                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="headingFour" class="card-header">
+                                        <button type="button" data-toggle="collapse" data-target="#collapseOne5" aria-expanded="true" aria-controls="collapseOne" class="text-left m-0 p-0 btn btn-link btn-block">
+                                            <h5 class="m-0 p-0">#4 Menghitung nilai CPI</h5>
+                                        </button>
+                                    </div>
+                                    <div data-parent="#accordion" id="collapseOne5" aria-labelledby="headingFour" class="collapse show">
+                                        <div class="card-body">
+                                            <div id="exampleAccordion" data-children=".item">
+                                                <div class="item">
+                                                    <button type="button" aria-expanded="true" aria-controls="exampleAccordion1" data-toggle="collapse" href="#ket4" class="m-0 p-0 btn btn-link"><h5>Keterangan</h5></button>
+                                                    <div data-parent="#exampleAccordion" id="ket4" class="collapse">
+                                                        <p class="mb-3">Menghitung indeks gabungan kriteria pada alternatif ke-j. Perhitungan dilakukan dengan melakukan perkalian nilai yang sudah ditransformasikan dengan bobot kriteria. Kemudian menjumlahkan hasil perhitungan tiap alternatif.</p>
+                                                        <p class="mb-3">Alternatif dengan total nilai indeks gabungan tertinggi merupakan alternatif terbaik</p>
+                                                        <div class="table-responsive">
+                                                        <img src="assets/images/perhitungan.png" height="100" width="110">
+                                                        <img src="assets/images/ketperhitungan.png" height="85" width="340">
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-6">
-                                                            <div class="main-card mb-3 card">
-                                                                <div class="card-body">
-                                                                <div class="table-responsive">
-                                                                    <table class="mb-0 table table-hover">
-                                                                        <thead>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="main-card mb-3 card">
+                                                        <div class="card-body">
+                                                            <div class="table-responsive">
+                                                                <table class="mb-0 table table-hover">
+                                                                    <thead>
+                                                                    <tr>
+                                                                    <th class="text-center">Nama Alternatif</th>
+                                                                    <th class="text-center">Nilai CPI</th> 
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
                                                                         <tr>
-                                                                        <th class="text-center">Nama Alternatif</th>
-                                                                        <th class="text-center">Nilai CPI</th> 
-                                                                        </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <?php foreach ($cpi->nilaicpi as $key => $val) : ?>
-                                                                                    <tr>
-                                                                                        <td class="text-center"><?= $alt[$key] ?></td>
-                                                                                        <td class="text-center"><?= number_format(($cpi->nilaicpi[$key]),3,",",".") ?></td>
-                                                                                    </tr>
-                                                                                <?php endforeach; ?>   
-                                                                            </tr>   
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                                </div>
+                                                                            <?php foreach ($cpi->nilaicpi as $key => $val) : ?>
+                                                                                <tr>
+                                                                                    <td class="text-center"><?= $alt[$key] ?></td>
+                                                                                    <td class="text-center"><?= number_format(($cpi->nilaicpi[$key]),3,",",".") ?></td>
+                                                                                </tr>
+                                                                            <?php endforeach; ?>   
+                                                                        </tr>   
+                                                                    </tbody>
+                                                                </table>
                                                             </div>
                                                         </div>
                                                     </div>
